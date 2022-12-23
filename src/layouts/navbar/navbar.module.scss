@@ -1,3 +1,15 @@
 .root {
   display: flex;
+  justify-content: flex-end;
+  border: 3px solid red;
+}
+.logo {
+  flex: 70%;
+  border: 3px solid green;
+}
+.links {
+  display: flex;
+  flex: 30%;
+  justify-content: space-evenly;
+  border: 3px solid blue;
 }
