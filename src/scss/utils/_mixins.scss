@@ -1,0 +1,30 @@
+$sm: 640px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1280px;
+
+// Small devices
+@mixin sm {
+  @media (min-width: #{$sm}) {
+    @content;
+  }
+}
+
+// Medium devices
+@mixin md {
+  @media (min-width: #{$md}) {
+    @content;
+  }
+}
+// Large devices
+@mixin lg {
+  @media (min-width: #{$lg}) {
+    @content;
+  }
+}
+// Custom devices
+@mixin custom_breakpoint($screen) {
+  @media (min-width: $screen) {
+    @content;
+  }
+}
