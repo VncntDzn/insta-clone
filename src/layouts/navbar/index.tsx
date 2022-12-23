@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ActiveLink from "./components/active-link";
 import links from "./data";
 import styles from "./navbar.module.scss";
 const Navbar = () => {
@@ -9,9 +10,7 @@ const Navbar = () => {
       </div>
       <nav className={styles.links}>
         {links.map(({ name, path }) => (
-          <Link className={styles.link} href={path} key={name}>
-            {name}
-          </Link>
+          <ActiveLink name={name} href={path} key={name} />
         ))}
       </nav>
     </div>

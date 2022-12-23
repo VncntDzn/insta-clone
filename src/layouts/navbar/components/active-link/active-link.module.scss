@@ -1,0 +1,9 @@
+@import "scss/utils/_colors";
+.root {
+  text-decoration: none;
+  padding: 2rem;
+  color: $BLACK;
+}
+.active {
+  color: green;
+}

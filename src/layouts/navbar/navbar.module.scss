@@ -19,15 +19,9 @@
     display: flex;
     flex: 30%;
     justify-content: space-evenly;
-
     cursor: pointer;
     :hover {
       background-color: red;
     }
   }
-}
-.link {
-  text-decoration: none;
-  padding: 2rem;
-  color: $BLACK;
 }
