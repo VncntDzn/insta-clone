@@ -1,3 +1,8 @@
 @import "./utils/mixins";
 @import "./utils/fonts";
 @import "./utils/colors";
+
+body {
+  font-family: $OPEN_SANS;
+  font-size: medium;
+}

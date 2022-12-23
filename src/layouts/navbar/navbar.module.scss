@@ -1,15 +1,33 @@
+@import "scss/utils/_mixins";
+@import "scss/utils/_colors";
+
 .root {
   display: flex;
-  justify-content: flex-end;
-  border: 3px solid red;
+  align-items: center;
+  background-color: transparent;
 }
 .logo {
-  flex: 70%;
-  border: 3px solid green;
+  flex: 65%;
+  margin: 0.6rem 2rem;
+  @include lg() {
+    margin: 1rem 2rem;
+  }
 }
 .links {
-  display: flex;
-  flex: 30%;
-  justify-content: space-evenly;
-  border: 3px solid blue;
+  display: none;
+  @include lg() {
+    display: flex;
+    flex: 30%;
+    justify-content: space-evenly;
+
+    cursor: pointer;
+    :hover {
+      background-color: red;
+    }
+  }
+}
+.link {
+  text-decoration: none;
+  padding: 2rem;
+  color: $BLACK;
 }

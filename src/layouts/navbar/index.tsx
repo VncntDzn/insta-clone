@@ -1,3 +1,4 @@
+import Link from "next/link";
 import links from "./data";
 import styles from "./navbar.module.scss";
 const Navbar = () => {
@@ -6,11 +7,13 @@ const Navbar = () => {
       <div className={styles.logo}>
         <p>Insta</p>
       </div>
-      <div className={styles.links}>
-        {links.map(({ name }) => (
-          <p key={name}>{name}</p>
+      <nav className={styles.links}>
+        {links.map(({ name, path }) => (
+          <Link className={styles.link} href={path} key={name}>
+            {name}
+          </Link>
         ))}
-      </div>
+      </nav>
     </div>
   );
 };
