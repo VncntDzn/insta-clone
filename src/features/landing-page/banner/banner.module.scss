@@ -1,0 +1,10 @@
+@import "scss/utils/mixins";
+.root {
+  border: 3px solid green;
+
+  display: flex;
+  flex-direction: column;
+  @include lg() {
+    flex-direction: row;
+  }
+}
