@@ -1,13 +1,17 @@
-@import "scss/utils/_mixins";
-@import "scss/utils/_colors";
+@import "scss/utils/mixins";
+@import "scss/utils/colors";
 
 .root {
   display: flex;
   align-items: center;
   background-color: transparent;
+  border: 3px solid red;
+  @include lg() {
+    padding: 0 8rem;
+  }
 }
 .logo {
-  flex: 65%;
+  flex: 60%;
   margin: 0.6rem 2rem;
   @include lg() {
     margin: 1rem 2rem;
@@ -17,7 +21,7 @@
   display: none;
   @include lg() {
     display: flex;
-    flex: 30%;
+    flex: 40%;
     justify-content: space-evenly;
     cursor: pointer;
     :hover {
