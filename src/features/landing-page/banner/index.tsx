@@ -4,10 +4,10 @@ import Slogan from "./components/slogan";
 const Banner = () => {
   return (
     <section className={styles.root}>
-      <div>
+      <div className={styles.slogan}>
         <Slogan />
       </div>
-      <div>
+      <div className={styles.banner}>
         <Poster />
       </div>
     </section>

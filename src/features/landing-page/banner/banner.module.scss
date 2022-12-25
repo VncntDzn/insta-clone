@@ -1,10 +1,22 @@
 @import "scss/utils/mixins";
 .root {
   border: 3px solid green;
-
   display: flex;
   flex-direction: column;
+  align-items: center;
   @include lg() {
     flex-direction: row;
+  }
+}
+.slogan {
+  border: 3px solid yellow;
+  flex: 50%;
+}
+.banner {
+  border: 3px solid red;
+  display: none;
+  @include lg() {
+    display: inline-block;
+    flex: 50%;
   }
 }

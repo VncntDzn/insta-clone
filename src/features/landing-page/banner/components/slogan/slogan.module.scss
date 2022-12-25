@@ -1,0 +1,40 @@
+@import "scss/utils/fonts";
+@import "scss/utils/mixins";
+@import "scss/utils/colors";
+
+%download-btn {
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include lg() {
+    width: 12rem;
+  }
+}
+.slogan {
+  font-family: $MONTSERRAT;
+  font-size: clamp(3.5rem, 5vw, 2rem);
+}
+.buttons {
+  display: flex;
+  width: 90%;
+  gap: 1rem;
+  @include lg() {
+    width: 65%;
+  }
+}
+.androidBtn {
+  @extend %download-btn;
+  color: $WHITE;
+  background-color: $YELLOW_GREEN;
+}
+
+.iosBtn {
+  @extend %download-btn;
+  background-color: $BLACK;
+  color: $WHITE;
+}

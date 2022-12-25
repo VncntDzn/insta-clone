@@ -1,19 +1,16 @@
-import { PageTitle } from "common";
 import { Banner } from "features";
-import { Navbar } from "layouts";
 import PublicLayout from "layouts/public-layout";
-import { ChildrenType } from "types";
+import { ReactElement } from "react";
+import { NextPageWithLayout } from "./_app";
 
-const Home = () => {
+const Home: NextPageWithLayout = () => {
   return (
     <>
-      <PageTitle />
-      <Navbar />
       <Banner />
     </>
   );
 };
-Home.getLayout = ({ children }: ChildrenType) => {
-  return <PublicLayout>{children}</PublicLayout>;
+Home.getLayout = (page: ReactElement) => {
+  return <PublicLayout>{page}</PublicLayout>;
 };
 export default Home;

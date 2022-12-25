@@ -6,16 +6,9 @@
   align-items: center;
   background-color: transparent;
   border: 3px solid red;
-  @include lg() {
-    padding: 0 8rem;
-  }
 }
 .logo {
   flex: 60%;
-  margin: 0.6rem 2rem;
-  @include lg() {
-    margin: 1rem 2rem;
-  }
 }
 .links {
   display: none;
