@@ -1,29 +1,56 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
-import LikePic from "../../assets/like.png";
-import HappyPic from "../../assets/happy.png";
-import Selfie from "../../assets/selfie.png";
 import Image from "next/image";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import HappyPic from "../../assets/happy.png";
+import LikePic from "../../assets/like.png";
 const Poster = () => {
   return (
-    <Carousel
-      showIndicators={false}
-      showArrows={false}
-      showThumbs={false}
-      showStatus={false}
-      autoPlay
-      infiniteLoop
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "orange",
+        borderRadius: "20px",
+      }}
     >
-      <div>
-        <Image alt="Like Pic" src={LikePic} height={600} width={600} />
-      </div>
-      <div>
-        <Image alt="Happy Pic" src={HappyPic} height={600} width={600} />
-      </div>
-      <div>
-        <Image alt="Selfie" src={Selfie} height={600} width={600} />
-      </div>
-    </Carousel>
+      <Carousel
+        showIndicators={false}
+        showArrows={false}
+        showThumbs={false}
+        showStatus={false}
+        autoPlay
+        infiniteLoop
+      >
+        <div>
+          <Image
+            quality={100}
+            alt="Like"
+            src={LikePic}
+            height={600}
+            width={600}
+          />
+        </div>
+        <div>
+          <Image
+            quality={100}
+            alt="Happy"
+            src={HappyPic}
+            height={600}
+            width={600}
+          />
+        </div>
+        {/*   <div>
+        <Image
+          quality={100}
+          alt="Selfie"
+          src={Selfie}
+          height={600}
+          width={600}
+        />
+      </div> */}
+      </Carousel>
+    </div>
   );
 };
 
