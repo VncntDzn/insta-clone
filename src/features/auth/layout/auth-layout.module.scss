@@ -8,10 +8,10 @@
 .advertisement {
   display: none;
   @include lg() {
-    flex: 40%;
+    flex: 45%;
     display: block;
   }
 }
 .form {
-  flex: 60%;
+  flex: 55%;
 }
