@@ -1,11 +1,13 @@
-import PublicLayout from "layouts/public-layout";
-import { ReactElement } from "react";
+import { PageTitle } from "common";
+import { AuthLayout, SigninForm } from "features";
 
 const Signin = () => {
-  return <div>Signin</div>;
+  return (
+    <AuthLayout>
+      <PageTitle title="Signin" />
+      <SigninForm />
+    </AuthLayout>
+  );
 };
 
-Signin.getLayout = (page: ReactElement) => {
-  return <PublicLayout title="Signin">{page}</PublicLayout>;
-};
 export default Signin;

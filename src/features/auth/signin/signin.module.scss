@@ -1,0 +1,72 @@
+@import "scss/utils/mixins";
+
+.root {
+  border-radius: 15px;
+  margin: 1rem;
+  padding: 1rem 2rem;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  @include lg() {
+    box-shadow: none;
+    padding: 0 15rem;
+  }
+}
+
+.input {
+  width: 95%;
+  padding: 1rem;
+  outline: none;
+  border-radius: 10px;
+}
+.options {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+.signinBtn {
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: orange;
+  width: 100%;
+  align-self: center;
+
+  height: 3rem;
+  color: white;
+}
+.signupBtn {
+  &:hover {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+  }
+}
+.hrContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.hr {
+  width: 100%;
+}
+.containerBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+.googleBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: 3rem;
+  cursor: pointer;
+  background-color: white;
+  border-color: gray;
+  border-radius: 15px;
+
+  @include lg() {
+    width: 60%;
+  }
+}

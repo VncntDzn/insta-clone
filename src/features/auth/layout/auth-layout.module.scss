@@ -1,0 +1,18 @@
+@import "scss/utils/mixins";
+
+.root {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+}
+
+.advertisement {
+  display: none;
+  @include lg() {
+    flex: 40%;
+    display: block;
+  }
+}
+.form {
+  flex: 60%;
+}
