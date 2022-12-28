@@ -1,5 +1,5 @@
 @import "scss/utils/mixins";
-
+@import "scss/utils/colors";
 .root {
   border-radius: 15px;
   margin: 1rem;
@@ -16,11 +16,13 @@
   padding: 1rem;
   outline: none;
   border-radius: 10px;
+  margin: 0.6rem 0;
 }
 .options {
   margin: 1rem 0;
   display: flex;
   justify-content: space-between;
+  font-size: 14px;
 }
 .signinBtn {
   border: none;
@@ -30,11 +32,15 @@
   background-color: orange;
   width: 100%;
   align-self: center;
-
+  text-transform: uppercase;
   height: 3rem;
-  color: white;
+  color: $WHITE;
+  font-weight: 500;
+  letter-spacing: 3px;
 }
 .signupBtn {
+  color: $BLACK;
+  text-decoration: none;
   &:hover {
     text-decoration: underline;
     color: blue;
@@ -62,7 +68,7 @@
   gap: 1rem;
   height: 3rem;
   cursor: pointer;
-  background-color: white;
+  background-color: $WHITE;
   border-color: gray;
   border-radius: 15px;
 

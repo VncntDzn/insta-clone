@@ -1,0 +1,39 @@
+@import "scss/utils/mixins";
+@import "scss/utils/colors";
+.hrContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.hr {
+  width: 100%;
+}
+.containerBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+.redirectBtn {
+  color: $BLACK;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+    color: $BLUE;
+  }
+}
+.googleBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: 3rem;
+  cursor: pointer;
+  background-color: $WHITE;
+  border-color: gray;
+  border-radius: 15px;
+
+  @include lg() {
+    width: 60%;
+  }
+}

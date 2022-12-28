@@ -1,4 +1,4 @@
-import { FcGoogle } from "@react-icons/all-files/fc/FcGoogle";
+import GoogleButton from "../google";
 import styles from "./signin.module.scss";
 const Signin = () => {
   return (
@@ -21,21 +21,13 @@ const Signin = () => {
           <span>Forgot Your Password?</span>
         </div>
         <button className={styles.signinBtn}>Signin</button>
-        <p>
-          Don&apos;t have an account?{" "}
-          <span className={styles.signupBtn}>Sign up now</span>
-        </p>
-        <div className={styles.hrContainer}>
-          <hr className={styles.hr} />
-          <span>or</span>
-          <hr className={styles.hr} />
-        </div>
-        <div className={styles.containerBtn}>
-          <button className={styles.googleBtn}>
-            <FcGoogle size={20} />
-            Signin with Google
-          </button>
-        </div>
+
+        <GoogleButton
+          header="Don't have an account?"
+          action="signin"
+          display="Signup"
+          path="/auth/signup"
+        />
       </form>
     </section>
   );
