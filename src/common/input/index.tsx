@@ -26,7 +26,7 @@ const Input = ({ control, name, errors, label, ...props }: InputProps) => {
         name={field.name} // send down the input name
         {...props}
       />
-      <span className={styles.error}>{errors && errors!.message}</span>
+      {errors && <span className={styles.error}>{errors!.message}</span>}
     </div>
   );
 };

@@ -12,4 +12,8 @@
 }
 .error {
   color: $RED;
+  margin-bottom: 1rem;
+  &::first-letter {
+    text-transform: capitalize;
+  }
 }
