@@ -1,13 +1,15 @@
-import { PageTitle } from "common";
 import { AuthLayout, SignupForm } from "features";
+import { ReactElement } from "react";
 
 const Signup = () => {
   return (
-    <AuthLayout>
-      <PageTitle title="Signup" />
+    <>
       <SignupForm />
-    </AuthLayout>
+    </>
   );
 };
 
+Signup.getLayout = (page: ReactElement) => {
+  return <AuthLayout title="Signup">{page}</AuthLayout>;
+};
 export default Signup;

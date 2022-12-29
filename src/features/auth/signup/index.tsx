@@ -48,7 +48,6 @@ const Signup = () => {
   const handleSignup = async () => {
     toast.info("Submitting...");
     const { firstName, lastName, email, password } = getValues();
-    // TODO: If success then add the additional details to firestore
     // NOTE: You can create a user using firebase admin and deploy using nextjs
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
