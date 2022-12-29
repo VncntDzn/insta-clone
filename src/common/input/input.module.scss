@@ -1,0 +1,15 @@
+@import "scss/utils/colors";
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.input {
+  padding: 1rem;
+  outline: none;
+  border-radius: 10px;
+  margin: 0.6rem 0;
+}
+.error {
+  color: $RED;
+}
