@@ -22,7 +22,6 @@ const Input = ({ control, name, errors, label, ...props }: InputProps) => {
         className={styles.input}
         onChange={field.onChange} // send value to hook form
         onBlur={field.onBlur} // notify when input is touched/blur
-        value={field.value} // input value
         name={field.name} // send down the input name
         {...props}
       />

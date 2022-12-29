@@ -1,5 +1,9 @@
 import { combineReducers } from "@reduxjs/toolkit";
-const rootReducer = combineReducers({});
+import userSlice from "./slices/userSlice";
+
+const rootReducer = combineReducers({
+  user: userSlice,
+});
 export type RootState = ReturnType<typeof rootReducer>;
 
 export default rootReducer;

@@ -1,16 +1,21 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Input } from "common";
-import { auth } from "db";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, firestore } from "db";
+import { createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
+import { doc, setDoc, Timestamp } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import GoogleButton from "../google";
 import styles from "./signup.module.scss";
 import signupSchema from "./signupSchema";
 
-interface Credentials {
+interface UserDetails {
+  docId?: UserCredential | string;
   firstName: string;
   lastName: string;
+}
+
+interface Credentials extends UserDetails {
   email: string;
   password: string;
   passwordConfirmation: string;
@@ -25,12 +30,29 @@ const Signup = () => {
     resolver: yupResolver(signupSchema),
   });
 
+  const handleAddAdditionalDetails = async ({
+    docId,
+    firstName,
+    lastName,
+  }: UserDetails) => {
+    try {
+      await setDoc(doc(firestore, `users/${docId}`), {
+        firstName,
+        lastName,
+        signedDate: Timestamp.now(),
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const handleSignup = async () => {
-    // add toast
     toast.info("Submitting...");
     const { firstName, lastName, email, password } = getValues();
+    // TODO: If success then add the additional details to firestore
+    // NOTE: You can create a user using firebase admin and deploy using nextjs
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      handleAddAdditionalDetails({ docId: res.user.uid, firstName, lastName });
       toast.success("Success...");
     } catch (error: any) {
       toast.error(error.message);
