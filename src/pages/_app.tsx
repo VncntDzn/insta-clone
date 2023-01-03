@@ -1,3 +1,5 @@
+import useCurrentUser from "hooks/useCurrentUser";
+import PrivateLayout from "layouts/private-layout";
 import { NextPage } from "next";
 import type { AppProps } from "next/app";
 import "normalize.css";
@@ -15,16 +17,12 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
-export default function App({
-  Component,
-  pageProps: { session, ...pageProps },
-}: AppPropsWithLayout) {
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || ((page) => page);
-
   return getLayout(
     <Provider store={store}>
-      <Component {...pageProps} />
       <ToastContainer />
+      <Component {...pageProps} />
     </Provider>
   );
 }

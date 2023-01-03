@@ -1,0 +1,22 @@
+.root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+.title {
+  padding: 1rem 3rem;
+  margin: 2rem 0;
+}
+.links {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  gap: 1rem;
+  margin: 0 1rem;
+  cursor: pointer;
+  &:hover {
+    background-color: #f8f8f8;
+    border-radius: 20px;
+  }
+}

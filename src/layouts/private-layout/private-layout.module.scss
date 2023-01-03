@@ -1,8 +1,16 @@
 @import "scss/utils/mixins";
 @import "scss/utils/colors";
 .root {
-  padding: 1rem;
-  @include lg() {
-    padding: 0 8rem;
-  }
+  display: flex;
+  background-color: #f8f8f8;
+}
+
+.sidebar {
+  flex: 25%;
+}
+.content {
+  flex: 50%;
+}
+.recommendations {
+  flex: 25%;
 }
