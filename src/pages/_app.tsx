@@ -1,5 +1,3 @@
-import useCurrentUser from "hooks/useCurrentUser";
-import PrivateLayout from "layouts/private-layout";
 import { NextPage } from "next";
 import type { AppProps } from "next/app";
 import "normalize.css";
