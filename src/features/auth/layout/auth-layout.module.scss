@@ -8,10 +8,17 @@
 .advertisement {
   display: none;
   @include lg() {
-    flex: 45%;
+    flex: 50%;
     display: block;
   }
 }
 .form {
-  flex: 55%;
+  margin: 1rem;
+  padding: 1rem 2rem;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  @include lg() {
+    flex: 50%;
+    box-shadow: none;
+    padding: 0 10rem;
+  }
 }

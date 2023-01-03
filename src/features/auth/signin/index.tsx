@@ -43,7 +43,7 @@ const Signin = () => {
   };
 
   return (
-    <section className={styles.root}>
+    <>
       <h1>Signin</h1>
       <form className={styles.form} onSubmit={handleSubmit(handleSignin)}>
         <Input
@@ -77,7 +77,7 @@ const Signin = () => {
           path="/auth/signup"
         />
       </form>
-    </section>
+    </>
   );
 };
 

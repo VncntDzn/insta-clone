@@ -39,7 +39,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <section className={styles.root}>
+    <>
       <h1>Forgot Password</h1>
       <form
         className={styles.form}
@@ -70,7 +70,7 @@ const ForgotPassword = () => {
           path="/auth/signin"
         />
       </form>
-    </section>
+    </>
   );
 };
 
