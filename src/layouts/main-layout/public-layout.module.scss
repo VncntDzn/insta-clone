@@ -1,0 +1,8 @@
+@import "scss/utils/mixins";
+@import "scss/utils/colors";
+.root {
+  padding: 1rem;
+  @include lg() {
+    padding: 0 8rem;
+  }
+}

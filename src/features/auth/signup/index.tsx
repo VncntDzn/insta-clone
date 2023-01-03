@@ -2,9 +2,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Input } from "common";
 import { auth, firestore } from "db";
 import { createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
-import { doc, setDoc, Timestamp } from "firebase/firestore";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { useAppDispatch } from "store/hooks";
+import { SET_CURRENT_USER } from "store/slices/userSlice";
 import GoogleButton from "../google";
 import styles from "./signup.module.scss";
 import signupSchema from "./signupSchema";
@@ -21,6 +24,7 @@ interface Credentials extends UserDetails {
   passwordConfirmation: string;
 }
 const Signup = () => {
+  const dispatch = useAppDispatch();
   const {
     control,
     handleSubmit,
@@ -29,6 +33,7 @@ const Signup = () => {
   } = useForm<Credentials>({
     resolver: yupResolver(signupSchema),
   });
+  const [disabledBtn, setIsDisabledBtn] = useState(false);
 
   const handleAddAdditionalDetails = async ({
     docId,
@@ -39,7 +44,7 @@ const Signup = () => {
       await setDoc(doc(firestore, `users/${docId}`), {
         firstName,
         lastName,
-        signedDate: Timestamp.now(),
+        signedDate: serverTimestamp(),
       });
     } catch (error) {
       console.error(error);
@@ -47,14 +52,18 @@ const Signup = () => {
   };
   const handleSignup = async () => {
     toast.info("Submitting...");
+    setIsDisabledBtn(true);
     const { firstName, lastName, email, password } = getValues();
     // NOTE: You can create a user using firebase admin and deploy using nextjs
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       handleAddAdditionalDetails({ docId: res.user.uid, firstName, lastName });
+      dispatch(SET_CURRENT_USER(res));
       toast.success("Success...");
-    } catch (error: any) {
-      toast.error(error.message);
+    } catch (error: unknown) {
+      toast.error((error as Error).message);
+    } finally {
+      setIsDisabledBtn(false);
     }
   };
 
@@ -104,7 +113,11 @@ const Signup = () => {
             type="password"
           />
         </div>
-        <button className={styles.signupBtn} type="submit">
+        <button
+          className={`${!disabledBtn ? styles.signupBtn : styles.disabledBtn}`}
+          disabled={disabledBtn}
+          type="submit"
+        >
           Signup
         </button>
 

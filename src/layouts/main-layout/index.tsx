@@ -4,19 +4,27 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { ChildrenType } from "types";
-import styles from "./public-layout.module.scss";
+import styles from "./main-layout.module.scss";
 
 export interface LayoutProps extends ChildrenType {
   title?: string;
   hasNavbar?: boolean;
   isPadded?: boolean;
 }
-const PublicLayout = ({
+const MainLayout = ({
   title,
   hasNavbar = false,
   isPadded = false,
   children,
 }: LayoutProps) => {
+  const { user } = useCurrentUser();
+
+  const router = useRouter();
+  useEffect(() => {
+    if (!user) {
+      router.push("/auth/signin");
+    }
+  }, [router, user]);
   return (
     <>
       <Head>
@@ -27,10 +35,11 @@ const PublicLayout = ({
       </Head>
       <main className={isPadded ? styles.root : ""}>
         {hasNavbar && <Navbar />}
+        {user && <h1>meron user</h1>}
         {children}
       </main>
     </>
   );
 };
 
-export default PublicLayout;
+export default MainLayout;
