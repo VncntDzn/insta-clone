@@ -1,3 +1,4 @@
+import Link from "next/link";
 import GoogleButton from "../google";
 import styles from "./signin.module.scss";
 const Signin = () => {
@@ -18,7 +19,7 @@ const Signin = () => {
             <input type="checkbox" name="rememberMe" />
             <label htmlFor="rememberMe">Remember me</label>
           </div>
-          <span>Forgot Your Password?</span>
+          <Link href="/auth/forgot-password">Forgot Your Password?</Link>
         </div>
         <button className={styles.signinBtn}>Signin</button>
 
