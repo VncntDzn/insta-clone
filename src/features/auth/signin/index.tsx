@@ -71,6 +71,7 @@ const Signin = () => {
         </button>
 
         <GoogleButton
+          isForgotPassword
           header="Don't have an account?"
           action="signup"
           display="Signup"

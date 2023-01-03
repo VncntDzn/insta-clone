@@ -6,16 +6,30 @@ interface GoogleButtonProps {
   action: "signup" | "signin";
   display: string;
   path: string;
+  isForgotPassword?: boolean;
 }
-const GoogleButton = ({ header, action, display, path }: GoogleButtonProps) => {
+const GoogleButton = ({
+  header,
+  action,
+  display,
+  path,
+  isForgotPassword = false,
+}: GoogleButtonProps) => {
   return (
     <>
-      <p>
-        {header} &nbsp;
-        <Link className={styles.redirectBtn} href={path}>
-          <span>{display} now</span>
-        </Link>
-      </p>
+      <div className={styles.moreOptions}>
+        <p>
+          {header} &nbsp;
+          <Link className={styles.redirectBtn} href={path}>
+            <span>{display} now</span>
+          </Link>
+        </p>
+        {isForgotPassword && (
+          <Link className={styles.redirectBtn} href={path}>
+            Forgot Password?
+          </Link>
+        )}
+      </div>
       <div className={styles.hrContainer}>
         <hr className={styles.hr} />
         <span>or</span>
