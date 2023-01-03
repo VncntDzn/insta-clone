@@ -1,3 +1,5 @@
+@import "scss/utils/fonts";
+
 .root {
   height: 100vh;
   display: flex;
@@ -7,6 +9,8 @@
 .title {
   padding: 1rem 3rem;
   margin: 2rem 0;
+  font-family: $SACRAMENTO;
+  font-size: 60px;
 }
 .links {
   display: flex;
@@ -17,8 +21,16 @@
   cursor: pointer;
   color: black;
   text-decoration: none;
+  font-size: 17px;
   &:hover {
     background-color: #f8f8f8;
     border-radius: 20px;
   }
+}
+.active {
+  font-weight: 700;
+}
+
+.inactive {
+  font-weight: normal;
 }
