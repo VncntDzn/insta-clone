@@ -7,6 +7,6 @@ const Search = () => {
 };
 
 Search.getLayout = (page: ReactElement) => {
-  return <PrivateLayout>{page}</PrivateLayout>;
+  return <PrivateLayout title="Search">{page}</PrivateLayout>;
 };
 export default Search;

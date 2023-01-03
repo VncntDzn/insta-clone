@@ -7,6 +7,6 @@ const Messages = () => {
 };
 
 Messages.getLayout = (page: ReactElement) => {
-  return <PrivateLayout>{page}</PrivateLayout>;
+  return <PrivateLayout title="Messages">{page}</PrivateLayout>;
 };
 export default Messages;

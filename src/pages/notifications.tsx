@@ -6,6 +6,6 @@ const Notifications = () => {
 };
 
 Notifications.getLayout = (page: ReactElement) => {
-  return <PrivateLayout>{page}</PrivateLayout>;
+  return <PrivateLayout title="Notifications">{page}</PrivateLayout>;
 };
 export default Notifications;

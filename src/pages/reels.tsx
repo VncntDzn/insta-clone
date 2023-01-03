@@ -6,6 +6,6 @@ const Reels = () => {
 };
 
 Reels.getLayout = (page: ReactElement) => {
-  return <PrivateLayout>{page}</PrivateLayout>;
+  return <PrivateLayout title="Reels">{page}</PrivateLayout>;
 };
 export default Reels;
