@@ -16,11 +16,9 @@
 }
 
 .signupBtn {
-  @extend %btn-style;
-  background-color: orange;
+  composes: signinBtn from "../signin/signin.module.scss";
 }
+
 .disabledBtn {
-  @extend %btn-style;
-  background-color: $LIGHT_GRAY;
-  cursor: not-allowed;
+  composes: disabledBtn from "../signin/signin.module.scss";
 }
