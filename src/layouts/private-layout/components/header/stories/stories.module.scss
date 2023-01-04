@@ -13,6 +13,10 @@
   height: 50px;
   width: 50px;
   background-color: $LIGHT_GRAY;
+  @include lg() {
+    height: 70px;
+    width: 70px;
+  }
 }
 .name {
   font-size: 12px;
@@ -22,4 +26,7 @@
   overflow: hidden;
   width: 3.5rem;
   text-overflow: ellipsis;
+  @include lg() {
+    width: 4.5rem;
+  }
 }

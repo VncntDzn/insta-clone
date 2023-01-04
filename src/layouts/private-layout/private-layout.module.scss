@@ -4,18 +4,41 @@
   display: flex;
   flex-direction: column;
   background-color: $LIGHT_GRAY2;
+  @include sm() {
+    flex-direction: row;
+  }
 }
 
 .sidebar {
   display: none;
+  @include sm() {
+    display: block;
+    flex: 10%;
+  }
   @include lg() {
-    display: inline-block;
-    flex: 18%;
+    display: block;
+    flex: 20%;
   }
 }
 .content {
-  flex: 57%;
+  @include sm() {
+    flex: 90%;
+    border: 3px solid red;
+  }
+  @include lg() {
+    flex: 80%;
+    border: 3px solid yellow;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
 }
-.recommendations {
-  flex: 25%;
+.item {
+  height: 60vh;
+  border: 3px solid red;
+  margin: 1rem;
+  @include lg() {
+    width: 35vw;
+  }
 }

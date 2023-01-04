@@ -8,10 +8,18 @@
   background-color: $WHITE;
   height: fit-content;
   margin-bottom: 1rem;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-radius: 10px;
   border-bottom: 1px solid $LIGHT_GRAY;
-  width: 100vw;
+
+  @include sm() {
+    display: none;
+  }
+
+  @include lg() {
+    display: inline-block;
+    width: 35vw;
+    margin-top: 2rem;
+  }
 }
 .header {
   display: flex;
@@ -19,6 +27,9 @@
   align-items: center;
   padding: 0.5rem 0.7rem;
   border-bottom: 1px solid $LIGHT_GRAY;
+  @include lg() {
+    display: none;
+  }
 }
 .logo {
   flex: 20%;
