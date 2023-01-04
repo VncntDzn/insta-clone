@@ -25,7 +25,7 @@ const GoogleButton = ({
           </Link>
         </p>
         {isForgotPassword && (
-          <Link className={styles.redirectBtn} href={path}>
+          <Link className={styles.redirectBtn} href='/auth/forgot-password'>
             Forgot Password?
           </Link>
         )}
