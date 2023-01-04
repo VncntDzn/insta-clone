@@ -1,12 +1,8 @@
-import useCurrentUser from "hooks/useCurrentUser";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { ChildrenType } from "types";
 import Header from "./components/header";
-import Sidebar from "./components/sidebar";
+import MobileNavigation from "./components/navigation";
 import styles from "./private-layout.module.scss";
-
 interface PrivateLayoutProps extends ChildrenType {
   title?: string;
 }
@@ -22,6 +18,10 @@ const PrivateLayout = ({ title, children }: PrivateLayoutProps) => {
 
       <section className={styles.root}>
         <Header />
+        {[1, 2, 3, 4, 5, 6, 7].map((i) => (
+          <div key={i} style={{ height: "60vh", border: "3px solid red", margin: "1rem" }} />
+        ))}
+        <MobileNavigation />
         {/*    <div className={styles.sidebar}>
           <Sidebar />
         </div>

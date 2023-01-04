@@ -1,0 +1,19 @@
+@import "scss/utils/mixins";
+@import "scss/utils/colors";
+.root {
+  height: 4rem;
+  position: sticky;
+  bottom: 0;
+  border-top-width: 1px solid;
+  background-color: $WHITE;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.visible {
+  color: $BLACK;
+}
+.hidden {
+  display: none;
+}

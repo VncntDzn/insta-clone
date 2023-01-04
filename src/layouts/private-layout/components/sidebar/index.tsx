@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import routes from "./routes";
+import routes from "../routes";
 import styles from "./sidebar.module.scss";
 
 const Sidebar = () => {

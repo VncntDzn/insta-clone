@@ -2,8 +2,8 @@
 @import "scss/utils/colors";
 .root {
   display: flex;
+  flex-direction: column;
   background-color: $LIGHT_GRAY2;
-  height: 100vh;
 }
 
 .sidebar {
