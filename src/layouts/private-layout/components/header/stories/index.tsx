@@ -15,6 +15,18 @@ const Stories = () => {
         "Angela Nicole",
         "Vincent",
         "Angela Nicole",
+        "Vincent",
+        "Angela Nicole Angela Nicole Angela Nicole",
+        "Vincent",
+        "Angela Nicole",
+        "Vincent",
+        "Angela Nicole",
+        "Vincent",
+        "Angela Nicole",
+        "Vincent",
+        "Angela Nicole",
+        "Vincent",
+        "Angela Nicole",
       ].map((name, i) => (
         <div className={styles.story} key={i}>
           <div className={styles.avatar} />
