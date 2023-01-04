@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { ChildrenType } from "types";
+import Header from "./components/header";
 import Sidebar from "./components/sidebar";
 import styles from "./private-layout.module.scss";
 
@@ -20,11 +21,12 @@ const PrivateLayout = ({ title, children }: PrivateLayoutProps) => {
       </Head>
 
       <section className={styles.root}>
-        <div className={styles.sidebar}>
+        <Header />
+        {/*    <div className={styles.sidebar}>
           <Sidebar />
         </div>
         <div className={styles.content}> {children}</div>
-        <div className={styles.recommendations}> {children}</div>
+        <div className={styles.recommendations}> {children}</div> */}
       </section>
     </main>
   );

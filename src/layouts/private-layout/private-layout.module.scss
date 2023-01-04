@@ -2,11 +2,16 @@
 @import "scss/utils/colors";
 .root {
   display: flex;
-  background-color: #f8f8f8;
+  background-color: $LIGHT_GRAY2;
+  height: 100vh;
 }
 
 .sidebar {
-  flex: 18%;
+  display: none;
+  @include lg() {
+    display: inline-block;
+    flex: 18%;
+  }
 }
 .content {
   flex: 57%;
