@@ -1,8 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 import { Input } from "common";
-import { auth, firestore } from "db";
-import { createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { UserCredential } from "firebase/auth";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -11,7 +10,6 @@ import { SET_CURRENT_USER } from "store/slices/userSlice";
 import GoogleButton from "../google";
 import styles from "./signup.module.scss";
 import signupSchema from "./signupSchema";
-import axios from "axios";
 interface UserDetails {
   docId?: UserCredential | string;
   firstName: string;
@@ -54,7 +52,6 @@ const Signup = () => {
     toast.info("Submitting...");
     setIsDisabledBtn(true);
     const { firstName, lastName, email, password } = getValues();
-    // NOTE: You can create a user using firebase admin and deploy using nextjs
     try {
       const res = await axios.post("/api/user", {
         email,
@@ -63,8 +60,8 @@ const Signup = () => {
       /*  handleAddAdditionalDetails({ docId: res.user.uid, firstName, lastName }); */
       dispatch(SET_CURRENT_USER(res));
       toast.success("Success...");
-    } catch (error) {
-      toast.error(error.response.data.error.message);
+    } catch (error: any) {
+      toast.error(error?.response?.data?.error?.message);
     } finally {
       setIsDisabledBtn(false);
     }

@@ -14,7 +14,12 @@
 import admin from "db/admin";
 import { getAuth } from "firebase-admin/auth";
 
-const addUser = async ({ email, password }) => {
+interface Credentials {
+  email: string;
+  password: string;
+}
+
+const addUser = async ({ email, password }: Credentials) => {
   let CODE;
   try {
     const result = await getAuth(admin).createUser({
