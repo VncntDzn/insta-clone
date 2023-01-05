@@ -11,7 +11,7 @@ import { SET_CURRENT_USER } from "store/slices/userSlice";
 import GoogleButton from "../google";
 import styles from "./signup.module.scss";
 import signupSchema from "./signupSchema";
-
+import axios from "axios";
 interface UserDetails {
   docId?: UserCredential | string;
   firstName: string;
@@ -35,7 +35,7 @@ const Signup = () => {
   });
   const [disabledBtn, setIsDisabledBtn] = useState(false);
 
-  const handleAddAdditionalDetails = async ({
+  /* const handleAddAdditionalDetails = async ({
     docId,
     firstName,
     lastName,
@@ -49,19 +49,22 @@ const Signup = () => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }; */
   const handleSignup = async () => {
     toast.info("Submitting...");
     setIsDisabledBtn(true);
     const { firstName, lastName, email, password } = getValues();
     // NOTE: You can create a user using firebase admin and deploy using nextjs
     try {
-      const res = await createUserWithEmailAndPassword(auth, email, password);
-      handleAddAdditionalDetails({ docId: res.user.uid, firstName, lastName });
+      const res = await axios.post("/api/user", {
+        email,
+        password,
+      });
+      /*  handleAddAdditionalDetails({ docId: res.user.uid, firstName, lastName }); */
       dispatch(SET_CURRENT_USER(res));
       toast.success("Success...");
-    } catch (error: unknown) {
-      toast.error((error as Error).message);
+    } catch (error) {
+      toast.error(error.response.data.error.message);
     } finally {
       setIsDisabledBtn(false);
     }
