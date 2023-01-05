@@ -2,7 +2,7 @@ import { apps, credential } from "firebase-admin";
 import { App, initializeApp } from "firebase-admin/app";
 
 /*
-  If ever encountered a problem that states:
+  If ever you encounter a problem that states:
     Credential implementation provided to initializeApp() via the "credential" property failed to fetch a valid Google OAuth2 access token with the
     following error: "Error fetching access token: invalid_grant (Invalid grant: account not found)". There are two likely causes: (1) your
   Solution: Just generate a new access token in firebase console and it will solve the error.
