@@ -46,7 +46,7 @@ const Signup = () => {
       dispatch(SET_CURRENT_USER(data.result));
       toast.success("Success...");
     } catch (error: any) {
-      toast.error(error?.response?.data?.error?.message);
+       toast.error(error?.response?.data?.error?.message);
     } finally {
       setIsDisabledBtn(false);
     }

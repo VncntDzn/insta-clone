@@ -33,7 +33,7 @@ const Signin = () => {
     const { email, password } = getValues();
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
-      dispatch(SET_CURRENT_USER(res));
+      dispatch(SET_CURRENT_USER(res.user));
       toast.success("Logging you in...");
     } catch (error: unknown) {
       toast.error((error as Error).message);
