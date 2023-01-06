@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Input } from "common";
-import { auth } from "db";
+import { auth } from "db/client";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { useState } from "react";
 import { useForm } from "react-hook-form";

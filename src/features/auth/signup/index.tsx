@@ -12,8 +12,7 @@ import styles from "./signup.module.scss";
 import signupSchema from "./signupSchema";
 interface UserDetails {
   docId?: UserCredential | string;
-  firstName: string;
-  lastName: string;
+  displayName: string;
 }
 
 interface Credentials extends UserDetails {
@@ -33,32 +32,18 @@ const Signup = () => {
   });
   const [disabledBtn, setIsDisabledBtn] = useState(false);
 
-  /* const handleAddAdditionalDetails = async ({
-    docId,
-    firstName,
-    lastName,
-  }: UserDetails) => {
-    try {
-      await setDoc(doc(firestore, `users/${docId}`), {
-        firstName,
-        lastName,
-        signedDate: serverTimestamp(),
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }; */
   const handleSignup = async () => {
     toast.info("Submitting...");
     setIsDisabledBtn(true);
-    const { firstName, lastName, email, password } = getValues();
+    const { displayName, email, password } = getValues();
     try {
-      const res = await axios.post("/api/user", {
+      const { data } = await axios.post("/api/auth/signup", {
         email,
         password,
+        displayName,
       });
-      /*  handleAddAdditionalDetails({ docId: res.user.uid, firstName, lastName }); */
-      dispatch(SET_CURRENT_USER(res));
+
+      dispatch(SET_CURRENT_USER(data.result));
       toast.success("Success...");
     } catch (error: any) {
       toast.error(error?.response?.data?.error?.message);
@@ -81,18 +66,11 @@ const Signup = () => {
 
         <div className={styles.credentials}>
           <Input
-            label="First Name"
-            placeholder="Enter your first name"
-            name="firstName"
+            label="Full Name"
+            placeholder="Enter your full name"
+            name="displayName"
             control={control}
-            errors={errors.firstName}
-          />
-          <Input
-            label="Last Name"
-            placeholder="Enter your last name"
-            name="lastName"
-            control={control}
-            errors={errors.lastName}
+            errors={errors.displayName}
           />
         </div>
         <div className={styles.credentials}>
