@@ -1,7 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 import { Input } from "common";
 import { auth } from "db/client";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  inMemoryPersistence,
+  setPersistence,
+  signInWithEmailAndPassword
+} from "firebase/auth";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -16,6 +22,7 @@ interface Credentials {
   password: string;
 }
 const Signin = () => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const {
     control,
@@ -32,8 +39,18 @@ const Signin = () => {
     setIsDisabledBtn(true);
     const { email, password } = getValues();
     try {
-      const res = await signInWithEmailAndPassword(auth, email, password);
-      dispatch(SET_CURRENT_USER(res.user));
+      setPersistence(auth, inMemoryPersistence);
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+      const idToken = await user.getIdToken();
+      await axios.post("/api/auth/createSessionCookie", {
+        idToken,
+      });
+
+      setTimeout(() => {
+        router.push("/feed");
+      }, 3000);
+
+      dispatch(SET_CURRENT_USER(user));
       toast.success("Logging you in...");
     } catch (error: unknown) {
       toast.error((error as Error).message);

@@ -13,7 +13,6 @@ const signupHandler = async (req: NextApiRequest, res: NextApiResponse) => {
       password,
       disabled: false,
     });
-
     return res.status(200).json({ result });
   } catch (error) {
     return res.status(500).json({ error });
