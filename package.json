@@ -28,7 +28,9 @@
     "normalize.css": "^8.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-drag-drop-files": "^2.3.8",
     "react-hook-form": "^7.41.2",
+    "react-modal": "^3.16.1",
     "react-redux": "^8.0.5",
     "react-responsive-carousel": "^3.2.23",
     "react-toastify": "^9.1.1",
@@ -38,6 +40,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@types/cookie": "^0.5.1"
+    "@types/cookie": "^0.5.1",
+    "@types/react-modal": "^3.13.1"
   }
 }

@@ -13,6 +13,9 @@ import { RiHeartLine } from "@react-icons/all-files/ri/RiHeartLine";
 import { RiMessageFill } from "@react-icons/all-files/ri/RiMessageFill";
 import { RiMessageLine } from "@react-icons/all-files/ri/RiMessageLine";
 
+import Image from "next/image";
+import Pic from "../../assets/pic.jpg";
+import styles from "../sidebar/sidebar.module.scss";
 const index = [
   {
     name: "Home",
@@ -51,10 +54,23 @@ const index = [
     path: "/notifications",
   },
   {
-    name: "New Post",
+    name: "Create",
     inactive_icon: <RiAddBoxLine size={30} />,
     active_icon: <RiAddBoxFill size={30} />,
     path: "/new-post",
+  },
+  {
+    name: "Profile",
+    inactive_icon: (
+      <Image
+        className={styles.avatar}
+        src={Pic}
+        width={30}
+        height={30}
+        alt="Profile"
+      />
+    ),
+    path: "/profile",
   },
 ];
 
