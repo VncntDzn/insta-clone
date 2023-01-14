@@ -15,6 +15,8 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    borderRadius: "20px",
+    padding: 0,
   },
 };
 const Dialog = ({ isOpen, onClose, children }: DialogProps) => {

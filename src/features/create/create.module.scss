@@ -1,3 +1,43 @@
-.root {
-    background-color: red;
+@import "scss/utils/colors";
+
+.title {
+  border-bottom: thin solid $LIGHT_GRAY;
+  margin: 0;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+.slogan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  width: 35vw;
+}
+.selectBtn {
+  background-color: $BLUE;
+  border-radius: 10px;
+  padding: 0.8rem;
+  font-size: 13px;
+  font-weight: 500;
+  color: $WHITE;
+  cursor: pointer;
+  border: none;
+  &:hover {
+    background-color: $BLUE_DARKER;
+  }
+}
+.thumbnails {
+  height: 45rem;
+  width: 45rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.thumbnail {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }

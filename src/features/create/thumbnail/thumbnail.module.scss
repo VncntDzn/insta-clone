@@ -1,0 +1,83 @@
+@import "scss/utils/colors";
+
+%modal-btn {
+  border-top: thin solid $LIGHT_GRAY;
+  width: 100%;
+
+  text-align: center;
+  padding: 1rem 0;
+  cursor: pointer;
+}
+
+.root {
+  position: relative;
+  overflow: hidden;
+  font-size: 14px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.nextBtn {
+  color: $BLUE;
+  cursor: pointer;
+}
+.backIcon {
+  cursor: pointer;
+}
+
+.thumbnail {
+  height: 70vh;
+  width: 35vw;
+  object-fit: cover;
+}
+.icon {
+  color: $WHITE;
+  background-color: $BLACK;
+  border-radius: 50%;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.zoom {
+  display: flex;
+  gap: 0.5rem;
+}
+.footer {
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 30rem;
+}
+.modalHeader {
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.modalDescription{
+  margin-top: 0.5rem;
+  color: $GRAY;
+}
+.discardBtn {
+  color: $RED;
+  font-weight: 700;
+  @extend %modal-btn;
+}
+.cancelBtn {
+  @extend %modal-btn;
+}
