@@ -8,11 +8,13 @@ import { RiZoomInLine } from "@react-icons/all-files/ri/RiZoomInLine";
 import { Dialog } from "common";
 import { useToggle } from "hooks";
 import styles from "./thumbnail.module.scss";
+import { ThumbnailProps } from "..";
 
-interface ThumbnailProps {
-  files: any;
+interface Sample {
+  files: ThumbnailProps[];
 }
-const Thumbnail = ({ files }: ThumbnailProps) => {
+
+const Thumbnail = ({ files }: Sample) => {
   const [toggle, setToggle] = useToggle();
   const handleToggle = () => {
     setToggle(!false);
@@ -50,7 +52,7 @@ const Thumbnail = ({ files }: ThumbnailProps) => {
           <p className={styles.nextBtn}>Next</p>
         </div>
 
-        {files.map((file: any) => (
+        {files.map((file) => (
           <Image
             className={styles.thumbnail}
             alt="post"

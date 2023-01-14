@@ -4,8 +4,13 @@ import Thumbnail from "./thumbnail";
 
 import { RiImage2Line } from "@react-icons/all-files/ri/RiImage2Line";
 import styles from "./create.module.scss";
-export default function Create() {
-  const [files, setFiles] = useState<any>([]);
+
+export interface ThumbnailProps {
+  preview: string;
+  name: string;
+}
+const Create = () => {
+  const [files, setFiles] = useState<ThumbnailProps[]>([]);
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
       "image/*": [],
@@ -23,7 +28,7 @@ export default function Create() {
 
   useEffect(() => {
     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
-    return () => files.forEach((file:any) => URL.revokeObjectURL(file.preview));
+    return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
   }, []);
 
   if (files.length >= 1) {
@@ -42,4 +47,5 @@ export default function Create() {
       </div>
     </div>
   );
-}
+};
+export default Create;
