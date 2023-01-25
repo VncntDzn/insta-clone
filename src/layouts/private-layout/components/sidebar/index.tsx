@@ -5,8 +5,8 @@ import styles from "./sidebar.module.scss";
 import { RiInstagramLine } from "@react-icons/all-files/ri/RiInstagramLine";
 import { RiMenuLine } from "@react-icons/all-files/ri/RiMenuLine";
 import { Dialog } from "common";
-import { useMediaQuery, useToggle } from "hooks";
 import Create from "features/create";
+import { useMediaQuery, useToggle } from "hooks";
 
 const Sidebar = () => {
   const router = useRouter();
@@ -41,8 +41,9 @@ const Sidebar = () => {
         <h1 className={styles.title}>Instaclone</h1>
       )}
       <div className={styles.linksContainer}>
-        {routes.map(({ path, name, inactive_icon, active_icon }) => (
+        {routes.map(({ path, name, inactive_icon, active_icon }, i) => (
           <div
+            tabIndex={i}
             onClick={() => handleNavigation(path)}
             className={styles.links}
             key={name}
@@ -50,15 +51,7 @@ const Sidebar = () => {
             <span>
               {handleCheckIfActive(path) ? active_icon : inactive_icon}
             </span>
-            <span
-              className={`${
-                handleCheckIfActive(path)
-                  ? `${styles.active}`
-                  : ` ${styles.inactive}`
-              } `}
-            >
-              {name}
-            </span>
+            <span>{name}</span>
           </div>
         ))}
       </div>

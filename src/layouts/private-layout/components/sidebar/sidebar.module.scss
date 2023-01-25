@@ -2,14 +2,6 @@
 @import "scss/utils/mixins";
 @import "scss/utils/colors";
 
-%visibility-links {
-  @include sm() {
-    display: none;
-  }
-  @include lg() {
-    display: inline;
-  }
-}
 .root {
   display: none;
 
@@ -54,20 +46,12 @@
       background-color: $LIGHT_GRAY2;
       border-radius: 20px;
     }
+    &:focus {
+      font-weight: 700;
+    }
   }
 }
-.active {
-  font-weight: 700;
-  @extend %visibility-links;
-}
 
-.inactive {
-  font-weight: normal;
-  @extend %visibility-links;
-}
-.avatar {
-  border-radius: 50%;
-}
 .settings {
   padding: 1rem 2.5rem;
   margin: 13rem 0;
