@@ -13,9 +13,7 @@ import { RiHeartLine } from "@react-icons/all-files/ri/RiHeartLine";
 import { RiMessageFill } from "@react-icons/all-files/ri/RiMessageFill";
 import { RiMessageLine } from "@react-icons/all-files/ri/RiMessageLine";
 
-import Image from "next/image";
-import Pic from "../../assets/pic.jpg";
-import styles from "../sidebar/sidebar.module.scss";
+import { Avatar } from "common";
 const index = [
   {
     name: "Home",
@@ -61,15 +59,7 @@ const index = [
   },
   {
     name: "Profile",
-    inactive_icon: (
-      <Image
-        className={styles.avatar}
-        src={Pic}
-        width={30}
-        height={30}
-        alt="Profile"
-      />
-    ),
+    inactive_icon: <Avatar />,
     path: "/profile",
   },
 ];
