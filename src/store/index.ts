@@ -10,6 +10,7 @@ export type AppDispatch = typeof store.dispatch;
 const persistConfig = {
   key: "root",
   storage,
+  whitelist: ['user']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
