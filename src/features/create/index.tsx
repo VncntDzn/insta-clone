@@ -4,23 +4,24 @@ import Thumbnail from "./thumbnail";
 
 import { RiImage2Line } from "@react-icons/all-files/ri/RiImage2Line";
 import styles from "./create.module.scss";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { SET_FILES } from "store/slices/uploadSlice";
 
-export interface ThumbnailProps {
-  preview: string;
-  name: string;
-}
 const Create = () => {
-  const [files, setFiles] = useState<ThumbnailProps[]>([]);
+  const dispatch = useAppDispatch();
+  const files = useAppSelector((state) => state.upload.files);
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
       "image/*": [],
     },
     onDrop: (acceptedFiles) => {
-      setFiles(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
+      dispatch(
+        SET_FILES(
+          acceptedFiles.map((file) =>
+            Object.assign(file, {
+              preview: URL.createObjectURL(file),
+            })
+          )
         )
       );
     },
@@ -32,7 +33,7 @@ const Create = () => {
   }, []);
 
   if (files.length >= 1) {
-    return <Thumbnail files={files} />;
+    return <Thumbnail />;
   }
   return (
     <div className={styles.root}>

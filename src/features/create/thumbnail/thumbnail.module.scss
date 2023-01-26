@@ -9,11 +9,6 @@
   cursor: pointer;
 }
 
-.root {
-  position: relative;
-  overflow: hidden;
-  font-size: 14px;
-}
 .header {
   display: flex;
   align-items: center;
@@ -28,11 +23,25 @@
 .backIcon {
   cursor: pointer;
 }
-
+.content {
+  display: flex;
+}
 .thumbnail {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.carousel {
   height: 70vh;
-  width: 35vw;
-  object-fit: cover;
+  width: 40vw;
+  position: relative;
+  overflow: hidden;
+}
+.image {
+  overflow: hidden;
+  height: 70vh;
+  width: 40vw;
 }
 .icon {
   color: $WHITE;
@@ -40,8 +49,10 @@
   border-radius: 50%;
   padding: 0.5rem;
   cursor: pointer;
+  position: relative;
+  outline: none;
 }
-.zoom {
+.options {
   display: flex;
   gap: 0.5rem;
 }
@@ -69,7 +80,7 @@
   align-items: center;
   flex-direction: column;
 }
-.modalDescription{
+.modalDescription {
   margin-top: 0.5rem;
   color: $GRAY;
 }
@@ -80,4 +91,104 @@
 }
 .cancelBtn {
   @extend %modal-btn;
+}
+
+.picMenu {
+  left: 0.8rem;
+  color: white;
+  bottom: 12%;
+  border-radius: 10px;
+  background-color: $BLACK_WITH_OPACITY;
+}
+.picOptions {
+  border-top: 1px solid $WHITE;
+  font-size: small;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  // remove border in first-child
+  &:first-child {
+    border: none;
+  }
+  &:focus {
+    color: $WHITE;
+  }
+  &:not(:focus) {
+    color: $GRAY;
+  }
+}
+.range {
+  left: 4rem;
+  bottom: 12%;
+  border-radius: 10px;
+  background-color: $BLACK_WITH_OPACITY;
+  padding: 1rem;
+  outline: none;
+  transition: opacity 0.2s;
+}
+.multipleImages {
+  bottom: 12%;
+  right: 1rem;
+  margin: 0 2rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: $BLACK_WITH_OPACITY;
+  padding: 1rem;
+  outline: none;
+  width: fit-content;
+  max-width: 85%;
+}
+
+.addMore {
+  border-radius: 50%;
+  height: fit-content;
+  border: thin solid white;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.multiImage {
+  object-fit: contain;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.multiImageContainer {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+}
+.arrowLeft {
+  position: absolute;
+  color: $WHITE;
+  z-index: 1;
+  top: 30%;
+  left: 0;
+  cursor: pointer;
+}
+.arrowRight {
+  position: absolute;
+  color: $WHITE;
+  z-index: 1;
+  top: 30%;
+  right: 0;
+  cursor: pointer;
+}
+.caption {
+  width: 15rem;
+  padding: 1rem;
+}
+.textArea {
+  border: none;
+  resize: none;
+  height: 10rem;
+  max-height: 10rem;
+  outline: none;
+  width: 100%;
 }
