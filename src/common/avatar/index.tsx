@@ -7,7 +7,7 @@ interface AvatarProps {
   width: number | undefined;
 }
 
-const Avatar = ({ height, width }: AvatarProps) => {
+const Avatar = ({ height, width }: Partial<AvatarProps>) => {
   return (
     <Image
       className={styles.root}
