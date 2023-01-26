@@ -40,8 +40,10 @@
 }
 .image {
   overflow: hidden;
-  height: 70vh;
+  
+  height:70vh;
   width: 40vw;
+  border:3px solid red;
 }
 .icon {
   color: $WHITE;
@@ -179,16 +181,4 @@
   top: 30%;
   right: 0;
   cursor: pointer;
-}
-.caption {
-  width: 15rem;
-  padding: 1rem;
-}
-.textArea {
-  border: none;
-  resize: none;
-  height: 10rem;
-  max-height: 10rem;
-  outline: none;
-  width: 100%;
 }
