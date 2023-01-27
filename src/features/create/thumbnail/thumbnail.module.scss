@@ -25,6 +25,10 @@
 }
 .content {
   display: flex;
+  height: 70vh;
+  min-width: 40vw;
+  max-width: 50vw;
+  overflow-x: hidden;
 }
 .thumbnail {
   position: relative;
@@ -33,17 +37,21 @@
 }
 
 .carousel {
-  height: 70vh;
-  width: 40vw;
+  flex: 1;
   position: relative;
   overflow: hidden;
 }
+.captionContainer {
+  flex: 0.5;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 .image {
   overflow: hidden;
-  
-  height:70vh;
+
+  height: 70vh;
   width: 40vw;
-  border:3px solid red;
+  border: 3px solid red;
 }
 .icon {
   color: $WHITE;

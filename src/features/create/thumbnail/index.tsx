@@ -12,6 +12,7 @@ import { useToggle } from "hooks";
 import styles from "./thumbnail.module.scss";
 
 import { RiAddLine } from "@react-icons/all-files/ri/RiAddLine";
+import { motion } from "framer-motion";
 
 import { RiCheckboxBlankLine } from "@react-icons/all-files/ri/RiCheckboxBlankLine";
 import { ChangeEvent, useRef, useState } from "react";
@@ -47,6 +48,7 @@ const Thumbnail = () => {
     isSizesOpen: false,
     isRangeOpen: false,
     isMultipleOpen: false,
+    isCaptionOpen: false,
   });
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -82,6 +84,10 @@ const Thumbnail = () => {
 
   const handleImageRange = (e: ChangeEvent<HTMLInputElement> | undefined) => {
     setImageRange(parseInt(e!.target!.value));
+  };
+
+  const handleSelectedItem = (e, index) => {
+    setSelectedItem(index);
   };
 
   const renderDialog = () => {
@@ -152,10 +158,6 @@ const Thumbnail = () => {
       </Menu>
     );
   };
-  const handleSelectedItem = (e, index) => {
-    setSelectedItem(index);
-  };
-
   const renderMultipleImageOptions = () => {
     const handleScrollHorizontal = (direction: "right" | "left") => {
       if (horizontalScrollRef.current) {
@@ -211,16 +213,6 @@ const Thumbnail = () => {
     );
   };
 
-  const [isCaptionBoxVisible, setCaptionBoxVisible] = useState(false);
-  const handleCaptionVisibility = () => {
-    setCaptionBoxVisible(!isCaptionBoxVisible);
-    setMenuToggle({
-      isSizesOpen: false,
-      isRangeOpen: false,
-      isMultipleOpen: false,
-    });
-  };
-
   return (
     <>
       {menuToggle.isMultipleOpen && renderMultipleImageOptions()}
@@ -234,7 +226,11 @@ const Thumbnail = () => {
           size={25}
         />
         <strong>Crop</strong>
-        <p className={styles.nextBtn} onClick={handleCaptionVisibility}>
+        <p
+          id="isCaptionOpen"
+          className={styles.nextBtn}
+          onClick={handleMenuToggle}
+        >
           Next
         </p>
       </div>
@@ -264,7 +260,7 @@ const Thumbnail = () => {
           ))}
         </Carousel>
 
-        {!isCaptionBoxVisible ? (
+        {!menuToggle.isCaptionOpen ? (
           <div className={styles.footer}>
             <div className={styles.options}>
               <div onClick={handleMenuToggle}>
@@ -294,7 +290,14 @@ const Thumbnail = () => {
             </div>
           </div>
         ) : (
-          <Caption />
+          <motion.div
+            className={styles.captionContainer}
+            initial={{ opacity: 0, x: -10, zIndex: -1 }}
+            animate={{ opacity: 1, x: 0, zIndex: 0 }}
+            transition={{ duration: 0.5, ease: "linear" }}
+          >
+            <Caption />
+          </motion.div>
         )}
       </main>
     </>

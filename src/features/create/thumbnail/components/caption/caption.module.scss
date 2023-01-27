@@ -1,6 +1,20 @@
+@import "scss/utils/colors";
 .root {
-  width: 15rem;
-  padding: 1rem;
+  width: 100%;
+  border-top: 1px solid $LIGHT_GRAY;
+}
+
+.caption {
+  margin: 1rem;
+}
+.header {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.username {
+  font-size: 13px;
 }
 .textArea {
   border: none;
@@ -9,4 +23,30 @@
   max-height: 10rem;
   outline: none;
   width: 100%;
+  font-size: small;
+}
+.accessibilityCaption {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin: 1rem 0;
+  position: relative;
+}
+
+.accessibilityInput {
+  height: 2.5rem;
+  padding: 0 0.5rem;
+  width: 100%;
+  font-size: small;
+  border-radius: 5px;
+  border: 1px solid $GRAY;
+  &::placeholder {
+    color: $LIGHT_GRAY;
+    padding: 0 0.1rem;
+  }
+}
+.option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
