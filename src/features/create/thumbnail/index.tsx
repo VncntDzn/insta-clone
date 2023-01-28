@@ -6,8 +6,10 @@ import {
   RiArrowLeftSFill,
   RiArrowRightSFill,
   RiCheckboxBlankLine,
-  RiCheckboxMultipleBlankLine, RiCloseFill, RiImageLine,
-  RiZoomInLine
+  RiCheckboxMultipleBlankLine,
+  RiCloseFill,
+  RiImageLine,
+  RiZoomInLine,
 } from "react-icons/ri";
 
 import { Dialog, Menu } from "common";
@@ -16,7 +18,7 @@ import styles from "./thumbnail.module.scss";
 
 import { motion } from "framer-motion";
 
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -45,6 +47,7 @@ const Thumbnail = () => {
   const [toggle, setToggle] = useToggle();
   const [imageFit, setImageFit] = useState<PicMenu | undefined>(undefined);
   const [imageRange, setImageRange] = useState(1);
+  const [title, setTitle] = useState("Crop");
 
   const [selectedItem, setSelectedItem] = useState(0);
   const [menuToggle, setMenuToggle] = useState<MenuToggleTypes>({
@@ -233,6 +236,11 @@ const Thumbnail = () => {
     );
   };
 
+  useEffect(() => {
+    if (menuToggle.isCaptionOpen) {
+      setTitle("Create new post");
+    }
+  }, [menuToggle.isCaptionOpen]);
   return (
     <>
       {menuToggle.isMultipleOpen && renderThumbnail()}
@@ -245,14 +253,18 @@ const Thumbnail = () => {
           onClick={handleToggle}
           size={25}
         />
-        <strong>Crop</strong>
-        <p
-          id="isCaptionOpen"
-          className={styles.nextBtn}
-          onClick={handleMenuToggle}
-        >
-          Next
-        </p>
+        <strong>{title}</strong>
+        {title === "Crop" ? (
+          <p
+            id="isCaptionOpen"
+            className={styles.nextBtn}
+            onClick={handleMenuToggle}
+          >
+            Next
+          </p>
+        ) : (
+          <p className={styles.nextBtn}>Share</p>
+        )}
       </div>
       <main className={styles.content}>
         <Carousel
