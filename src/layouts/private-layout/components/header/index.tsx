@@ -1,4 +1,4 @@
-import { RiHeartLine } from "@react-icons/all-files/ri/RiHeartLine";
+import { RiHeartLine } from "react-icons/ri";
 import styles from "./header.module.scss";
 import Stories from "./stories";
 const Header = () => {

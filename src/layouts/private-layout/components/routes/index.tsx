@@ -1,19 +1,8 @@
-import { RiHome5Fill } from "@react-icons/all-files/ri/RiHome5Fill";
-import { RiHome5Line } from "@react-icons/all-files/ri/RiHome5Line";
-import { RiSearchFill } from "@react-icons/all-files/ri/RiSearchFill";
-import { RiSearchLine } from "@react-icons/all-files/ri/RiSearchLine";
-import { RiVideoFill } from "@react-icons/all-files/ri/RiVideoFill";
-import { RiVideoLine } from "@react-icons/all-files/ri/RiVideoLine";
-import { RiAddBoxFill } from "@react-icons/all-files/ri/RiAddBoxFill";
-import { RiAddBoxLine } from "@react-icons/all-files/ri/RiAddBoxLine";
-import { RiCompassDiscoverFill } from "@react-icons/all-files/ri/RiCompassDiscoverFill";
-import { RiCompassDiscoverLine } from "@react-icons/all-files/ri/RiCompassDiscoverLine";
-import { RiHeartFill } from "@react-icons/all-files/ri/RiHeartFill";
-import { RiHeartLine } from "@react-icons/all-files/ri/RiHeartLine";
-import { RiMessageFill } from "@react-icons/all-files/ri/RiMessageFill";
-import { RiMessageLine } from "@react-icons/all-files/ri/RiMessageLine";
-
 import { Avatar } from "common";
+import {
+  RiAddBoxFill, RiAddBoxLine, RiCompassDiscoverFill, RiCompassDiscoverLine, RiHeartFill, RiHeartLine, RiHome5Fill, RiHome5Line, RiMessageFill, RiMessageLine, RiSearchFill, RiSearchLine, RiVideoFill, RiVideoLine
+} from "react-icons/ri";
+
 const index = [
   {
     name: "Home",

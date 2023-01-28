@@ -1,20 +1,17 @@
-import { RiArrowLeftLine } from "@react-icons/all-files/ri/RiArrowLeftLine";
-import Image from "next/image";
-
 import { CgArrowsExpandRight } from "@react-icons/all-files/cg/CgArrowsExpandRight";
-import { RiArrowLeftSFill } from "@react-icons/all-files/ri/RiArrowLeftSFill";
-import { RiArrowRightSFill } from "@react-icons/all-files/ri/RiArrowRightSFill";
-import { RiCheckboxMultipleBlankLine } from "@react-icons/all-files/ri/RiCheckboxMultipleBlankLine";
-import { RiImageLine } from "@react-icons/all-files/ri/RiImageLine";
-import { RiZoomInLine } from "@react-icons/all-files/ri/RiZoomInLine";
+import Image from "next/image";
+import {
+  RiAddLine, RiArrowLeftLine,
+  RiArrowLeftSFill,
+  RiArrowRightSFill, RiCheckboxBlankLine, RiCheckboxMultipleBlankLine, RiImageLine, RiZoomInLine
+} from "react-icons/ri";
+
 import { Dialog, Menu } from "common";
 import { useToggle } from "hooks";
 import styles from "./thumbnail.module.scss";
 
-import { RiAddLine } from "@react-icons/all-files/ri/RiAddLine";
 import { motion } from "framer-motion";
 
-import { RiCheckboxBlankLine } from "@react-icons/all-files/ri/RiCheckboxBlankLine";
 import { ChangeEvent, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Carousel } from "react-responsive-carousel";
@@ -22,6 +19,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import { SET_FILES } from "store/slices/uploadSlice";
 import Caption from "./components/caption";
+
 enum PicMenu {
   ORIGINAL = "fill",
   ONE_IS_TO_ONE = "cover",
@@ -83,7 +81,7 @@ const Thumbnail = () => {
   };
 
   const handleImageRange = (e: ChangeEvent<HTMLInputElement> | undefined) => {
-    setImageRange(parseInt(e!.target!.value));
+    setImageRange(Number(e!.target.value));
   };
 
   const handleSelectedItem = (e, index) => {

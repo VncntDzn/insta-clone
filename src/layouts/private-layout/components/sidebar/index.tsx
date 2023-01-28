@@ -2,11 +2,10 @@ import { useRouter } from "next/router";
 import routes from "../routes";
 import styles from "./sidebar.module.scss";
 
-import { RiInstagramLine } from "@react-icons/all-files/ri/RiInstagramLine";
-import { RiMenuLine } from "@react-icons/all-files/ri/RiMenuLine";
 import { Dialog } from "common";
 import Create from "features/create";
 import { useMediaQuery, useToggle } from "hooks";
+import { RiInstagramLine, RiMenuLine } from "react-icons/ri";
 
 const Sidebar = () => {
   const router = useRouter();

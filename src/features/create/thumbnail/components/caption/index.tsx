@@ -7,8 +7,7 @@ import {
   AccordionItemButton,
   AccordionItemPanel,
 } from "react-accessible-accordion";
-
-import { RiToggleFill } from "@react-icons/all-files/ri/RiToggleFill";
+import { RiToggleFill } from "react-icons/ri";
 // Demo styles, see 'Styles' section below for some notes on use.
 import "react-accessible-accordion/dist/fancy-example.css";
 import { useAppSelector } from "store/hooks";

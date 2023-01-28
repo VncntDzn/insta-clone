@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import Thumbnail from "./thumbnail";
 
-import { RiImage2Line } from "@react-icons/all-files/ri/RiImage2Line";
-import styles from "./create.module.scss";
+import { RiImage2Line } from "react-icons/ri";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import { SET_FILES } from "store/slices/uploadSlice";
+import styles from "./create.module.scss";
 
 const Create = () => {
   const dispatch = useAppDispatch();

@@ -1,8 +1,5 @@
-import useCurrentUser from "hooks/useCurrentUser";
 import Navbar from "layouts/navbar";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { ChildrenType } from "types";
 import styles from "./public-layout.module.scss";
 
