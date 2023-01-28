@@ -6,9 +6,8 @@ import {
   RiArrowLeftSFill,
   RiArrowRightSFill,
   RiCheckboxBlankLine,
-  RiCheckboxMultipleBlankLine,
-  RiImageLine,
-  RiZoomInLine,
+  RiCheckboxMultipleBlankLine, RiCloseFill, RiImageLine,
+  RiZoomInLine
 } from "react-icons/ri";
 
 import { Dialog, Menu } from "common";
@@ -22,7 +21,7 @@ import { useDropzone } from "react-dropzone";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { useAppDispatch, useAppSelector } from "store/hooks";
-import { SET_FILES } from "store/slices/uploadSlice";
+import { REMOVE_FILE, SET_FILES } from "store/slices/uploadSlice";
 import Caption from "./components/caption";
 
 enum PicMenu {
@@ -170,7 +169,7 @@ const Thumbnail = () => {
       </Menu>
     );
   };
-  const renderMultipleImageOptions = () => {
+  const renderThumbnail = () => {
     const handleScrollHorizontal = (direction: "right" | "left") => {
       if (horizontalScrollRef.current) {
         if (direction === "right") {
@@ -179,6 +178,9 @@ const Thumbnail = () => {
           (horizontalScrollRef.current as HTMLElement).scrollLeft -= 50;
         }
       }
+    };
+    const handleRemoveImage = (index: number) => {
+      dispatch(REMOVE_FILE(index));
     };
     return (
       <Menu className={styles.multipleImages}>
@@ -196,8 +198,14 @@ const Thumbnail = () => {
                 key={file.name}
                 style={{
                   opacity: `${index === selectedItem ? "1" : "0.4"}`,
+                  position: "relative",
                 }}
               >
+                <RiCloseFill
+                  onClick={() => handleRemoveImage(index)}
+                  className={styles.closeIcon}
+                  size={20}
+                />
                 <Image
                   id={file.name}
                   alt={file.name}
@@ -227,7 +235,7 @@ const Thumbnail = () => {
 
   return (
     <>
-      {menuToggle.isMultipleOpen && renderMultipleImageOptions()}
+      {menuToggle.isMultipleOpen && renderThumbnail()}
       {menuToggle.isSizesOpen && renderImageMenu()}
       {menuToggle.isRangeOpen && renderInputRange()}
       {toggle && renderDialog()}

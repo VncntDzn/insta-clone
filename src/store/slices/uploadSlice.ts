@@ -17,9 +17,13 @@ const uploadSlice = createSlice({
     SET_FILES: (state, action: PayloadAction<FileProps[]>) => {
       state.files = [...state.files, ...action.payload];
     },
+    REMOVE_FILE: (state, action) => {
+      const index = state.files.indexOf(action.payload.index);
+      state.files.splice(index, 1);
+    },
   },
 });
 // Extract the action creators object and the reducer
 const { actions, reducer } = uploadSlice;
-export const { SET_FILES } = actions;
+export const { SET_FILES, REMOVE_FILE } = actions;
 export default reducer;

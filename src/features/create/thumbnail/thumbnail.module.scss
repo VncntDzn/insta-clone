@@ -149,11 +149,16 @@
   width: fit-content;
   max-width: 85%;
 }
-
+.closeIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: $WHITE;
+}
 .addMore {
   border-radius: 50%;
   height: fit-content;
-  border: thin solid white;
+  border: thin solid $WHITE;
   padding: 0.5rem;
   cursor: pointer;
 }
