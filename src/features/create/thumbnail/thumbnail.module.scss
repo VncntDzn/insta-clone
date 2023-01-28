@@ -29,6 +29,7 @@
   min-width: 40vw;
   max-width: 50vw;
   overflow-x: hidden;
+  border: 3px solid red;
 }
 .thumbnail {
   position: relative;
@@ -40,7 +41,7 @@
   flex: 1;
   position: relative;
   overflow: hidden;
-  width: 30vw;
+  width: 40vw;
 }
 .captionContainer {
   flex: 0.5;
@@ -50,7 +51,7 @@
 .image {
   overflow: hidden;
   height: 70vh;
-  width: 100%;
+  width: 50vw;
 }
 .icon {
   color: $WHITE;
