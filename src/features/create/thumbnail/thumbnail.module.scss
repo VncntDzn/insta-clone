@@ -40,6 +40,7 @@
   flex: 1;
   position: relative;
   overflow: hidden;
+  width: 30vw;
 }
 .captionContainer {
   flex: 0.5;
@@ -49,7 +50,7 @@
 .image {
   overflow: hidden;
   height: 70vh;
-  width: 40vw;
+  width: 100%;
 }
 .icon {
   color: $WHITE;

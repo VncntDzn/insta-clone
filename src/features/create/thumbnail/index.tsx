@@ -1,5 +1,5 @@
-import { CgArrowsExpandRight } from "react-icons/cg";
 import Image from "next/image";
+import { CgArrowsExpandRight } from "react-icons/cg";
 import {
   RiAddLine,
   RiArrowLeftLine,
@@ -36,6 +36,7 @@ interface MenuToggleTypes {
   isSizesOpen: boolean;
   isRangeOpen: boolean;
   isMultipleOpen: boolean;
+  isCaptionOpen: boolean;
 }
 
 const Thumbnail = () => {
@@ -47,7 +48,7 @@ const Thumbnail = () => {
   const [imageRange, setImageRange] = useState(1);
 
   const [selectedItem, setSelectedItem] = useState(0);
-  const [menuToggle, setMenuToggle] = useState<any>({
+  const [menuToggle, setMenuToggle] = useState<MenuToggleTypes>({
     isSizesOpen: false,
     isRangeOpen: false,
     isMultipleOpen: false,
@@ -74,8 +75,16 @@ const Thumbnail = () => {
     setToggle(!false);
   };
   const handleMenuToggle = (e: any) => {
-    const { id } = e.target;
-    setMenuToggle({ [id]: !menuToggle[id] });
+    // by using keyof we're making sure that the id variable is one of the keys in MenuToggleTypes
+    const id = e.target.id as keyof MenuToggleTypes;
+    // using reduce function to return a single value for all the elements of the object.
+    const newState = {
+      ...Object.keys(menuToggle).reduce((acc: any, key) => {
+        acc[key] = key === id ? true : false;
+        return acc;
+      }, {}),
+    };
+    setMenuToggle(newState);
   };
 
   const changeStyle = (id: boolean) => {
@@ -89,7 +98,7 @@ const Thumbnail = () => {
     setImageRange(Number(e!.target.value));
   };
 
-  const handleSelectedItem = (e, index) => {
+  const handleSelectedItem = (index: number) => {
     setSelectedItem(index);
   };
 
@@ -183,7 +192,7 @@ const Thumbnail = () => {
           <div className={styles.multiImage}>
             {files.map((file, index) => (
               <div
-                onClick={(e) => handleSelectedItem(e, index)}
+                onClick={() => handleSelectedItem(index)}
                 key={file.name}
                 style={{
                   opacity: `${index === selectedItem ? "1" : "0.4"}`,
@@ -243,7 +252,7 @@ const Thumbnail = () => {
           showThumbs={false}
           showStatus={false}
           selectedItem={selectedItem}
-          onChange={(currentItem) => handleSelectedItem(null, currentItem)}
+          onChange={(currentItem) => handleSelectedItem(currentItem)}
         >
           {files.map((file, i) => (
             <section key={file.name} className={styles.image}>
