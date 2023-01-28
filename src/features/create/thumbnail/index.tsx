@@ -1,9 +1,14 @@
-import { CgArrowsExpandRight } from "@react-icons/all-files/cg/CgArrowsExpandRight";
+import { CgArrowsExpandRight } from "react-icons/cg";
 import Image from "next/image";
 import {
-  RiAddLine, RiArrowLeftLine,
+  RiAddLine,
+  RiArrowLeftLine,
   RiArrowLeftSFill,
-  RiArrowRightSFill, RiCheckboxBlankLine, RiCheckboxMultipleBlankLine, RiImageLine, RiZoomInLine
+  RiArrowRightSFill,
+  RiCheckboxBlankLine,
+  RiCheckboxMultipleBlankLine,
+  RiImageLine,
+  RiZoomInLine,
 } from "react-icons/ri";
 
 import { Dialog, Menu } from "common";
