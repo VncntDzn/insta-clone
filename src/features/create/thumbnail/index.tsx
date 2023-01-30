@@ -104,6 +104,7 @@ const Thumbnail = () => {
     setSelectedItem(index);
   };
 
+  const handleImageUpload = () => {};
   const renderDialog = () => {
     return (
       <Dialog isOpen={toggle} onClose={handleToggle}>
@@ -255,15 +256,17 @@ const Thumbnail = () => {
         />
         <strong>{title}</strong>
         {title === "Crop" ? (
-          <p
+          <strong
             id="isCaptionOpen"
             className={styles.nextBtn}
             onClick={handleMenuToggle}
           >
             Next
-          </p>
+          </strong>
         ) : (
-          <p className={styles.nextBtn}>Share</p>
+          <strong className={styles.nextBtn} onClick={handleImageUpload}>
+            Share
+          </strong>
         )}
       </div>
       <main className={styles.content}>

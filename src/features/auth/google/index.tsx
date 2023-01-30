@@ -1,4 +1,4 @@
-import { FcGoogle } from "@react-icons/all-files/fc/FcGoogle";
+import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import styles from "./google.module.scss";
 interface GoogleButtonProps {
@@ -25,7 +25,7 @@ const GoogleButton = ({
           </Link>
         </p>
         {isForgotPassword && (
-          <Link className={styles.redirectBtn} href='/auth/forgot-password'>
+          <Link className={styles.redirectBtn} href="/auth/forgot-password">
             Forgot Password?
           </Link>
         )}

@@ -1,6 +1,5 @@
 import styles from "./slogan.module.scss";
-import { DiAndroid } from "@react-icons/all-files/di/DiAndroid";
-import { DiApple } from "@react-icons/all-files/di/DiApple";
+import { DiAndroid, DiApple } from "react-icons/di/";
 
 const Slogan = () => {
   return (
