@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface FileProps {
+export interface FileProps {
   preview: string;
   name: string;
+  path?: string;
 }
 interface UploadTypes {
   files: FileProps[];

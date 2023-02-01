@@ -9,23 +9,27 @@ import {
   RiCheckboxMultipleBlankLine,
   RiCloseFill,
   RiImageLine,
-  RiZoomInLine,
+  RiZoomInLine
 } from "react-icons/ri";
 
 import { Dialog, Menu } from "common";
 import { useToggle } from "hooks";
 import styles from "./thumbnail.module.scss";
 
+import { nanoid } from "@reduxjs/toolkit";
 import { motion } from "framer-motion";
 
+import { storage } from "db/client";
+import { ref, uploadBytes } from "firebase/storage";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { toast } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "store/hooks";
+import { CLOSE_MODAL } from "store/slices/modalSlice";
 import { REMOVE_FILE, SET_FILES } from "store/slices/uploadSlice";
 import Caption from "./components/caption";
-
 enum PicMenu {
   ORIGINAL = "fill",
   ONE_IS_TO_ONE = "cover",
@@ -48,7 +52,7 @@ const Thumbnail = () => {
   const [imageFit, setImageFit] = useState<PicMenu | undefined>(undefined);
   const [imageRange, setImageRange] = useState(1);
   const [title, setTitle] = useState("Crop");
-
+  const user = useAppSelector((state) => state.user.user);
   const [selectedItem, setSelectedItem] = useState(0);
   const [menuToggle, setMenuToggle] = useState<MenuToggleTypes>({
     isSizesOpen: false,
@@ -75,6 +79,7 @@ const Thumbnail = () => {
   });
   const handleToggle = () => {
     setToggle(!false);
+    /*  dispatch(OPEN_MODAL({ isOpen: true, modalType: "" })); */
   };
   const handleMenuToggle = (e: any) => {
     // by using keyof we're making sure that the id variable is one of the keys in MenuToggleTypes
@@ -104,7 +109,28 @@ const Thumbnail = () => {
     setSelectedItem(index);
   };
 
-  const handleImageUpload = () => {};
+  const handleUploadCallback = async (file: any) => {
+    try {
+      const imageRef = ref(storage, `${user!.uid}/posts/${nanoid()}`);
+
+      await uploadBytes(imageRef, file);
+      toast.success("Uploaded...");
+    } catch (error) {
+      toast.error((error as Error).message);
+    } finally {
+      dispatch(CLOSE_MODAL({ isOpen: false, modalType: "" }));
+    }
+  };
+
+  const handleImageUpload = async () => {
+    try {
+      const imageRef = files.map((file) => handleUploadCallback(file));
+      await Promise.all(imageRef);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const renderDialog = () => {
     return (
       <Dialog isOpen={toggle} onClose={handleToggle}>
@@ -115,7 +141,14 @@ const Thumbnail = () => {
               If you leave, your edits won&apos;t be saved.{" "}
             </small>
           </div>
-          <div className={styles.discardBtn}>Discard</div>
+          <div
+            className={styles.discardBtn}
+            onClick={() =>
+              dispatch(CLOSE_MODAL({ isOpen: false, modalType: "" }))
+            }
+          >
+            Discard
+          </div>
           <div className={styles.cancelBtn} onClick={handleToggle}>
             Cancel
           </div>

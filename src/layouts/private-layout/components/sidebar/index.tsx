@@ -6,17 +6,21 @@ import { Dialog } from "common";
 import Create from "features/create";
 import { useMediaQuery, useToggle } from "hooks";
 import { RiInstagramLine, RiMenuLine } from "react-icons/ri";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { OPEN_MODAL } from "store/slices/modalSlice";
 
 const Sidebar = () => {
+  const dispatch = useAppDispatch();
+  const isModalOpen = useAppSelector((state) => state.modal.isOpen);
   const router = useRouter();
   const matches = useMediaQuery("(max-width: 820px)");
-  const [toggle, setToggle] = useToggle();
+
   const handleCheckIfActive = (path: string) => {
     return router.pathname === path;
   };
 
   const handleToggle = () => {
-    setToggle(!toggle);
+    dispatch(OPEN_MODAL({ isOpen: false, modalType: "" }));
   };
   const handleNavigation = (path: string) => {
     if (path !== "/new-post") {
@@ -27,11 +31,12 @@ const Sidebar = () => {
   };
   return (
     <aside className={styles.root}>
-      {toggle && (
-        <Dialog isOpen={toggle} onClose={handleToggle}>
+      {isModalOpen && (
+        <Dialog>
           <Create />
         </Dialog>
       )}
+
       {matches ? (
         <div className={styles.logo}>
           <RiInstagramLine size={30} />
