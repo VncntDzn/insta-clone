@@ -12,9 +12,19 @@ import { RiToggleFill } from "react-icons/ri";
 import "react-accessible-accordion/dist/fancy-example.css";
 import { useAppSelector } from "store/hooks";
 import Image from "next/image";
+import { ChangeEventHandler, useState } from "react";
 
-const Caption = () => {
+interface CaptionProps {
+  setCaption: (e) => void;
+}
+const Caption = ({ setCaption }: CaptionProps) => {
   const files = useAppSelector((state) => state.upload.files);
+
+  const handleDescription = (
+    e: ChangeEventHandler<HTMLTextAreaElement> | undefined
+  ) => {
+    setCaption(e!.target!.value);
+  };
   return (
     <div className={styles.root}>
       <div className={styles.caption}>
@@ -28,6 +38,7 @@ const Caption = () => {
           placeholder="Write a caption..."
           className={styles.textArea}
           maxLength={2000}
+          onChange={handleDescription}
         />
       </div>
 

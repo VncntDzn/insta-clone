@@ -9,7 +9,7 @@ import {
   RiCheckboxMultipleBlankLine,
   RiCloseFill,
   RiImageLine,
-  RiZoomInLine
+  RiZoomInLine,
 } from "react-icons/ri";
 
 import { Dialog, Menu } from "common";
@@ -19,8 +19,9 @@ import styles from "./thumbnail.module.scss";
 import { nanoid } from "@reduxjs/toolkit";
 import { motion } from "framer-motion";
 
-import { storage } from "db/client";
-import { ref, uploadBytes } from "firebase/storage";
+import { firestore, storage } from "db/client";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Carousel } from "react-responsive-carousel";
@@ -46,14 +47,15 @@ interface MenuToggleTypes {
 
 const Thumbnail = () => {
   const files = useAppSelector((state) => state.upload.files);
+  const user = useAppSelector((state) => state.user.user);
   const dispatch = useAppDispatch();
   const horizontalScrollRef = useRef(null);
   const [toggle, setToggle] = useToggle();
   const [imageFit, setImageFit] = useState<PicMenu | undefined>(undefined);
   const [imageRange, setImageRange] = useState(1);
   const [title, setTitle] = useState("Crop");
-  const user = useAppSelector((state) => state.user.user);
   const [selectedItem, setSelectedItem] = useState(0);
+  const [caption, setPost] = useState<string | undefined>("");
   const [menuToggle, setMenuToggle] = useState<MenuToggleTypes>({
     isSizesOpen: false,
     isRangeOpen: false,
@@ -109,15 +111,19 @@ const Thumbnail = () => {
     setSelectedItem(index);
   };
 
+  const handleSetCaption = (data: string | undefined) => {
+    setPost(data);
+  };
   const handleUploadCallback = async (file: any) => {
     try {
       const imageRef = ref(storage, `${user!.uid}/posts/${nanoid()}`);
-
       await uploadBytes(imageRef, file);
-      toast.success("Uploaded...");
+      // return the url to store later in firestore
+      return await getDownloadURL(ref(storage, `${imageRef}`));
     } catch (error) {
       toast.error((error as Error).message);
     } finally {
+      dispatch(SET_FILES([]));
       dispatch(CLOSE_MODAL({ isOpen: false, modalType: "" }));
     }
   };
@@ -125,9 +131,16 @@ const Thumbnail = () => {
   const handleImageUpload = async () => {
     try {
       const imageRef = files.map((file) => handleUploadCallback(file));
-      await Promise.all(imageRef);
+      const imageURL = await Promise.all(imageRef);
+
+      await setDoc(doc(firestore, `posts/${user?.uid}/post/${nanoid()}`), {
+        caption,
+        imageURL,
+        timestamp: serverTimestamp()
+      });
+      toast.success("Uploaded...");
     } catch (error) {
-      console.log(error);
+      toast.error((error as Error).message);
     }
   };
 
@@ -364,7 +377,7 @@ const Thumbnail = () => {
             animate={{ opacity: 1, x: 0, zIndex: 0 }}
             transition={{ duration: 0.5, ease: "linear" }}
           >
-            <Caption />
+            <Caption setCaption={handleSetCaption} />
           </motion.div>
         )}
       </main>
