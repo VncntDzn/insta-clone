@@ -1,0 +1,14 @@
+@import "scss/utils/mixins";
+.root {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+}
+.name {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings {
+  display: none;
+}

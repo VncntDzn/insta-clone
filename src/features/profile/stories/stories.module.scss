@@ -1,0 +1,33 @@
+@import "scss/utils/mixins";
+@import "scss/utils/colors";
+.root {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0 1rem;
+}
+.story {
+  flex: 0 0 auto;
+}
+.avatar {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-color: $LIGHT_GRAY;
+  @include lg() {
+    height: 70px;
+    width: 70px;
+  }
+}
+.name {
+  font-size: 12px;
+  text-transform: lowercase;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 3.5rem;
+  text-overflow: ellipsis;
+  @include lg() {
+    width: 4.5rem;
+  }
+}

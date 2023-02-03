@@ -1,0 +1,7 @@
+@import "scss/utils/colors";
+.root {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid $LIGHT_GRAY;
+  padding: 0.8rem;
+}

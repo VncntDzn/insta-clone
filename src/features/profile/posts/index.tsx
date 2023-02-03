@@ -1,13 +1,12 @@
 import { firestore } from "db/client";
 import { collection, getDocs, query } from "firebase/firestore";
-import PrivateLayout from "layouts/private-layout";
 import Image from "next/image";
-import { ReactElement, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import { useAppSelector } from "store/hooks";
-import { NextPageWithLayout } from "./_app";
+import styles from "./posts.module.scss";
 
-const Feed: NextPageWithLayout = () => {
+const Posts = () => {
   const user = useAppSelector((state) => state.user.user);
 
   const [posts, setPosts] = useState([]);
@@ -47,7 +46,4 @@ const Feed: NextPageWithLayout = () => {
   );
 };
 
-Feed.getLayout = (page: ReactElement) => {
-  return <PrivateLayout>{page}</PrivateLayout>;
-};
-export default Feed;
+export default Posts;
