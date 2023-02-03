@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { ChildrenType } from "types";
-import Header from "./components/header";
 import MobileNavigation from "./components/navigation";
 import Sidebar from "./components/sidebar";
 import styles from "./private-layout.module.scss";
@@ -22,7 +21,6 @@ const PrivateLayout = ({ title, children }: PrivateLayoutProps) => {
           <Sidebar />
         </div>
         <div className={styles.content}>
-          <Header />
           <p>Infinite Scroll here</p>
           {children}
           {/* {[1, 2, 3, 4, 5, 6, 7].map((i) => (
