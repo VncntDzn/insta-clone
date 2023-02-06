@@ -16,16 +16,16 @@ const ProfileTabs = () => {
       selectedTabClassName={styles.selectedTabClassName}
     >
       <TabList className={styles.tabList}>
-        <Tab>
+        <Tab className={styles.tab}>
           <RiGridLine size={25} />
         </Tab>
-        <Tab>
+        <Tab className={styles.tab}>
           <RiVideoLine size={25} />
         </Tab>
-        <Tab>
+        <Tab className={styles.tab}>
           <RiBookmarkLine size={25} />
         </Tab>
-        <Tab>
+        <Tab className={styles.tab}>
           <RiAccountBoxLine size={25} />
         </Tab>
       </TabList>
