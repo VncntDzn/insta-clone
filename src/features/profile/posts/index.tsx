@@ -2,7 +2,6 @@ import { firestore } from "db/client";
 import { collection, getDocs, query } from "firebase/firestore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Carousel } from "react-responsive-carousel";
 import { useAppSelector } from "store/hooks";
 import styles from "./posts.module.scss";
 
@@ -31,17 +30,13 @@ const Posts = () => {
     })();
   }, [user?.uid]);
   return (
-    <div>
-      <Carousel showThumbs={false} showStatus={false}>
-        {posts.map((post, i) => (
-          <section key={i}>
-            {post.imageURL.map((img) => (
-              <Image alt={post} src={img} fill />
-            ))}
-            <h1> {post.caption}</h1>
-          </section>
-        ))}
-      </Carousel>
+    <div className={styles.root}>
+      {/* TODO: Add infinite scroll */}
+      {posts.map((post, i) => (
+        <div className={styles.container} key={i}>
+          <Image alt={post} src={post.imageURL[0]} fill />
+        </div>
+      ))}
     </div>
   );
 };

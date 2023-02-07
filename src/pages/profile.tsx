@@ -17,7 +17,7 @@ const Profile = () => {
       <PersonalStories />
       <Activities />
       <ProfileTabs />
-      {/*    <Posts /> */}
+   {/*    <Posts /> */}
     </div>
   );
 };
