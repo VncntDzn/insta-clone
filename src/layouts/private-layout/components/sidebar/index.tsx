@@ -51,6 +51,7 @@ const Sidebar = () => {
             onClick={() => handleNavigation(path)}
             className={styles.links}
             key={name}
+            style={{ display: `${name === "Profile" ? "none" : "flex"}` }}
           >
             <span>
               {handleCheckIfActive(path) ? active_icon : inactive_icon}

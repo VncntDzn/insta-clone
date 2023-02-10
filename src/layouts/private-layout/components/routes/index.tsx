@@ -23,12 +23,6 @@ const index = [
     active_icon: <RiHome5Fill size={30} />,
     path: "/feed",
   },
-  /* {
-    name: "Search",
-    inactive_icon: <RiSearchLine size={30} />,
-    active_icon: <RiSearchFill size={30} />,
-    path: "/search",
-  }, */
   {
     name: "Explore",
     inactive_icon: <RiCompassDiscoverLine size={30} />,
@@ -42,6 +36,12 @@ const index = [
     path: "/reels",
   },
   {
+    name: "Create",
+    inactive_icon: <RiAddBoxLine size={30} />,
+    active_icon: <RiAddBoxFill size={30} />,
+    path: "/new-post",
+  },
+  {
     name: "Messages",
     inactive_icon: <RiMessageLine size={30} />,
     active_icon: <RiMessageFill size={30} />,
@@ -53,18 +53,13 @@ const index = [
     active_icon: <RiHeartFill size={30} />,
     path: "/notifications",
   },
-  /* {
-    name: "Create",
-    inactive_icon: <RiAddBoxLine size={30} />,
-    active_icon: <RiAddBoxFill size={30} />,
-    path: "/new-post",
-  },
+
   {
     name: "Profile",
     active_icon: <Avatar />,
     inactive_icon: <Avatar />,
     path: "/profile",
-  }, */
+  },
 ];
 
 export default index;

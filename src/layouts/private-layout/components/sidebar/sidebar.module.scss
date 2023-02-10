@@ -58,7 +58,8 @@
   gap: 10px;
   align-items: center;
   @include lg() {
-    margin-bottom: 1rem;
+    margin: 1rem 0;
+    margin-top: 5rem;
   }
 }
 .headerDetails {
