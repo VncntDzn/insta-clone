@@ -1,8 +1,15 @@
 @import "scss/utils/mixins";
+@import "scss/utils/colors";
 .root {
   display: flex;
   gap: 2rem;
   padding: 1rem;
+  @include lg() {
+    margin-left: 3rem;
+  }
+}
+.details {
+  align-self: center;
 }
 .name {
   display: flex;
@@ -11,4 +18,29 @@
 
 .settings {
   display: none;
+  @include sm() {
+    cursor: pointer;
+    display: inline-block;
+  }
+}
+.activities {
+  display: none;
+  @include sm() {
+    display: flex;
+    justify-content: space-between;
+    width: 20rem;
+  }
+}
+.editButton {
+  @include lg() {
+    border-radius: 5px;
+    background-color: $LIGHT_GRAY;
+    width: fit-content;
+    padding: 5px 10px;
+    cursor: pointer;
+    &:hover {
+      background-color: $GRAY;
+      color: $WHITE
+    }
+  }
 }

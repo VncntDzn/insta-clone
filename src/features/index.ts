@@ -5,3 +5,4 @@ export { default as SigninForm } from "./auth/signin";
 export { default as SignupForm } from "./auth/signup";
 export { default as AuthLayout } from "./auth/layout";
 export { default as ForgotPasswordForm } from "./auth/forgot-password";
+export { default as Stories } from "./stories";

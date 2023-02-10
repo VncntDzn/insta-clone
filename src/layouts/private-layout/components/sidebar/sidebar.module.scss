@@ -16,28 +16,19 @@
     width: 100%;
   }
 }
-.logo {
-  align-self: center;
-  margin: 4rem 0;
-}
-.title {
-  padding: 1rem 3rem;
-  margin: 2rem 0;
-  font-family: $SACRAMENTO;
-  font-size: 60px;
-}
 .linksContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 50%;
+  justify-content: space-evenly;
+  height: 25rem;
 }
 .links {
   cursor: pointer;
   @include lg() {
     display: flex;
     align-items: center;
-    width: 80%;
+    /*   width: 80%; */
     padding: 1rem;
     color: $BLACK;
     text-decoration: none;
@@ -49,14 +40,41 @@
     &:focus {
       font-weight: 700;
     }
+    align-items: center;
+    width: 8rem;
   }
 }
 
-.settings {
-  padding: 1rem 2.5rem;
-  margin: 13rem 0;
-  display: flex;
+.routeName {
+  display: none;
+  @include lg() {
+    display: inline-block;
+    text-align: center;
+  }
+}
 
+.header {
+  display: flex;
+  gap: 10px;
   align-items: center;
-  gap: 2rem;
+  @include lg() {
+    margin-bottom: 1rem;
+  }
+}
+.headerDetails {
+  display: none;
+  @include lg() {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.viewProfile {
+  outline: none;
+  border: none;
+  font-size: small;
+  cursor: pointer;
+  color: $GRAY;
+  &:hover {
+    text-decoration: underline;
+  }
 }

@@ -1,9 +1,8 @@
 import { firestore } from "db/client";
+import { FeedHeader } from "features/feed";
 import { collection, getDocs, query } from "firebase/firestore";
 import PrivateLayout from "layouts/private-layout";
-import Image from "next/image";
 import { ReactElement, useEffect, useState } from "react";
-import { Carousel } from "react-responsive-carousel";
 import { useAppSelector } from "store/hooks";
 import { NextPageWithLayout } from "./_app";
 
@@ -33,6 +32,8 @@ const Feed: NextPageWithLayout = () => {
   }, [user?.uid]);
   return (
     <div>
+      <FeedHeader />
+      {/*  <Stories />
       <Carousel showThumbs={false} showStatus={false}>
         {posts.map((post, i) => (
           <section key={i}>
@@ -42,7 +43,7 @@ const Feed: NextPageWithLayout = () => {
             <h1> {post.caption}</h1>
           </section>
         ))}
-      </Carousel>
+      </Carousel> */}
     </div>
   );
 };

@@ -1,21 +1,34 @@
 import { Avatar } from "common";
 import {
-  RiAddBoxFill, RiAddBoxLine, RiCompassDiscoverFill, RiCompassDiscoverLine, RiHeartFill, RiHeartLine, RiHome5Fill, RiHome5Line, RiMessageFill, RiMessageLine, RiSearchFill, RiSearchLine, RiVideoFill, RiVideoLine
+  RiAddBoxFill,
+  RiAddBoxLine,
+  RiCompassDiscoverFill,
+  RiCompassDiscoverLine,
+  RiHeartFill,
+  RiHeartLine,
+  RiHome5Fill,
+  RiHome5Line,
+  RiMessageFill,
+  RiMessageLine,
+  RiSearchFill,
+  RiSearchLine,
+  RiVideoFill,
+  RiVideoLine,
 } from "react-icons/ri";
 
 const index = [
   {
-    name: "Home",
+    name: "Feed",
     inactive_icon: <RiHome5Line size={30} />,
     active_icon: <RiHome5Fill size={30} />,
     path: "/feed",
   },
-  {
+  /* {
     name: "Search",
     inactive_icon: <RiSearchLine size={30} />,
     active_icon: <RiSearchFill size={30} />,
     path: "/search",
-  },
+  }, */
   {
     name: "Explore",
     inactive_icon: <RiCompassDiscoverLine size={30} />,
@@ -40,7 +53,7 @@ const index = [
     active_icon: <RiHeartFill size={30} />,
     path: "/notifications",
   },
-  {
+  /* {
     name: "Create",
     inactive_icon: <RiAddBoxLine size={30} />,
     active_icon: <RiAddBoxFill size={30} />,
@@ -48,9 +61,10 @@ const index = [
   },
   {
     name: "Profile",
+    active_icon: <Avatar />,
     inactive_icon: <Avatar />,
     path: "/profile",
-  },
+  }, */
 ];
 
 export default index;

@@ -2,10 +2,8 @@ import { useRouter } from "next/router";
 import routes from "../routes";
 import styles from "./sidebar.module.scss";
 
-import { Dialog } from "common";
+import { Avatar, Dialog } from "common";
 import Create from "features/create";
-import { useMediaQuery, useToggle } from "hooks";
-import { RiInstagramLine, RiMenuLine } from "react-icons/ri";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import { OPEN_MODAL } from "store/slices/modalSlice";
 
@@ -13,7 +11,6 @@ const Sidebar = () => {
   const dispatch = useAppDispatch();
   const isModalOpen = useAppSelector((state) => state.modal.isOpen);
   const router = useRouter();
-  const matches = useMediaQuery("(max-width: 820px)");
 
   const handleCheckIfActive = (path: string) => {
     return router.pathname === path;
@@ -37,14 +34,17 @@ const Sidebar = () => {
         </Dialog>
       )}
 
-      {matches ? (
-        <div className={styles.logo}>
-          <RiInstagramLine size={30} />
-        </div>
-      ) : (
-        <h1 className={styles.title}>Instaclone</h1>
-      )}
       <div className={styles.linksContainer}>
+        <div className={styles.header}>
+          <Avatar height={40} width={40} />
+          <div className={styles.headerDetails}>
+            <strong>vincent.tsx</strong>
+            <span role="button" className={styles.viewProfile}>
+              View Profile
+            </span>
+          </div>
+        </div>
+
         {routes.map(({ path, name, inactive_icon, active_icon }, i) => (
           <div
             tabIndex={i}
@@ -55,14 +55,9 @@ const Sidebar = () => {
             <span>
               {handleCheckIfActive(path) ? active_icon : inactive_icon}
             </span>
-            <span>{name}</span>
+            <span className={styles.routeName}>{name}</span>
           </div>
         ))}
-      </div>
-
-      <div className={styles.settings}>
-        <RiMenuLine size={30} />
-        <p>More</p>
       </div>
     </aside>
   );

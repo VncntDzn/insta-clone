@@ -1,27 +1,8 @@
+@import "scss/utils/fonts";
 @import "scss/utils/mixins";
 @import "scss/utils/colors";
 
 .root {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  background-color: $WHITE;
-  height: fit-content;
-  margin-bottom: 1rem;
-  border-radius: 10px;
-  border-bottom: 1px solid $LIGHT_GRAY;
-
-  @include sm() {
-    display: none;
-  }
-
-  @include lg() {
-    display: inline-block;
-    width: 35vw;
-    margin-top: 2rem;
-  }
-}
-.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,28 +16,37 @@
   flex: 20%;
   display: flex;
   align-self: center;
-}
-.notifications {
-  flex: 20%;
-  display: flex;
-  justify-content: flex-end;
-  align-self: center;
+  font-family: $SACRAMENTO;
+  font-size: 40px;
+  flex: 10%;
+  margin: 0;
+  @include sm() {
+    display: none;
+  }
 }
 .search {
-  flex: 60%;
-}
-.input {
+  flex: 70%;
   padding: 0.5rem;
   border: none;
   border-radius: 10px;
   font-size: 14px;
-  background-color: $LIGHT_GRAY2;
+  background-color: $LIGHT_GRAY;
   width: 100%;
   &:focus {
     border: none;
-    outline: none;
+  }
+  @include sm() {
+    visibility: hidden;
+  }
+  @include lg() {
+    visibility: visible;
+    flex: 40%;
   }
 }
-.stories {
-  padding: 0.5rem 0.7rem;
+.notifications {
+  flex: 10%;
+  text-align: center;
+  @include sm() {
+    visibility: hidden;
+  }
 }

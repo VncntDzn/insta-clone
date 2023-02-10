@@ -1,45 +1,65 @@
+@import "scss/utils/fonts";
 @import "scss/utils/mixins";
 @import "scss/utils/colors";
+
 .root {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid yellowgreen;
+  @include lg() {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.main {
   display: flex;
   flex-direction: column;
   background-color: $LIGHT_GRAY2;
   @include sm() {
     flex-direction: row;
   }
+  @include lg() {
+    justify-content: center;
+    width: 75vw;
+    max-width: 80vw;
+    border: 3px solid red;
+  }
 }
 
 .sidebar {
   display: none;
   @include sm() {
-    display: block;
-    flex: 10%;
+    display: flex;
+    flex-direction: column;
+    flex: 15%;
+    border-right: thin solid $LIGHT_GRAY;
+    justify-content: center;
+    align-items: center;
   }
   @include lg() {
-    display: block;
     flex: 20%;
   }
 }
 .content {
   @include sm() {
-    flex: 90%;
-    border: 3px solid red;
+    flex: 85%;
   }
   @include lg() {
     flex: 80%;
-    border: 3px solid yellow;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     height: fit-content;
+    width: 70vw;
+    border: 3px solid blue;
   }
 }
-.item {
-  height: 60vh;
-  border: 3px solid red;
-  margin: 1rem;
-  @include lg() {
-    width: 35vw;
-  }
+.logo {
+  margin-top: 3rem;
+}
+.title {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }

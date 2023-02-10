@@ -2,8 +2,9 @@
 @import "scss/utils/colors";
 .root {
   display: flex;
-  gap: 1rem;
-  overflow-x: auto;
+  gap: 2rem;
+  padding: 0 1rem;
+  overflow: hidden;
 }
 .story {
   flex: 0 0 auto;
@@ -13,9 +14,9 @@
   height: 50px;
   width: 50px;
   background-color: $LIGHT_GRAY;
-  @include lg() {
-    height: 70px;
-    width: 70px;
+  @include sm() {
+    height: 80px;
+    width: 80px;
   }
 }
 .name {
@@ -29,4 +30,18 @@
   @include lg() {
     width: 4.5rem;
   }
+}
+.arrowLeft {
+  position: absolute;
+  z-index: 1;
+  top: 20%;
+  left: 0;
+  cursor: pointer;
+}
+.arrowRight {
+  position: absolute;
+  z-index: 1;
+  top: 20%;
+  right: 0;
+  cursor: pointer;
 }

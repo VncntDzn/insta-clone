@@ -1,23 +1,23 @@
-import {
-  Activities,
-  Header,
-  PersonalStories,
-  Posts,
-  ProfileTabs,
-  Settings,
-} from "features/profile";
+import { Header, Settings } from "features/profile";
 import PrivateLayout from "layouts/private-layout";
 import { ReactElement } from "react";
-
+import styles from "scss/pages/profile.module.scss";
 const Profile = () => {
   return (
-    <div>
+    <div className={styles.root}>
       <Settings />
       <Header />
-      <PersonalStories />
+      {/*  <div>
+        <PersonalStories />
+      </div> */}
+      {/* <ProfileTabs /> */}
+      {/* <Activities /> */}
+      {/*  
+      <Header />
+    
       <Activities />
-      <ProfileTabs />
-   {/*    <Posts /> */}
+      <ProfileTabs /> */}
+      {/*    <Posts /> */}
     </div>
   );
 };

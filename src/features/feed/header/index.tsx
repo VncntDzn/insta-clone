@@ -1,26 +1,15 @@
-import { RiHeartLine } from "react-icons/ri";
+import { RiHeartLine, RiInstagramLine } from "react-icons/ri";
 import styles from "./header.module.scss";
-import Stories from "./stories";
-const Header = () => {
+const FeedHeader = () => {
   return (
     <div className={styles.root}>
-      <div className={styles.header}>
-        <div className={styles.logo}>
-          <p>Insta</p>
-        </div>
-        <div className={styles.search}>
-          <input className={styles.input} placeholder="Search" />
-        </div>
-        <div className={styles.notifications}>
-          <RiHeartLine size={28} />
-        </div>
-      </div>
-
-      <div className={styles.stories}>
-        <Stories />
+      <RiInstagramLine className={styles.logo} size={30} />
+      <input placeholder="Search" className={styles.search} />
+      <div className={styles.notifications}>
+        <RiHeartLine size={30} />
       </div>
     </div>
   );
 };
 
-export default Header;
+export default FeedHeader;
