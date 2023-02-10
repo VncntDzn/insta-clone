@@ -14,7 +14,7 @@
 
 .main {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   background-color: $LIGHT_GRAY2;
   @include sm() {
     flex-direction: row;
@@ -54,12 +54,13 @@
     height: fit-content;
     width: 70vw;
     border: 3px solid blue;
+    padding-top: 2rem;
   }
 }
 .logo {
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 .title {
-  margin-top: 2rem;
+  margin-top:3.5rem;
   margin-bottom: 1rem;
 }

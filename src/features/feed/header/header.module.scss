@@ -8,45 +8,56 @@
   align-items: center;
   padding: 0.5rem 0.7rem;
   border-bottom: 1px solid $LIGHT_GRAY;
+
+  @include sm() {
+    border: none;
+    justify-content: center;
+  }
   @include lg() {
-    display: none;
+    width: 60vw;
+    justify-content: space-evenly;
+    gap: 2rem;
   }
 }
 .logo {
-  flex: 20%;
+  flex: 0.2;
   display: flex;
   align-self: center;
   font-family: $SACRAMENTO;
   font-size: 40px;
-  flex: 10%;
   margin: 0;
   @include sm() {
     display: none;
   }
 }
 .search {
-  flex: 70%;
+  flex: 0.6;
   padding: 0.5rem;
   border: none;
   border-radius: 10px;
   font-size: 14px;
   background-color: $LIGHT_GRAY;
-  width: 100%;
   &:focus {
     border: none;
   }
+
   @include sm() {
-    visibility: hidden;
+    flex: 0.7;
+    height: 1.5rem;
   }
   @include lg() {
-    visibility: visible;
-    flex: 40%;
+    flex: 0.6;
+    height: 1.8rem;
   }
 }
 .notifications {
-  flex: 10%;
+  flex: 0.2;
   text-align: center;
   @include sm() {
+    display: none;
+  }
+  @include lg() {
+    display: inline;
     visibility: hidden;
   }
 }
