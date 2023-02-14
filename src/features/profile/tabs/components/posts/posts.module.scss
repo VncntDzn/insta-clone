@@ -1,0 +1,28 @@
+@import "scss/utils/mixins";
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1vw;
+  @include sm() {
+    gap: 1.6vw;
+  }
+  @include lg() {
+    gap: 1.3vw;
+  }
+}
+.container {
+  position: relative;
+  height: 8rem;
+  width: 32.5%;
+  @include sm() {
+    height: 15rem;
+    width: 32%;
+  }
+  @include lg() {
+    width: 31.5%;
+    height: 18rem;
+  }
+  @include custom_breakpoint("2000px") {
+    width: 31%;
+  }
+}

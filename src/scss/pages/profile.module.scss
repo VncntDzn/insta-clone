@@ -1,9 +1,5 @@
 @import "../utils/mixins";
 .root {
-  border: 3px solid yellow;
-  @include sm() {
-    width: 100%;
-  }
   @include lg() {
     width: 80%;
   }

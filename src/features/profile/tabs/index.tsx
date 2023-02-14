@@ -6,7 +6,7 @@ import {
 } from "react-icons/ri";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import Posts from "../posts";
+import Posts from "./components/posts";
 
 import styles from "./tabs.module.scss";
 const ProfileTabs = () => {
