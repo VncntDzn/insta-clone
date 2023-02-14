@@ -6,6 +6,7 @@ import { Avatar, Dialog } from "common";
 import Create from "features/create";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import { OPEN_MODAL } from "store/slices/modalSlice";
+import ROUTE_NAME from "../routes/constants";
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
@@ -20,7 +21,7 @@ const Sidebar = () => {
     dispatch(OPEN_MODAL({ isOpen: false, modalType: "" }));
   };
   const handleNavigation = (path: string) => {
-    if (path !== "/new-post") {
+    if (path !== ROUTE_NAME.NEW_POST) {
       router.push(path);
     } else {
       handleToggle();
