@@ -1,7 +1,7 @@
 import { firestore } from "db/client";
 import { collection, getDocs, query } from "firebase/firestore";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useAppSelector } from "store/hooks";
 import styles from "./posts.module.scss";
@@ -53,4 +53,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default memo(Posts);

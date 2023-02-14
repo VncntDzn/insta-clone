@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styles from "./activities.module.scss";
 
 const COUNTS = [
@@ -18,4 +19,4 @@ const Activities = () => {
   );
 };
 
-export default Activities;
+export default memo(Activities);

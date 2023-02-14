@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./avatar.module.scss";
 import Pic from "../../layouts/private-layout/assets/pic.jpg";
+import { memo } from "react";
 
 interface AvatarProps {
   height: number | undefined;
@@ -19,4 +20,4 @@ const Avatar = ({ height, width }: Partial<AvatarProps>) => {
   );
 };
 
-export default Avatar;
+export default memo(Avatar);

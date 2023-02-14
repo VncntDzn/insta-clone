@@ -1,5 +1,6 @@
 import { Avatar } from "common";
 import { useMediaQuery } from "hooks";
+import { memo } from "react";
 import { RiSettings3Line } from "react-icons/ri";
 import styles from "./header.module.scss";
 const Header = () => {
@@ -32,4 +33,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);
