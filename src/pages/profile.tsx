@@ -1,5 +1,5 @@
 import { Stories } from "features";
-import { Activities, Header, Settings } from "features/profile";
+import { Activities, Header, ProfileTabs, Settings } from "features/profile";
 import PrivateLayout from "layouts/private-layout";
 import { ReactElement } from "react";
 import styles from "scss/pages/profile.module.scss";
@@ -10,11 +10,7 @@ const Profile = () => {
       <Header />
       {/*  <Stories /> */}
       <Activities />
-
-      {/*  <div>
-        <PersonalStories />
-      </div> */}
-      {/* <ProfileTabs /> */}
+      <ProfileTabs />
       {/* <Activities /> */}
       {/*  
       <Header />
