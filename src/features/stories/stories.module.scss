@@ -1,8 +1,30 @@
 @import "scss/utils/mixins";
 @import "scss/utils/colors";
+
+%arrows {
+  position: absolute;
+  z-index: 1;
+  top: 20%;
+  cursor: pointer;
+  margin-top: 5px;
+}
 .root {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 0;
+  width: 95vw;
+  @include sm() {
+    width: 60vw;
+  }
+
+  @include lg() {
+    width: 35vw;
+  }
+}
+.container {
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  gap: 1rem;
   padding: 0 1rem;
   overflow: hidden;
 }
@@ -14,9 +36,13 @@
   height: 50px;
   width: 50px;
   background-color: $LIGHT_GRAY;
-  @include sm() {
-    height: 80px;
-    width: 80px;
+  @include lg() {
+    height: 60px;
+    width: 60px;
+  }
+  @include lg() {
+    height: 70px;
+    width: 70px;
   }
 }
 .name {
@@ -25,23 +51,18 @@
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
-  width: 3.5rem;
+  width: 3rem;
   text-overflow: ellipsis;
+  margin: 0;
   @include lg() {
     width: 4.5rem;
   }
 }
 .arrowLeft {
-  position: absolute;
-  z-index: 1;
-  top: 20%;
+  @extend %arrows;
   left: 0;
-  cursor: pointer;
 }
 .arrowRight {
-  position: absolute;
-  z-index: 1;
-  top: 20%;
   right: 0;
-  cursor: pointer;
+  @extend %arrows;
 }

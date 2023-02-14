@@ -13,7 +13,7 @@ const Stories = () => {
     }
   };
   return (
-    <div style={{ position: "relative" }}>
+    <div className={styles.root}>
       <RiArrowLeftSFill
         size={30}
         className={styles.arrowLeft}
@@ -24,7 +24,7 @@ const Stories = () => {
         size={30}
         onClick={() => handleScrollHorizontal("right")}
       />
-      <div className={styles.root} ref={horizontalScrollRef}>
+      <div className={styles.container} ref={horizontalScrollRef}>
         {[
           "Vincent",
           "Angela Nicole Angela Nicole Angela Nicole",

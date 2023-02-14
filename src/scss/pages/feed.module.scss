@@ -1,0 +1,30 @@
+@import "../utils/mixins";
+.root {
+  border: 3px solid green;
+}
+.container {
+  border: 3px solid red;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.content {
+  position: relative;
+  @include lg() {
+    flex: 0.7;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid pink;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+  }
+}
+.recommendation {
+  flex: 0.3;
+  display: none;
+  @include lg() {
+    display: flex;
+  }
+}

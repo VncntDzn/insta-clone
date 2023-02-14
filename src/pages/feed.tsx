@@ -1,11 +1,12 @@
 import { firestore } from "db/client";
+import { Stories } from "features";
 import { FeedHeader } from "features/feed";
 import { collection, getDocs, query } from "firebase/firestore";
 import PrivateLayout from "layouts/private-layout";
 import { ReactElement, useEffect, useState } from "react";
 import { useAppSelector } from "store/hooks";
 import { NextPageWithLayout } from "./_app";
-
+import styles from "scss/pages/feed.module.scss";
 const Feed: NextPageWithLayout = () => {
   const user = useAppSelector((state) => state.user.user);
 
@@ -31,9 +32,26 @@ const Feed: NextPageWithLayout = () => {
     })();
   }, [user?.uid]);
   return (
-    <div>
+    <div className={styles.root}>
       <FeedHeader />
-      {/*  <Stories />
+      <div className={styles.container}>
+        <div className={styles.content}>
+          <Stories />
+          <div>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+          </div>
+        </div>
+        <div className={styles.recommendation}>
+          <h1>Recommendations</h1>
+        </div>
+      </div>
+      {/*   <div style={{   border: "3px solid yellow" }}>
+        <Stories />
+      </div> */}
+      {/* 
       <Carousel showThumbs={false} showStatus={false}>
         {posts.map((post, i) => (
           <section key={i}>

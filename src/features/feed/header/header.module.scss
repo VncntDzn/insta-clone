@@ -3,6 +3,7 @@
 @import "scss/utils/colors";
 
 .root {
+  border: 3px solid red;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,18 +21,13 @@
   }
 }
 .logo {
-  flex: 0.2;
   display: flex;
-  align-self: center;
-  font-family: $SACRAMENTO;
-  font-size: 40px;
-  margin: 0;
   @include sm() {
     display: none;
   }
 }
 .search {
-  flex: 0.6;
+  flex: 0.8;
   padding: 0.5rem;
   border: none;
   border-radius: 10px;
@@ -51,8 +47,6 @@
   }
 }
 .notifications {
-  flex: 0.2;
-  text-align: center;
   @include sm() {
     display: none;
   }
