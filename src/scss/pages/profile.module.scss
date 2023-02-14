@@ -1,8 +1,6 @@
 @import "../utils/mixins";
 .root {
-  overflow: hidden;
-
-  border: 3px solid green;
+  border: 3px solid yellow;
   @include sm() {
     width: 100%;
   }

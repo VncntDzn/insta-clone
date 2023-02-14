@@ -12,24 +12,15 @@
   }
 }
 .root {
+  border: 3px solid blue;
   position: relative;
-  overflow: hidden;
-  padding: 1rem 0;
-  width: 95vw;
-  @include sm() {
-    width: 60vw;
-  }
-
-  @include lg() {
-    width: 35vw;
-  }
 }
 .container {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0 1rem;
-  overflow: hidden;
+  border: 3px solid green;
+  max-width: 50%;
 }
 .story {
   flex: 0 0 auto;
