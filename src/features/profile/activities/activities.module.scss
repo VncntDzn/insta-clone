@@ -1,9 +1,13 @@
 @import "scss/utils/colors";
+@import "scss/utils/mixins";
 .root {
   border-top: 1px solid $LIGHT_GRAY;
   padding: 1rem 0;
   display: flex;
   justify-content: space-evenly;
+  @include sm() {
+    display: none;
+  }
 }
 .container {
   display: flex;
