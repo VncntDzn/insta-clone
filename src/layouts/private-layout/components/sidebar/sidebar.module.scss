@@ -57,6 +57,7 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  cursor: pointer;
   @include lg() {
     margin: 1rem 0;
     margin-top: 5rem;

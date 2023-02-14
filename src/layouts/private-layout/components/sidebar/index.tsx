@@ -35,7 +35,7 @@ const Sidebar = () => {
       )}
 
       <div className={styles.linksContainer}>
-        <div className={styles.header}>
+        <div className={styles.header} onClick={() => handleNavigation('profile')}>
           <Avatar height={40} width={40} />
           <div className={styles.headerDetails}>
             <strong>vincent.tsx</strong>
