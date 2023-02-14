@@ -14,7 +14,7 @@
 
 .main {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   background-color: $LIGHT_GRAY2;
   @include sm() {
     flex-direction: row;
@@ -34,7 +34,6 @@
     flex-direction: column;
     flex: 15%;
     border-right: thin solid $LIGHT_GRAY;
-    justify-content: center;
     align-items: center;
   }
   @include lg() {
@@ -61,6 +60,6 @@
   margin-top: 1rem;
 }
 .title {
-  margin-top:3.5rem;
+  margin-top: 3.5rem;
   margin-bottom: 1rem;
 }
