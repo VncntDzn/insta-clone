@@ -1,6 +1,9 @@
 @import "../utils/mixins";
 .root {
   border: 3px solid green;
+  @include lg() {
+    width: 100%;
+  }
 }
 .container {
   border: 3px solid red;

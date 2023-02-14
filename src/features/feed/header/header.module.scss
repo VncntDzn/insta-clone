@@ -15,9 +15,7 @@
     justify-content: center;
   }
   @include lg() {
-    width: 60vw;
-    justify-content: space-evenly;
-    gap: 2rem;
+    justify-content: flex-start;
   }
 }
 .logo {
@@ -42,16 +40,11 @@
     height: 1.5rem;
   }
   @include lg() {
-    flex: 0.6;
     height: 1.8rem;
   }
 }
 .notifications {
   @include sm() {
     display: none;
-  }
-  @include lg() {
-    display: inline;
-    visibility: hidden;
   }
 }

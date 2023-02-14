@@ -7,6 +7,9 @@
   top: 20%;
   cursor: pointer;
   margin-top: 5px;
+  @include lg() {
+    margin-top: 1rem;
+  }
 }
 .root {
   position: relative;
