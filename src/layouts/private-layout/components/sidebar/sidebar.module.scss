@@ -9,7 +9,6 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: $WHITE;
     width: 5rem;
   }
   @include lg() {

@@ -5,9 +5,8 @@
 .root {
   display: flex;
   flex-direction: column;
-  border: 3px solid yellowgreen;
+  background-color: red;
   @include lg() {
-    justify-content: center;
     align-items: center;
   }
 }
@@ -15,15 +14,13 @@
 .main {
   display: flex;
   flex-direction: column;
-  background-color: $LIGHT_GRAY2;
+  background-color: $WHITE;
   @include sm() {
     flex-direction: row;
   }
   @include lg() {
-    justify-content: center;
     width: 80vw;
-    max-width: 80vw;
-    border: 3px solid red;
+    max-width: 85vw;
   }
 }
 
@@ -32,26 +29,28 @@
   @include sm() {
     display: flex;
     flex-direction: column;
-    flex: 15%;
     border-right: thin solid $LIGHT_GRAY;
     align-items: center;
   }
   @include lg() {
-    flex: 25%;
+    width: 19vw;
+    position: fixed;
   }
 }
 .content {
   @include sm() {
-    flex: 85%;
+    width: 100vw;
   }
   @include lg() {
-    flex: 75%;
+    margin-left: auto;
+    align-items: flex-end;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     height: fit-content;
-    width: 70vw;
+    width: 60vw;
+    max-width: 70vw;
     padding-top: 2rem;
   }
 }
