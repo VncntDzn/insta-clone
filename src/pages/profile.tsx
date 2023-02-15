@@ -8,16 +8,9 @@ const Profile = () => {
     <div className={styles.root}>
       <Settings />
       <Header />
-      {/*  <Stories /> */}
+      <Stories />
       <Activities />
       <ProfileTabs />
-      {/* <Activities /> */}
-      {/*  
-      <Header />
-    
-      
-      <ProfileTabs /> */}
-      {/*    <Posts /> */}
     </div>
   );
 };

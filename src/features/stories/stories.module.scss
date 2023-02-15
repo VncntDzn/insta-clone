@@ -4,23 +4,33 @@
 %arrows {
   position: absolute;
   z-index: 1;
-  top: 20%;
+  top: 25vh;
+  bottom: 0;
   cursor: pointer;
   margin-top: 5px;
+  @include sm() {
+   display: none;
+  }
   @include lg() {
-    margin-top: 1rem;
+    display: inline-block;
+    top: 1rem;
   }
 }
 .root {
-  border: 3px solid blue;
-  position: relative;
+  overflow-y: hidden;
+  margin: 1rem 0;
+  @include lg() {
+    position: relative;
+  }
 }
 .container {
   display: flex;
   align-items: center;
+  position: relative;
   gap: 1rem;
-  border: 3px solid green;
-  max-width: 50%;
+  @include lg() {
+    overflow: hidden;
+  }
 }
 .story {
   flex: 0 0 auto;

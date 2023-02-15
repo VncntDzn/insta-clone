@@ -36,7 +36,9 @@ const Feed: NextPageWithLayout = () => {
       <FeedHeader />
       <div className={styles.container}>
         <div className={styles.content}>
-        {/*   <Stories /> */}
+          <div className={styles.stories}>
+            <Stories />
+          </div>
           <div>
             <h1>content</h1>
             <h1>content</h1>

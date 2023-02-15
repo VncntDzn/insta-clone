@@ -13,7 +13,7 @@ const Stories = () => {
     }
   };
   return (
-    <>
+    <div className={styles.root}>
       <RiArrowLeftSFill
         size={30}
         className={styles.arrowLeft}
@@ -25,42 +25,40 @@ const Stories = () => {
         onClick={() => handleScrollHorizontal("right")}
       />
 
-      <div className={styles.root}>
-        <div className={styles.container} ref={horizontalScrollRef}>
-          {[
-            "Vincent",
-            "Angela Nicole Angela Nicole Angela Nicole",
-            "Vincent",
-            "Angela Nicole",
-            "Vincent",
-            "Angela Nicole",
-            "Vincent",
-            "Angela Nicole",
-            "Vincent",
-            "Angela Nicole",
-            "Vincent",
-            "Angela Nicole",
-            "Vincent",
-            "Angela Nicole Angela Nicole Angela Nicole",
-            "Vincent",
-            "Angela Nicole",
-            "Vincent",
-            "Angela Nicole",
-            "Vincent",
-            "Angela Nicole",
-            "Vincent",
-            "Angela Nicole",
-            "Vincent",
-            "Angela Nicole",
-          ].map((name, i) => (
-            <div className={styles.story} key={i}>
-              <div className={styles.avatar} />
-              <p className={styles.name}>{name}</p>
-            </div>
-          ))}
-        </div>
+      <div className={styles.container} ref={horizontalScrollRef}>
+        {[
+          "Vincent",
+          "Angela Nicole Angela Nicole Angela Nicole",
+          "Vincent",
+          "Angela Nicole",
+          "Vincent",
+          "Angela Nicole",
+          "Vincent",
+          "Angela Nicole",
+          "Vincent",
+          "Angela Nicole",
+          "Vincent",
+          "Angela Nicole",
+          "Vincent",
+          "Angela Nicole Angela Nicole Angela Nicole",
+          "Vincent",
+          "Angela Nicole",
+          "Vincent",
+          "Angela Nicole",
+          "Vincent",
+          "Angela Nicole",
+          "Vincent",
+          "Angela Nicole",
+          "Vincent",
+          "Angela Nicole",
+        ].map((name, i) => (
+          <div className={styles.story} key={i}>
+            <div className={styles.avatar} />
+            <p className={styles.name}>{name}</p>
+          </div>
+        ))}
       </div>
-    </>
+    </div>
   );
 };
 
