@@ -1,5 +1,5 @@
 @import "scss/utils/colors";
-
+@import "scss/utils/mixins";
 .root {
   border-top: 1px solid $LIGHT_GRAY;
 }
@@ -9,6 +9,10 @@
   padding: 0;
   justify-content: space-around;
   margin-top: 0;
+  @include lg() {
+    justify-content: center;
+    gap: 1rem;
+  }
 }
 .tab {
   width: 100%;
@@ -16,6 +20,9 @@
   list-style-type: none;
   padding-top: 1rem;
   outline: none;
+  @include lg() {
+    width: 10%;
+  }
 }
 .selectedTabClassName {
   align-self: center;

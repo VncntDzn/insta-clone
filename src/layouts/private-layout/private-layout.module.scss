@@ -21,7 +21,7 @@
   }
   @include lg() {
     justify-content: center;
-    width: 75vw;
+    width: 80vw;
     max-width: 80vw;
     border: 3px solid red;
   }
@@ -37,7 +37,7 @@
     align-items: center;
   }
   @include lg() {
-    flex: 20%;
+    flex: 25%;
   }
 }
 .content {
@@ -45,14 +45,13 @@
     flex: 85%;
   }
   @include lg() {
-    flex: 80%;
+    flex: 75%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     height: fit-content;
     width: 70vw;
-    border: 3px solid blue;
     padding-top: 2rem;
   }
 }
