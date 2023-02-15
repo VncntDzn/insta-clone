@@ -22,6 +22,15 @@
   outline: none;
   @include lg() {
     width: 10%;
+    display: flex;
+    align-items: center;
+  }
+}
+.tabName {
+  display: none;
+  @include sm() {
+    display: inline;
+    font-size: small;
   }
 }
 .selectedTabClassName {

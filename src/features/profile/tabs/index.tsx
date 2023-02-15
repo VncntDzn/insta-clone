@@ -18,15 +18,19 @@ const ProfileTabs = () => {
       <TabList className={styles.tabList}>
         <Tab className={styles.tab}>
           <RiGridLine size={25} />
+          <strong className={styles.tabName}>POSTS</strong>
         </Tab>
         <Tab className={styles.tab}>
-          <RiVideoLine size={25} />
+          <RiVideoLine size={25} />{" "}
+          <strong className={styles.tabName}>REELS</strong>
         </Tab>
         <Tab className={styles.tab}>
           <RiBookmarkLine size={25} />
+          <strong className={styles.tabName}>SAVED</strong>
         </Tab>
         <Tab className={styles.tab}>
-          <RiAccountBoxLine size={25} />
+          <RiAccountBoxLine size={25} />{" "}
+          <strong className={styles.tabName}>TAGGED</strong>
         </Tab>
       </TabList>
 
