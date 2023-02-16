@@ -1,12 +1,14 @@
 import { firestore } from "db/client";
 import { collection, getDocs, query } from "firebase/firestore";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { memo, useEffect, useState } from "react";
 import { RiCheckboxMultipleBlankLine } from "react-icons/ri";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useAppSelector } from "store/hooks";
 import styles from "./posts.module.scss";
 const Posts = () => {
+  const router = useRouter();
   const user = useAppSelector((state) => state.user.user);
 
   const [posts, setPosts] = useState([]);
@@ -20,13 +22,21 @@ const Posts = () => {
       const querySnapshot = await getDocs(queryCollection);
 
       querySnapshot.forEach((doc) => {
-        result.push(doc.data());
+        /*
+          gets the document id, alongside with data.
+          While pushing it to result array.
+        */
+        result.push({ id: doc.id, data: doc.data() });
       });
 
       setPosts(result);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleNavigateToPost = (post) => {
+    router.push(`post/${post.id}`);
   };
   useEffect(() => {
     fetchPosts();
@@ -45,13 +55,18 @@ const Posts = () => {
       }
     >
       {posts.map((post, i) => (
-        <div className={styles.container} key={i}>
-          {post.imageURL.length > 1 && (
-            <div className={styles.multipleIcon}>
-              <RiCheckboxMultipleBlankLine size={20} />
-            </div>
+        <div
+          onClick={() => handleNavigateToPost(post)}
+          className={styles.container}
+          key={i}
+        >
+          {post.data.imageURL.length > 1 && (
+            <RiCheckboxMultipleBlankLine
+              className={styles.multipleIcon}
+              size={20}
+            />
           )}
-          <Image alt={post} src={post.imageURL[0]} fill />
+          <Image alt={post} src={post.data.imageURL[0]} fill />
         </div>
       ))}
     </InfiniteScroll>
