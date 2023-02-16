@@ -2,10 +2,10 @@ import { firestore } from "db/client";
 import { collection, getDocs, query } from "firebase/firestore";
 import Image from "next/image";
 import { memo, useEffect, useState } from "react";
+import { RiCheckboxMultipleBlankLine } from "react-icons/ri";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useAppSelector } from "store/hooks";
 import styles from "./posts.module.scss";
-
 const Posts = () => {
   const user = useAppSelector((state) => state.user.user);
 
@@ -46,6 +46,11 @@ const Posts = () => {
     >
       {posts.map((post, i) => (
         <div className={styles.container} key={i}>
+          {post.imageURL.length > 1 && (
+            <div className={styles.multipleIcon}>
+              <RiCheckboxMultipleBlankLine size={20} />
+            </div>
+          )}
           <Image alt={post} src={post.imageURL[0]} fill />
         </div>
       ))}

@@ -1,4 +1,5 @@
 @import "scss/utils/mixins";
+@import "scss/utils/colors";
 .root {
   display: flex;
   flex-wrap: wrap;
@@ -25,4 +26,15 @@
   @include custom_breakpoint("2000px") {
     width: 31%;
   }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.multipleIcon {
+  position: absolute;
+  top: 2%;
+  z-index: 1;
+  right: 1%;
+  color: $WHITE;
 }
