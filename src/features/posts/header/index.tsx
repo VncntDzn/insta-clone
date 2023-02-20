@@ -1,7 +1,7 @@
 import Avatar from "common/avatar";
 import { RiArrowLeftSLine } from "react-icons/ri";
 import { RxDotsHorizontal } from "react-icons/rx";
-import styles from "./posts.module.scss";
+import styles from "./header.module.scss";
 
 const PostsHeader = () => {
   return (
