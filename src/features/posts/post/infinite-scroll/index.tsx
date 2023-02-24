@@ -12,13 +12,13 @@ import { useMediaQuery } from "hooks";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { memo, useCallback, useEffect, useState } from "react";
+import ContentLoader, { Facebook } from "react-content-loader";
 import { RiCheckboxMultipleBlankLine } from "react-icons/ri";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { toast } from "react-toastify";
 import { useAppSelector } from "store/hooks";
 import DialogPost from "../dialog";
 import styles from "./posts.module.scss";
-
 interface PostURL {
   url: string;
   metadata: string[];
@@ -36,8 +36,9 @@ const InfinitePosts = () => {
   const [togglePost, setTogglePost] = useState(false);
   const [post, setPost] = useState<DocumentData | undefined>(undefined);
   const [posts, setPosts] = useState([]);
-
+  const [isLoading, setLoading] = useState(false);
   const fetchPosts = useCallback(async () => {
+    setLoading(true);
     try {
       const result: any = [];
       const queryCollection = query(
@@ -56,6 +57,8 @@ const InfinitePosts = () => {
       setPosts(result);
     } catch (error) {
       toast.error("Something went wrong");
+    } finally {
+      setLoading(false);
     }
   }, [user]);
 
@@ -86,12 +89,29 @@ const InfinitePosts = () => {
       fetchPosts();
     }
   }, [user?.uid, fetchPosts]);
+
+  if (isLoading) {
+    return (
+      <ContentLoader
+        speed={2}
+        width="100%"
+        height={860}
+        viewBox="0 0 400 860"
+        backgroundColor="#e0e0e0"
+        foregroundColor="#ecebeb"
+      >
+        <circle cx="31" cy="31" r="15" />
+        <rect x="58" y="18" rx="2" ry="2" width="140" height="10" />
+        <rect x="58" y="34" rx="2" ry="2" width="140" height="10" />
+        <rect x="2" y="108" rx="2" ry="2" width="516" height="590" />
+      </ContentLoader>
+    );
+  }
   return (
     <>
       <Dialog isOpen={togglePost} onClose={() => setTogglePost(false)}>
         {post && <DialogPost postURL={post.postURL} />}
       </Dialog>
-
       <InfiniteScroll
         className={styles.root}
         dataLength={posts.length} //This is important field to render the next data
@@ -118,7 +138,11 @@ const InfinitePosts = () => {
             )}
             {post.data.postURL[0].metadata.includes("video") ? (
               <video
-                style={{ height: "100%", width: "100%", textAlign: "center" }}
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  textAlign: "center",
+                }}
                 controls
                 src={post.data.postURL[0].url}
               />
