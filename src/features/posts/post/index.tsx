@@ -1,9 +1,24 @@
+import Image from "next/image";
+import { Carousel } from "react-responsive-carousel";
 import styles from "./post.module.scss";
-const Post = () => {
+
+interface PostImageProps {
+  images: string[];
+}
+const Post = ({ images }: PostImageProps) => {
   return (
-    <div className={styles.root}>
-      {/*  <Image alt={post} src={post.data.imageURL[0]} fill /> */}
-    </div>
+    <Carousel
+      className={styles.root}
+      showThumbs={false}
+      showStatus={false}
+      showIndicators={images.length > 1 ? true : false}
+    >
+      {images.map((image, i) => (
+        <section key={i} className={styles.image}>
+          <Image alt="post" src={image} fill />
+        </section>
+      ))}
+    </Carousel>
   );
 };
 

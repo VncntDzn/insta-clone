@@ -1,3 +1,4 @@
+import Avatar from "common/avatar";
 import {
   RiBookmarkLine,
   RiChat3Line,
@@ -7,13 +8,24 @@ import {
 import styles from "./interaction.module.scss";
 const Interaction = () => {
   return (
-    <section className={styles.root}>
-      <div className={styles.interactions}>
-        <RiHeartLine size={30} />
-        <RiChat3Line size={30} />
-        <RiSendPlaneLine size={30} />
+    <section>
+      <div className={styles.icons}>
+        <div className={styles.interactions}>
+          <RiHeartLine size={30} />
+          <RiChat3Line size={30} />
+          <RiSendPlaneLine size={30} />
+        </div>
+        <RiBookmarkLine size={30} />
       </div>
-      <RiBookmarkLine size={30} />
+      <div className={styles.likedBy}>
+        <div className={styles.avatar}>
+          <Avatar />
+          <Avatar />
+          <Avatar />
+        </div>
+        <small>Liked by ...</small>
+      </div>
+      <small>FEBRUARY 22</small>
     </section>
   );
 };

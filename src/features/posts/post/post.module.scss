@@ -1,6 +1,18 @@
 @import "scss/utils/mixins";
 @import "scss/utils/colors";
 .root {
-  border: 3px solid red;
-  height:70vh;
+  height: 70vh;
+  position: relative;
+
+  @include sm() {
+    width: 45vw;
+    height: 40vh;
+  }
+  @include lg() {
+    width: 30vw;
+    height: 70vh;
+  }
+}
+.image {
+  height: 70vh;
 }

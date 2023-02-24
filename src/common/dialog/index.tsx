@@ -9,6 +9,8 @@ interface DialogProps extends ChildrenType {
   onClose: () => void;
 }
 const customStyles = {
+  /* to stacked up against elements using z-index and position absolute */
+  overlay: { zIndex: 999 },
   content: {
     top: "50%",
     left: "50%",
@@ -18,6 +20,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     borderRadius: "20px",
     padding: 0,
+    overflow: "hidden",
   },
 };
 const Dialog = ({ isOpen, onClose, children }: DialogProps) => {

@@ -1,3 +1,24 @@
+@import "../utils/mixins";
 .root {
-    border: 3px solid yellow;
+  border: 3px solid yellow;
+
+  @include lg() {
+    width: 100%;
+  }
+}
+
+.post {
+  @include sm() {
+    display: flex;
+  }
+}
+.interactions {
+  padding: 0 0.5rem;
+  @include sm() {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    border: 3px solid green;
+    flex: 1;
+  }
 }

@@ -1,4 +1,4 @@
-.root {
+.icons {
   border: 3px solid green;
   display: flex;
   align-items: center;
@@ -10,4 +10,14 @@
   flex: 1;
   display: flex;
   gap: 1rem;
+}
+
+.avatar {
+  border: 3px solid red;
+}
+.likedBy {
+  display: flex;
+
+  align-items: center;
+  gap: 10px;
 }
