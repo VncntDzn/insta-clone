@@ -1,0 +1,35 @@
+@import "scss/utils/mixins";
+@import "scss/utils/colors";
+ 
+.root {
+  @include lg() {
+    width: 50vw;
+  }
+}
+.post {
+  @include sm() {
+    display: flex;
+  }
+}
+.interactions {
+  padding: 0 0.5rem;
+  @include sm() {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    flex: 1;
+  }
+}
+.textArea {
+  border: none;
+  resize: none;
+  height: 5rem;
+  max-height: 10rem;
+  outline: none;
+  width: 100%;
+  font-size: small;
+}
+.commentArea {
+  display: flex;
+  gap: 0.5rem;
+}

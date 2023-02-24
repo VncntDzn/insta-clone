@@ -1,12 +1,6 @@
 import { Dialog } from "common";
 import { firestore } from "db/client";
 import {
-  PostComments,
-  PostContent,
-  PostInteraction,
-  PostsHeader,
-} from "features/posts";
-import {
   collection,
   doc,
   DocumentData,
@@ -18,13 +12,11 @@ import { useMediaQuery } from "hooks";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { memo, useCallback, useEffect, useState } from "react";
-import {
-  RiCheckboxMultipleBlankLine,
-  RiEmotionHappyLine,
-} from "react-icons/ri";
+import { RiCheckboxMultipleBlankLine } from "react-icons/ri";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { toast } from "react-toastify";
 import { useAppSelector } from "store/hooks";
+import DialogPost from "../dialog";
 import styles from "./posts.module.scss";
 
 interface PostURL {
@@ -37,7 +29,7 @@ interface PostContentType {
   };
 }
 
-const Posts = () => {
+const InfinitePosts = () => {
   const router = useRouter();
   const user = useAppSelector((state) => state.user.user);
   const isLargeScreen = useMediaQuery("(min-width: 802px)");
@@ -89,36 +81,6 @@ const Posts = () => {
       router.push(`post/${id}`);
     }
   };
-
-  // Display only if you have post data
-  const renderPostDialog = () => {
-    if (post) {
-      return (
-        <div className={styles.dialog}>
-          <PostsHeader />
-          <div className={styles.post}>
-            <PostContent data={post.postURL} />
-            <div className={styles.interactions}>
-              <div>
-                <PostInteraction />
-                <div className={styles.commentArea}>
-                  <RiEmotionHappyLine size={30} />
-                  <textarea
-                    autoComplete="off"
-                    aria-label="Write a comment..."
-                    placeholder="Write a comment..."
-                    className={styles.textArea}
-                    maxLength={2000}
-                  />
-                </div>
-              </div>
-              <PostComments />
-            </div>
-          </div>
-        </div>
-      );
-    }
-  };
   useEffect(() => {
     if (user?.uid) {
       fetchPosts();
@@ -127,7 +89,7 @@ const Posts = () => {
   return (
     <>
       <Dialog isOpen={togglePost} onClose={() => setTogglePost(false)}>
-        {renderPostDialog()}
+        {post && <DialogPost postURL={post.postURL} />}
       </Dialog>
 
       <InfiniteScroll
@@ -142,7 +104,7 @@ const Posts = () => {
           </p>
         }
       >
-        {posts.map((post, i) => (
+        {posts.map((post: PostContentType, i) => (
           <div
             onClick={() => handleNavigateToPost(post)}
             className={styles.container}
@@ -170,4 +132,4 @@ const Posts = () => {
   );
 };
 
-export default memo(Posts);
+export default memo(InfinitePosts);

@@ -1,3 +1,4 @@
+import InfinitePost from "features/posts/post/infinite-scroll";
 import {
   RiAccountBoxLine,
   RiBookmarkLine,
@@ -6,7 +7,6 @@ import {
 } from "react-icons/ri";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import Posts from "./components/posts";
 
 import styles from "./tabs.module.scss";
 const ProfileTabs = () => {
@@ -35,7 +35,7 @@ const ProfileTabs = () => {
       </TabList>
 
       <TabPanel>
-        <Posts />
+        <InfinitePost />
       </TabPanel>
       <TabPanel>
         <h2>Any content 2</h2>
