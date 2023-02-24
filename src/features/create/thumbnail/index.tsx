@@ -21,8 +21,13 @@ import { motion } from "framer-motion";
 
 import { firestore, storage } from "db/client";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import {
+  getDownloadURL,
+  getMetadata,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
+import { ChangeEvent, Fragment, useEffect, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -66,6 +71,7 @@ const Thumbnail = () => {
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
       "image/*": [],
+      "video/*": [],
     },
     onDrop: (acceptedFiles) => {
       dispatch(
@@ -116,10 +122,14 @@ const Thumbnail = () => {
   };
   const handleUploadCallback = async (file: any) => {
     try {
-      const imageRef = ref(storage, `${user!.uid}/posts/${nanoid()}`);
-      await uploadBytes(imageRef, file);
+      const postRef = ref(storage, `${user!.uid}/posts/${nanoid()}`);
+      await uploadBytes(postRef, file);
+      const resMetaData = await getMetadata(postRef);
       // return the url to store later in firestore
-      return await getDownloadURL(ref(storage, `${imageRef}`));
+      return {
+        url: await getDownloadURL(ref(storage, `${postRef}`)),
+        metadata: resMetaData.contentType,
+      };
     } catch (error) {
       toast.error((error as Error).message);
     } finally {
@@ -130,13 +140,12 @@ const Thumbnail = () => {
 
   const handleImageUpload = async () => {
     try {
-      const imageRef = files.map((file) => handleUploadCallback(file));
-      const imageURL = await Promise.all(imageRef);
-
+      const postRef = files.map((file) => handleUploadCallback(file));
+      const postURL = await Promise.all(postRef);
       await setDoc(doc(firestore, `posts/${user?.uid}/post/${nanoid()}`), {
         caption,
-        imageURL,
-        timestamp: serverTimestamp()
+        postURL,
+        timestamp: serverTimestamp(),
       });
       toast.success("Uploaded...");
     } catch (error) {
@@ -256,13 +265,17 @@ const Thumbnail = () => {
                   className={styles.closeIcon}
                   size={20}
                 />
-                <Image
-                  id={file.name}
-                  alt={file.name}
-                  src={file.preview}
-                  width={100}
-                  height={100}
-                />
+                {file.type?.includes("video") ? (
+                  <video muted width={180} controls src={file.preview} />
+                ) : (
+                  <Image
+                    id={file.name}
+                    alt={file.name}
+                    src={file.preview}
+                    width={100}
+                    height={100}
+                  />
+                )}
               </div>
             ))}
           </div>
@@ -315,6 +328,7 @@ const Thumbnail = () => {
           </strong>
         )}
       </div>
+
       <main className={styles.content}>
         <Carousel
           className={styles.carousel}
@@ -324,20 +338,28 @@ const Thumbnail = () => {
           onChange={(currentItem) => handleSelectedItem(currentItem)}
         >
           {files.map((file, i) => (
-            <section key={file.name} className={styles.image}>
-              <Image
-                id={file.name}
-                alt={file.name}
-                src={file.preview}
-                fill
-                style={{
-                  objectFit: imageFit,
-                  transform: `${
-                    selectedItem === i ? `scale(${imageRange})` : ""
-                  }`,
-                }}
-              />
-            </section>
+            <Fragment key={file.name}>
+              {file.type?.includes("video") ? (
+                <div className={styles.videoContainer}>
+                  <video className={styles.video} controls src={file.preview} />
+                </div>
+              ) : (
+                <section className={styles.image}>
+                  <Image
+                    id={file.name}
+                    alt={file.name}
+                    src={file.preview}
+                    fill
+                    style={{
+                      objectFit: imageFit,
+                      transform: `${
+                        selectedItem === i ? `scale(${imageRange})` : ""
+                      }`,
+                    }}
+                  />
+                </section>
+              )}
+            </Fragment>
           ))}
         </Carousel>
 

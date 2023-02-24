@@ -2,7 +2,7 @@ import { Dialog } from "common";
 import { firestore } from "db/client";
 import {
   PostComments,
-  PostImage,
+  PostContent,
   PostInteraction,
   PostsHeader,
 } from "features/posts";
@@ -26,6 +26,17 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { toast } from "react-toastify";
 import { useAppSelector } from "store/hooks";
 import styles from "./posts.module.scss";
+
+interface PostURL {
+  url: string;
+  metadata: string[];
+}
+interface PostContentType {
+  data: {
+    postURL: PostURL[];
+  };
+}
+
 const Posts = () => {
   const router = useRouter();
   const user = useAppSelector((state) => state.user.user);
@@ -55,6 +66,7 @@ const Posts = () => {
       toast.error("Something went wrong");
     }
   }, [user]);
+
   const fetchPostImage = useCallback(
     async ({ id }: { id: string }) => {
       try {
@@ -85,7 +97,7 @@ const Posts = () => {
         <div className={styles.dialog}>
           <PostsHeader />
           <div className={styles.post}>
-            <PostImage images={post.imageURL} />
+            <PostContent data={post.postURL} />
             <div className={styles.interactions}>
               <div>
                 <PostInteraction />
@@ -136,13 +148,21 @@ const Posts = () => {
             className={styles.container}
             key={i}
           >
-            {post.data.imageURL.length > 1 && (
+            {post.data.postURL.length > 1 && (
               <RiCheckboxMultipleBlankLine
                 className={styles.multipleIcon}
                 size={20}
               />
             )}
-            <Image alt={post} src={post.data.imageURL[0]} fill />
+            {post.data.postURL[0].metadata.includes("video") ? (
+              <video
+                style={{ height: "100%", width: "100%", textAlign: "center" }}
+                controls
+                src={post.data.postURL[0].url}
+              />
+            ) : (
+              <Image alt="" src={post.data.postURL[0].url} fill />
+            )}
           </div>
         ))}
       </InfiniteScroll>

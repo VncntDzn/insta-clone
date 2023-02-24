@@ -1,25 +1,37 @@
 import Image from "next/image";
+import { Fragment } from "react";
 import { Carousel } from "react-responsive-carousel";
 import styles from "./post.module.scss";
 
-interface PostImageProps {
-  images: string[];
+interface PostURL {
+  url: string;
+  metadata: string;
 }
-const Post = ({ images }: PostImageProps) => {
+interface PostContentType {
+  data: PostURL[];
+}
+
+const PostContent = ({ data }: PostContentType) => {
   return (
     <Carousel
       className={styles.root}
       showThumbs={false}
       showStatus={false}
-      showIndicators={images.length > 1 ? true : false}
+      showIndicators={Object.values(data).length > 1 ? true : false}
     >
-      {images.map((image, i) => (
-        <section key={i} className={styles.image}>
-          <Image alt="post" src={image} fill />
-        </section>
+      {Object.values(data).map(({ metadata, url }, i: number) => (
+        <Fragment key={i}>
+          {metadata.includes("video") ? (
+            <video className={styles.video} controls src={url} />
+          ) : (
+            <section className={styles.image}>
+              <Image alt="post" src={url} fill />
+            </section>
+          )}
+        </Fragment>
       ))}
     </Carousel>
   );
 };
 
-export default Post;
+export default PostContent;

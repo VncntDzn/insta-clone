@@ -1,10 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface FileProps {
-  preview: string;
-  name: string;
-  path?: string;
-}
 interface ModalTypes {
   isOpen: boolean;
   modalType: string;

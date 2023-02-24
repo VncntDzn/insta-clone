@@ -1,37 +1,39 @@
 import { firestore } from "db/client";
 import {
   PostComments,
-  PostImage,
+  PostContent,
   PostInteraction,
   PostsHeader,
 } from "features/posts";
 import { doc, DocumentData, getDoc } from "firebase/firestore";
 import PrivateLayout from "layouts/private-layout";
 import { useRouter } from "next/router";
-import { ReactElement, useCallback, useEffect, useState } from "react";
+import { memo, ReactElement, useCallback, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import styles from "scss/pages/post.module.scss";
 import { useAppSelector } from "store/hooks";
+
 const Post = () => {
-  const router = useRouter();
+  const { query } = useRouter();
   const user = useAppSelector((state) => state.user.user);
   const [post, setPost] = useState<DocumentData | undefined>(undefined);
+
   const fetchPost = useCallback(async () => {
     try {
-      const res = await doc(
-        firestore,
-        `posts/${user!.uid}/post/${router.query.pid}`
-      );
+      const res = await doc(firestore, `posts/${user!.uid}/post/${query.pid}`);
       const docSnap = await getDoc(res);
 
       setPost(docSnap.data());
     } catch (error) {
-      console.log(error);
+      toast.error("Error loading post.");
     }
-  }, [router.query.pid, user]);
+  }, [query.pid, user]);
 
   useEffect(() => {
-    fetchPost();
-  }, [fetchPost]);
+    if (user?.uid) {
+      fetchPost();
+    }
+  }, [user, fetchPost]);
 
   return (
     <div className={styles.root}>
@@ -39,7 +41,7 @@ const Post = () => {
         <>
           <PostsHeader />
           <div className={styles.post}>
-            <PostImage images={post.imageURL} />
+            <PostContent data={post.postURL} />
             <div className={styles.interactions}>
               <PostInteraction />
               <PostComments />
@@ -54,4 +56,4 @@ const Post = () => {
 Post.getLayout = (page: ReactElement) => {
   return <PrivateLayout title="Post">{page}</PrivateLayout>;
 };
-export default Post;
+export default memo(Post);

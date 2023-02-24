@@ -13,6 +13,7 @@ const Create = () => {
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
       "image/*": [],
+      "video/*": [],
     },
     onDrop: (acceptedFiles) => {
       dispatch(
