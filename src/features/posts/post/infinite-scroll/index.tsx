@@ -11,14 +11,21 @@ import {
 import { useMediaQuery } from "hooks";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { memo, useCallback, useEffect, useState } from "react";
-import ContentLoader, { Facebook } from "react-content-loader";
+import { CSSProperties, memo, useCallback, useEffect, useState } from "react";
 import { RiCheckboxMultipleBlankLine } from "react-icons/ri";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { toast } from "react-toastify";
 import { useAppSelector } from "store/hooks";
 import DialogPost from "../dialog";
 import styles from "./posts.module.scss";
+import ClipLoader from "react-spinners/ClipLoader";
+import { FadeLoader } from "react-spinners";
+
+const override: CSSProperties = {
+  display: "block",
+  margin: "0 auto",
+};
+
 interface PostURL {
   url: string;
   metadata: string[];
@@ -92,19 +99,15 @@ const InfinitePosts = () => {
 
   if (isLoading) {
     return (
-      <ContentLoader
-        speed={2}
-        width="100%"
-        height={860}
-        viewBox="0 0 400 860"
-        backgroundColor="#e0e0e0"
-        foregroundColor="#ecebeb"
-      >
-        <circle cx="31" cy="31" r="15" />
-        <rect x="58" y="18" rx="2" ry="2" width="140" height="10" />
-        <rect x="58" y="34" rx="2" ry="2" width="140" height="10" />
-        <rect x="2" y="108" rx="2" ry="2" width="516" height="590" />
-      </ContentLoader>
+      <FadeLoader
+        color="#808080"
+        loading
+        height={15}
+        width={2}
+        cssOverride={override}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
     );
   }
   return (
