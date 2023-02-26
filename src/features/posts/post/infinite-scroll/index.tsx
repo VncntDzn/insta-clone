@@ -6,7 +6,7 @@ import {
   DocumentData,
   getDoc,
   getDocs,
-  query,
+  query
 } from "firebase/firestore";
 import { useMediaQuery } from "hooks";
 import Image from "next/image";
@@ -14,12 +14,24 @@ import { useRouter } from "next/router";
 import { CSSProperties, memo, useCallback, useEffect, useState } from "react";
 import { RiCheckboxMultipleBlankLine } from "react-icons/ri";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { FadeLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { useAppSelector } from "store/hooks";
 import DialogPost from "../dialog";
 import styles from "./posts.module.scss";
-import ClipLoader from "react-spinners/ClipLoader";
-import { FadeLoader } from "react-spinners";
+
+
+
+
+
+/*
+
+  Might be removing this fetchPosts here and move it to the profile tabs.
+
+
+
+
+*/
 
 const override: CSSProperties = {
   display: "block",
