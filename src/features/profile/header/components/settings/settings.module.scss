@@ -1,0 +1,20 @@
+@import "scss/utils/mixins";
+@import "scss/utils/colors";
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 20rem;
+  text-align: center;
+  @include lg (){
+    width: 20vw;
+  }
+}
+.item {
+  border-bottom: thin solid $GRAY;
+  padding: 1rem;
+  cursor: pointer;
+  &:last-child {
+    border: none;
+  }
+}
