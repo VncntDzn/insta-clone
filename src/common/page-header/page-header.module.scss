@@ -1,0 +1,16 @@
+@import "scss/utils/mixins";
+@import "scss/utils/colors";
+.root {
+  border-bottom: thin solid $LIGHT_GRAY;
+
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  @include lg() {
+    display: none;
+  }
+}
+.title {
+  text-align: center;
+  width: 80vw;
+}
