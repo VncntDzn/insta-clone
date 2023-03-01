@@ -1,9 +1,15 @@
-import { AccountLayout } from "features/account";
+import { PageHeader } from "common";
+import { AccountLayout, EditProfileForm } from "features/account";
 import PrivateLayout from "layouts/private-layout";
 import { ReactElement } from "react";
 
 const EditProfile = () => {
-  return <AccountLayout>EditProfile</AccountLayout>;
+  return (
+    <AccountLayout>
+      <PageHeader title="Edit Profile" />
+      <EditProfileForm />
+    </AccountLayout>
+  );
 };
 
 EditProfile.getLayout = (page: ReactElement) => {

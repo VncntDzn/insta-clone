@@ -1,3 +1,4 @@
+import { PageHeader } from "common";
 import { firestore } from "db/client";
 import {
   PostComments,
@@ -37,6 +38,7 @@ const Post = () => {
 
   return (
     <div className={styles.root}>
+      <PageHeader title="Photo" />
       {post && (
         <>
           <PostsHeader />
