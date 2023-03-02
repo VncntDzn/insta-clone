@@ -1,55 +1,55 @@
 const SETTINGS_ROUTE = [
   {
     name: "Edit Profile",
-    route: "/edit-profile",
+    route: "account/edit-profile",
   },
   {
     name: "Change Password",
-    route: "/change-password",
+    route: "account/change-password",
   },
   {
     name: "Apps and Websites",
-    route: "/apps-and-websites",
+    route: "account/apps-and-websites",
   },
   {
     name: "Email Notifications",
-    route: "/email-notifications",
+    route: "account/email-notifications",
   },
   {
     name: "Push Notifications",
-    route: "/push-notifications",
+    route: "account/push-notifications",
   },
   {
     name: "Manage Contacts",
-    route: "/manage-contacts",
+    route: "account/manage-contacts",
   },
   {
     name: "Privacy and Security",
-    route: "/privacy-and-security",
+    route: "account/privacy-and-security",
   },
   {
     name: "Ads",
-    route: "/ads",
+    route: "account/ads",
   },
   {
     name: "Supervision",
-    route: "/supervision",
+    route: "account/supervision",
   },
   {
     name: "Login Activity",
-    route: "/login-activity",
+    route: "account/login-activity",
   },
   {
     name: "Push Notifications",
-    route: "/emails-from-instagram",
+    route: "account/emails-from-instagram",
   },
   {
     name: "Help",
-    route: "/help",
+    route: "account/help",
   },
   {
     name: "Digital Collectibles",
-    route: "/digital-collectibles",
+    route: "account/digital-collectibles",
   },
 ];
 export default SETTINGS_ROUTE;

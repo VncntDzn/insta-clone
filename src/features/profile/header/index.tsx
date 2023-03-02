@@ -30,7 +30,9 @@ const Header = () => {
                 size={25}
               />
             </span>
-            <small className={styles.editButton}>Edit Profile</small>
+            <small className={styles.editButton} onClick={toggleSettingsDialog}>
+              Edit Profile
+            </small>
           </div>
           <div className={styles.activities}>
             <p>

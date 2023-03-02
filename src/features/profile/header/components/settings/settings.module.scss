@@ -6,7 +6,7 @@
   justify-content: space-evenly;
   width: 20rem;
   text-align: center;
-  @include lg (){
+  @include lg() {
     width: 20vw;
   }
 }
@@ -14,6 +14,9 @@
   border-bottom: thin solid $GRAY;
   padding: 1rem;
   cursor: pointer;
+  text-decoration: none;
+  color: $BLACK;
+  font-size: 14px;
   &:last-child {
     border: none;
   }
