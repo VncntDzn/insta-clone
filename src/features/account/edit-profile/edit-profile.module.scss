@@ -34,7 +34,7 @@
   }
 }
 .changeProfilePhoto {
-  color: rgb(0, 149, 246);
+  color: $BLUE;
   font-weight: 600;
 }
 .label {
@@ -80,7 +80,4 @@
   color: $WHITE;
   margin: 1rem 0;
   width: 100%;
-  @include md() {
-    width: 10rem;
-  }
 }
