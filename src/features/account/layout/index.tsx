@@ -13,5 +13,5 @@ const AccountLayout = ({ children }: ChildrenType) => {
     </div>
   );
 };
-
+ 
 export default AccountLayout;
