@@ -13,6 +13,6 @@ const EditProfile = () => {
 };
 
 EditProfile.getLayout = (page: ReactElement) => {
-  return <PrivateLayout title="Messages">{page}</PrivateLayout>;
+  return <PrivateLayout title="Edit Profile">{page}</PrivateLayout>;
 };
 export default EditProfile;
