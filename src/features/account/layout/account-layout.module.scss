@@ -24,8 +24,11 @@
   padding: 1rem;
   padding-left: 2rem;
   cursor: pointer;
+  text-decoration: none;
+  color: $BLACK;
+  font-size: 16px;
   &:hover {
-    border-left: 3px solid $LIGHT_GRAY;
+    border-left: 2px solid $LIGHT_GRAY;
   }
 }
 .content {

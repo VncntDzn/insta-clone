@@ -29,14 +29,15 @@ const Sidebar = () => {
   };
   return (
     <aside className={styles.root}>
-      {isModalOpen && (
-        <Dialog>
-          <Create />
-        </Dialog>
-      )}
+      <Dialog isOpen={isModalOpen} onClose={handleToggle}>
+        <Create />
+      </Dialog>
 
       <div className={styles.linksContainer}>
-        <div className={styles.header} onClick={() => handleNavigation('profile')}>
+        <div
+          className={styles.header}
+          onClick={() => handleNavigation("profile")}
+        >
           <Avatar height={40} width={40} />
           <div className={styles.headerDetails}>
             <strong>vincent.tsx</strong>
