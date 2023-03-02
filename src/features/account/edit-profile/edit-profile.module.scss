@@ -14,18 +14,32 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
-  @include lg () {
+  @include lg() {
     margin-bottom: 0;
+    width: 100%;
+  }
+}
+.avatar {
+  @include lg() {
+    flex: 0.2;
+    align-self: flex-end;
+    text-align: right;
   }
 }
 .name {
   display: flex;
   flex-direction: column;
+  @include md() {
+    flex: 0.8;
+  }
+}
+.changeProfilePhoto {
+  color: rgb(0, 149, 246);
+  font-weight: 600;
 }
 .label {
   font-weight: 600;
-
-  @include lg() {
+  @include md() {
     flex: 0.3;
     text-align: right;
   }
@@ -35,13 +49,14 @@
   flex-direction: column;
   gap: 0.5rem;
 
-  @include lg() {
+  @include md() {
     flex-direction: row;
     gap: 1rem;
+    width: 100%;
   }
 }
 .hintContainer {
-  @include lg() {
+  @include md() {
     flex: 1;
   }
 }
@@ -63,6 +78,9 @@
   border-radius: 10px;
   padding: 0.5rem;
   color: $WHITE;
-  width: 10rem;
   margin: 1rem 0;
+  width: 100%;
+  @include md() {
+    width: 10rem;
+  }
 }

@@ -4,10 +4,12 @@ const EditProfile = () => {
   return (
     <div className={styles.root}>
       <div className={styles.header}>
-        <Avatar height={40} width={40} />
+        <div className={styles.avatar}>
+          <Avatar height={40} width={40} />
+        </div>
         <div className={styles.name}>
           <span>vincent.tsx</span>
-          <small>Change Picture</small>
+          <small className={styles.changeProfilePhoto}>Change Profile Photo</small>
         </div>
       </div>
       <div className={styles.container}>
