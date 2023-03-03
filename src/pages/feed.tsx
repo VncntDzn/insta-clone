@@ -7,6 +7,7 @@ import { ReactElement, useEffect, useState } from "react";
 import { useAppSelector } from "store/hooks";
 import { NextPageWithLayout } from "./_app";
 import styles from "scss/pages/feed.module.scss";
+import Recommendations from "features/recommendations";
 const Feed: NextPageWithLayout = () => {
   const user = useAppSelector((state) => state.user.user);
 
@@ -31,6 +32,15 @@ const Feed: NextPageWithLayout = () => {
       }
     })();
   }, [user?.uid]);
+
+  if (true) {
+    return (
+      <>
+        <FeedHeader />
+        <Recommendations />
+      </>
+    );
+  }
   return (
     <div className={styles.root}>
       <FeedHeader />

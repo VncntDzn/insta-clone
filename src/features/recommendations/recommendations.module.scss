@@ -1,0 +1,52 @@
+@import "scss/utils/colors";
+@import "scss/utils/mixins";
+.root {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  @include md() {
+    align-items: center;
+  }
+}
+.textHeader {
+  align-self: flex-start;
+  font-weight: 500;
+  @include lg() {
+    font-size: 30px;
+  }
+}
+.container {
+  @include md() {
+    width: 50vw;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border: 1px solid $LIGHT_GRAY;
+  }
+  @include lg() {
+    width: 25vw;
+  }
+}
+.users {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+.avatarContainer {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.name {
+  display: flex;
+  flex-direction: column;
+}
+.followBtn {
+  background-color: $BLUE;
+  color: $WHITE;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+}
