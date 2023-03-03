@@ -6,23 +6,19 @@ import {
   DocumentData,
   getDoc,
   getDocs,
-  query
+  query,
 } from "firebase/firestore";
 import { useMediaQuery } from "hooks";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { CSSProperties, memo, useCallback, useEffect, useState } from "react";
-import { RiCheckboxMultipleBlankLine } from "react-icons/ri";
+import { RiCamera2Line, RiCheckboxMultipleBlankLine } from "react-icons/ri";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FadeLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { useAppSelector } from "store/hooks";
 import DialogPost from "../dialog";
 import styles from "./posts.module.scss";
-
-
-
-
 
 /*
 
@@ -120,6 +116,16 @@ const InfinitePosts = () => {
         aria-label="Loading Spinner"
         data-testid="loader"
       />
+    );
+  }
+
+  if (posts.length === 0) {
+    return (
+      <div className={styles.noPosts}>
+        <RiCamera2Line size={100} />
+        <h1>Share Photos</h1>
+        <small> When you share photos, they will appear on your profile</small>
+      </div>
     );
   }
   return (
