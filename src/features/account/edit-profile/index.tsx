@@ -9,38 +9,9 @@ const EditProfile = () => {
         </div>
         <div className={styles.name}>
           <span>vincent.tsx</span>
-          <small className={styles.changeProfilePhoto}>Change Profile Photo</small>
-        </div>
-      </div>
-      <div className={styles.container}>
-        <label className={styles.label} htmlFor="name">
-          Name
-        </label>
-        <div className={styles.hintContainer}>
-          <input className={styles.input} id="name" placeholder="Name" />
-          <p className={styles.hint}>
-            Help people discover your account by using the name you&apos;re
-            known by: either your full name, nickname, or business name.
-          </p>
-          <p className={styles.hint}>
-            You can only change your name twice within 14 days.
-          </p>
-        </div>
-      </div>
-      <div className={styles.container}>
-        <label className={styles.label} htmlFor="username">
-          Username
-        </label>
-        <div className={styles.hintContainer}>
-          <input
-            className={styles.input}
-            id="username"
-            placeholder="Username"
-          />
-          <p className={styles.hint}>
-            In most cases, you&apos;ll be able to change your username back to
-            vincent.tsx for another 14 days.
-          </p>
+          <small className={styles.changeProfilePhoto}>
+            Change Profile Photo
+          </small>
         </div>
       </div>
       <div className={styles.container}>
@@ -63,36 +34,10 @@ const EditProfile = () => {
         <div className={styles.hintContainer}>
           <textarea className={styles.input} id="bio" placeholder="bio" />
           <p className={styles.hint}>
-            Personal information Pro className={styles.input}vide your personal
+            Personal information Pro vide your personal
             information, even if the account is used for a business, a pet or
             something else. This won&apos;t be a part of your public profile.
           </p>
-        </div>
-      </div>
-      <div className={styles.container}>
-        <label className={styles.label} htmlFor="email">
-          Email
-        </label>
-        <div className={styles.hintContainer}>
-          <input
-            type="email"
-            className={styles.input}
-            id="email"
-            placeholder="Email"
-          />
-        </div>
-      </div>
-      <div className={styles.container}>
-        <label className={styles.label} htmlFor="phoneNumber">
-          Phone Number
-        </label>
-        <div className={styles.hintContainer}>
-          <input
-            type="number"
-            className={styles.input}
-            id="phoneNumber"
-            placeholder="Phone Number"
-          />
         </div>
       </div>
       <div className={styles.container}>
