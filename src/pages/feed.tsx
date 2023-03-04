@@ -35,10 +35,10 @@ const Feed: NextPageWithLayout = () => {
 
   if (true) {
     return (
-      <>
+      <div className={styles.recommendationsContainer}>
         <FeedHeader />
         <Recommendations />
-      </>
+      </div>
     );
   }
   return (
