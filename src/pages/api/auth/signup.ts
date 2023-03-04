@@ -1,6 +1,10 @@
-import { auth } from "db/admin";
+import { auth, firestore } from "db/admin";
 import type { NextApiRequest, NextApiResponse } from "next";
 
+interface CreateUserType {
+  displayName: string;
+  uid: string;
+}
 const signupHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { email, password, displayName } = req.body;
   if (req.method !== "POST") return res.status(405).end();
@@ -13,10 +17,27 @@ const signupHandler = async (req: NextApiRequest, res: NextApiResponse) => {
       password,
       disabled: false,
     });
-    return res.status(200).json({ result });
+
+    const createUserResponse = await createUser({
+      displayName,
+      uid: result.uid,
+    });
+    return res.status(200).json({ createUserResponse });
   } catch (error) {
     return res.status(500).json({ error });
   }
 };
 
+const createUser = async ({ displayName, uid }: CreateUserType) => {
+  try {
+    const res = await firestore.collection("users").doc(`${uid}`).set({
+      uid,
+      displayName,
+    });
+    return res;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
 export default signupHandler;
