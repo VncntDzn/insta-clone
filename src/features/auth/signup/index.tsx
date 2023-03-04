@@ -66,8 +66,8 @@ const Signup = () => {
 
         <div className={styles.credentials}>
           <Input
-            label="Full Name"
-            placeholder="Enter your full name"
+            label="Username"
+            placeholder="Enter your username"
             name="displayName"
             control={control}
             errors={errors.displayName}
