@@ -30,11 +30,11 @@ const signupHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 const createUser = async ({ displayName, uid }: CreateUserType) => {
   try {
-    const res = await firestore.collection("users").doc(`${uid}`).set({
+    await firestore.collection("users").doc(`${uid}`).set({
       uid,
       displayName,
     });
-    return res;
+    return { message: "success", uid };
   } catch (error) {
     console.log(error);
     return error;
