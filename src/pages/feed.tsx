@@ -3,37 +3,56 @@ import { Stories } from "features";
 import { FeedHeader } from "features/feed";
 import { collection, getDocs, query } from "firebase/firestore";
 import PrivateLayout from "layouts/private-layout";
-import { ReactElement, useEffect, useState } from "react";
+import { Fragment, ReactElement, useEffect, useState } from "react";
 import { useAppSelector } from "store/hooks";
 import { NextPageWithLayout } from "./_app";
 import styles from "scss/pages/feed.module.scss";
 import Recommendations from "features/recommendations";
+import { toast } from "react-toastify";
+import {
+  PostComments,
+  PostContent,
+  PostInteraction,
+  PostsHeader,
+} from "features/posts";
 const Feed: NextPageWithLayout = () => {
   const user = useAppSelector((state) => state.user.user);
 
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    (async function fetchPosts() {
+    const fetchFollowingUsers = async () => {
       try {
-        const result: any = [];
         const queryCollection = query(
-          collection(firestore, `posts/${user?.uid}/post`)
+          collection(firestore, `following/${user!.uid}/users`)
         );
         const querySnapshot = await getDocs(queryCollection);
-
         querySnapshot.forEach((doc) => {
-          result.push(doc.data());
+          fetchFollowingPosts(doc.data().uid);
         });
-
-        setPosts(result);
       } catch (error) {
-        console.log(error);
+        toast.error("Error fetching posts");
       }
-    })();
-  }, [user?.uid]);
+    };
+    fetchFollowingUsers();
+  }, [user]);
 
-  if (true) {
+  const fetchFollowingPosts = async (uid) => {
+    try {
+      const result: any = [];
+      const queryCollection = query(collection(firestore, `posts/${uid}/post`));
+      const querySnapshot = await getDocs(queryCollection);
+      querySnapshot.forEach((doc) => {
+        result.push(...posts, doc.data());
+        console.log(doc.data().postURL[0].url);
+      });
+
+      setPosts(result);
+    } catch (error) {
+      toast.error("Error fetching posts");
+    }
+  };
+  if (false) {
     return (
       <div className={styles.recommendationsContainer}>
         <FeedHeader />
@@ -43,6 +62,7 @@ const Feed: NextPageWithLayout = () => {
   }
   return (
     <div className={styles.root}>
+      {posts.length}
       <FeedHeader />
       <div className={styles.container}>
         <div className={styles.content}>
@@ -50,14 +70,22 @@ const Feed: NextPageWithLayout = () => {
             <Stories />
           </div>
           <div>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
+            {posts.map((post, i) => (
+              <Fragment key={i}>
+                <PostsHeader />
+                <div className={styles.post}>
+                  <PostContent data={post.postURL} />
+                  <div className={styles.interactions}>
+                    <PostInteraction />
+                    <PostComments />
+                  </div>
+                </div>
+              </Fragment>
+            ))}
           </div>
         </div>
         <div className={styles.recommendation}>
-          <h1>Recommendations</h1>
+          <Recommendations />
         </div>
       </div>
       {/*   <div style={{   border: "3px solid yellow" }}>
