@@ -1,31 +1,50 @@
 import { firestore } from "db/client";
 import { Stories } from "features";
 import { FeedHeader } from "features/feed";
-import { collection, getDocs, query } from "firebase/firestore";
-import PrivateLayout from "layouts/private-layout";
-import { Fragment, ReactElement, useEffect, useState } from "react";
-import { useAppSelector } from "store/hooks";
-import { NextPageWithLayout } from "./_app";
-import styles from "scss/pages/feed.module.scss";
-import Recommendations from "features/recommendations";
-import { toast } from "react-toastify";
 import {
   PostComments,
   PostContent,
   PostInteraction,
   PostsHeader,
 } from "features/posts";
+import Recommendations from "features/recommendations";
+import { collection, getDocs, query } from "firebase/firestore";
+import PrivateLayout from "layouts/private-layout";
+import {
+  Fragment,
+  ReactElement,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
+import { toast } from "react-toastify";
+import styles from "scss/pages/feed.module.scss";
+import { useAppSelector } from "store/hooks";
+import { NextPageWithLayout } from "./_app";
 const Feed: NextPageWithLayout = () => {
   const user = useAppSelector((state) => state.user.user);
 
   const [posts, setPosts] = useState([]);
+  const fetchFollowingPosts = async (uid) => {
+    try {
+      const querySnapshot = await getDocs(
+        collection(firestore, `posts/${uid}/post`)
+      );
+      const result = querySnapshot.docs.map((doc) => doc.data());
+
+      setPosts((x) => [...x, ...result]);
+    } catch (error) {
+      toast.error("Error fetching posts");
+    }
+  };
 
   useEffect(() => {
-    const fetchFollowingUsers = async () => {
+    (async function fetchFollowingUsers() {
       try {
         const queryCollection = query(
           collection(firestore, `following/${user!.uid}/users`)
         );
+
         const querySnapshot = await getDocs(queryCollection);
         querySnapshot.forEach((doc) => {
           fetchFollowingPosts(doc.data().uid);
@@ -33,25 +52,8 @@ const Feed: NextPageWithLayout = () => {
       } catch (error) {
         toast.error("Error fetching posts");
       }
-    };
-    fetchFollowingUsers();
-  }, [user]);
-
-  const fetchFollowingPosts = async (uid) => {
-    try {
-      const result: any = [];
-      const queryCollection = query(collection(firestore, `posts/${uid}/post`));
-      const querySnapshot = await getDocs(queryCollection);
-      querySnapshot.forEach((doc) => {
-        result.push(...posts, doc.data());
-        console.log(doc.data().postURL[0].url);
-      });
-
-      setPosts(result);
-    } catch (error) {
-      toast.error("Error fetching posts");
-    }
-  };
+    })();
+  }, []);
   if (false) {
     return (
       <div className={styles.recommendationsContainer}>
@@ -62,7 +64,6 @@ const Feed: NextPageWithLayout = () => {
   }
   return (
     <div className={styles.root}>
-      {posts.length}
       <FeedHeader />
       <div className={styles.container}>
         <div className={styles.content}>
