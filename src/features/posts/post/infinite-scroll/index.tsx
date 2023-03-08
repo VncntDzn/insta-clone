@@ -18,6 +18,7 @@ import { FadeLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { useAppSelector } from "store/hooks";
 import DialogPost from "../dialog";
+import { PostContentType } from "./infinite-scroll.types";
 import styles from "./posts.module.scss";
 
 /*
@@ -34,15 +35,6 @@ const override: CSSProperties = {
   margin: "0 auto",
 };
 
-interface PostURL {
-  url: string;
-  metadata: string[];
-}
-interface PostContentType {
-  data: {
-    postURL: PostURL[];
-  };
-}
 
 const InfinitePosts = () => {
   const router = useRouter();
