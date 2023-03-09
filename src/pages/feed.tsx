@@ -8,31 +8,24 @@ import {
   PostsHeader,
 } from "features/posts";
 import Recommendations from "features/recommendations";
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, DocumentData, getDocs, query } from "firebase/firestore";
 import PrivateLayout from "layouts/private-layout";
-import {
-  Fragment,
-  ReactElement,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { Fragment, ReactElement, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import styles from "scss/pages/feed.module.scss";
 import { useAppSelector } from "store/hooks";
 import { NextPageWithLayout } from "./_app";
 const Feed: NextPageWithLayout = () => {
   const user = useAppSelector((state) => state.user.user);
+  const [posts, setPosts] = useState<DocumentData[]>([]);
 
-  const [posts, setPosts] = useState([]);
-  const fetchFollowingPosts = async (uid) => {
+  const fetchFollowingPosts = async (uid: string) => {
     try {
       const querySnapshot = await getDocs(
         collection(firestore, `posts/${uid}/post`)
       );
       const result = querySnapshot.docs.map((doc) => doc.data());
-
-      setPosts((x) => [...x, ...result]);
+      setPosts((prevVal) => [...prevVal, ...result]);
     } catch (error) {
       toast.error("Error fetching posts");
     }
@@ -89,20 +82,6 @@ const Feed: NextPageWithLayout = () => {
           <Recommendations />
         </div>
       </div>
-      {/*   <div style={{   border: "3px solid yellow" }}>
-        <Stories />
-      </div> */}
-      {/* 
-      <Carousel showThumbs={false} showStatus={false}>
-        {posts.map((post, i) => (
-          <section key={i}>
-            {post.imageURL.map((img) => (
-              <Image alt={post} src={img} fill />
-            ))}
-            <h1> {post.caption}</h1>
-          </section>
-        ))}
-      </Carousel> */}
     </div>
   );
 };
