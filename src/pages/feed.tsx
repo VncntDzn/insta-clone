@@ -49,9 +49,12 @@ const Feed: NextPageWithLayout = () => {
   }, []);
   if (false) {
     return (
-      <div className={styles.recommendationsContainer}>
+      <div className={styles.recommendationsRoot}>
         <FeedHeader />
-        <Recommendations />
+        <div className={styles.recommendationsContainer}>
+          <p className={styles.suggestionHeader}>Suggestions for you</p>{" "}
+          <Recommendations />
+        </div>
       </div>
     );
   }
