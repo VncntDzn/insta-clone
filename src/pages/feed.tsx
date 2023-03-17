@@ -16,7 +16,7 @@ import styles from "scss/pages/feed.module.scss";
 import { useAppSelector } from "store/hooks";
 import { NextPageWithLayout } from "./_app";
 const Feed: NextPageWithLayout = () => {
-  const user = useAppSelector((state) => state.user.user);
+  const currentUser = useAppSelector((state) => state.user.user);
   const [posts, setPosts] = useState<DocumentData[]>([]);
 
   const fetchFollowingPosts = async (uid: string) => {
@@ -35,7 +35,7 @@ const Feed: NextPageWithLayout = () => {
     (async function fetchFollowingUsers() {
       try {
         const queryCollection = query(
-          collection(firestore, `following/${user!.uid}/users`)
+          collection(firestore, `following/${currentUser!.uid}/users`)
         );
 
         const querySnapshot = await getDocs(queryCollection);
@@ -82,6 +82,7 @@ const Feed: NextPageWithLayout = () => {
           </div>
         </div>
         <div className={styles.recommendation}>
+          <strong>Suggestions for you</strong>
           <Recommendations />
         </div>
       </div>

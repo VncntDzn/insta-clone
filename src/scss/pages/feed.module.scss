@@ -31,7 +31,9 @@
   @include lg() {
     width: 30%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    border: 3px solid;
   }
 }
 .recommendationsRoot {
@@ -43,7 +45,6 @@
   align-items: center;
   width: 100%;
   border: 3px solid red;
-  
 }
 .suggestionHeader {
   align-self: flex-start;
