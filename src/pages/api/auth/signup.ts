@@ -34,7 +34,7 @@ const createUser = async ({ displayName, uid }: CreateUserType) => {
       uid,
       displayName,
     });
-    return { message: "success", uid };
+    return { message: "success", uid, displayName };
   } catch (error) {
     console.log(error);
     return error;

@@ -1,9 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { Input } from "common";
-import { firestore } from "db/client";
 import { UserCredential } from "firebase/auth";
-import { addDoc, collection } from "firebase/firestore";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -46,7 +44,6 @@ const Signup = () => {
       });
 
       dispatch(SET_CURRENT_USER(data.result));
-      handleFollowSelf({ uid: data.createUserResponse.uid });
       toast.success("Success...");
     } catch (error: any) {
       toast.error(error?.response?.data?.error?.message);
@@ -54,15 +51,7 @@ const Signup = () => {
       setIsDisabledBtn(false);
     }
   };
-  const handleFollowSelf = async ({ uid }: { uid: string }) => {
-    try {
-      await addDoc(collection(firestore, `following/${uid}/users`), {
-        uid,
-      });
-    } catch (error) {
-      toast.error("Something went wrong.");
-    }
-  };
+
   return (
     <>
       <h1>Signup</h1>
