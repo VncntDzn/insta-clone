@@ -82,7 +82,9 @@ const Feed: NextPageWithLayout = () => {
           </div>
         </div>
         <div className={styles.recommendation}>
-          <strong>Suggestions for you</strong>
+          <strong className={styles.suggestionHeader}>
+            Suggestions for you
+          </strong>
           <Recommendations />
         </div>
       </div>
