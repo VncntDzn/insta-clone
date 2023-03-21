@@ -24,7 +24,7 @@ const PrivateLayout = ({ title, children }: PrivateLayoutProps) => {
           {matches ? (
             <RiInstagramLine className={styles.logo} size={30} />
           ) : (
-            /* Copied from the instagram website lol */
+            /* Copied from the instagram website */
             <svg
               aria-label="Instagram"
               className={styles.title}

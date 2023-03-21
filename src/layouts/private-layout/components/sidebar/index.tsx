@@ -47,18 +47,22 @@ const Sidebar = () => {
           </div>
         </div>
 
-        {routes.map(({ path, name, inactive_icon, active_icon }, i) => (
+        {routes.map((route, i) => (
           <div
             tabIndex={i}
-            onClick={() => handleNavigation(path)}
+            onClick={() => handleNavigation(route.path)}
             className={styles.links}
-            key={name}
-            style={{ display: `${name === "Profile" ? "none" : "flex"}` }}
+            key={route.name}
+            style={{ display: `${route.name === "Profile" ? "none" : "flex"}` }}
           >
             <span>
-              {handleCheckIfActive(path) ? active_icon : inactive_icon}
+              {handleCheckIfActive(route.path) ? (
+                <route.activeIcon size={25} />
+              ) : (
+                <route.inactiveIcon size={25} />
+              )}
             </span>
-            <span className={styles.routeName}>{name}</span>
+            <span className={styles.routeName}>{route.name}</span>
           </div>
         ))}
       </div>

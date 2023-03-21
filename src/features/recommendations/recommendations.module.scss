@@ -1,18 +1,18 @@
 @import "scss/utils/colors";
 @import "scss/utils/mixins";
-
+%follow-btn {
+  color: $WHITE;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+}
 .root {
-  width: 90%;
   padding: 0 1rem;
-  @include md() {
-    width: 50vw;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    border: 1px solid $LIGHT_GRAY;
-  }
-  @include lg() {
-    height: fit-content;
-    width: fit-content;
-  }
 }
 .users {
   display: flex;
@@ -33,11 +33,18 @@
 }
 .followBtn {
   background-color: $BLUE;
-  color: $WHITE;
-  font-weight: 500;
-  border: none;
-  outline: none;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
+  @extend %follow-btn;
   cursor: pointer;
+}
+.disabledBtn {
+  background-color: $GRAY;
+  @extend %follow-btn;
+  cursor: not-allowed;
+  display: flex;
+  flex-direction: row;
+}
+.loadingIndicator {
+  border: 3px solid red;
+  height: 5vh;
+  display: flex;
 }

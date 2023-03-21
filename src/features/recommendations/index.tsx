@@ -6,15 +6,21 @@ import {
   DocumentData,
   getDocs,
   query,
-  where
+  where,
 } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { motion, useAnimate } from "framer-motion";
+import { memo, useEffect, useState } from "react";
+import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { useAppSelector } from "store/hooks";
 import styles from "./recommendations.module.scss";
+import { FollowUserTypes, LoadingStatesTypes } from "./recommendations.types";
+
 const Recommendations = () => {
   const currentUser = useAppSelector((state) => state.user.user);
   const [users, setUsers] = useState<DocumentData[]>([]);
+  const [isLoading, setLoading] = useState<LoadingStatesTypes>({});
+  const [scope, animate] = useAnimate();
 
   const fetchUsers = async () => {
     try {
@@ -40,64 +46,92 @@ const Recommendations = () => {
 
   const fetchRecommendedUsers = async () => {
     try {
-      const q = query(
+      const recommendedUsersQuery = query(
         collection(firestore, `following/${currentUser!.uid}/users`)
       );
-      const querySnapshot = await getDocs(q);
+      const querySnapshot = await getDocs(recommendedUsersQuery);
       const followedUsers = querySnapshot.docs.map((doc) => doc.data());
 
       return followedUsers;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
-  const handleFollowUser = async ({ displayName, uid }) => {
+  const handleFollowUser = async ({
+    event,
+    displayName,
+    uid,
+  }: FollowUserTypes) => {
+    const target = event.target.parentNode.parentNode; // get a reference to the parent div element
+    setLoading((prevState) => ({
+      ...prevState,
+      [uid]: true, // set loading state for this user's button to true
+    }));
+    console.log(target);
     try {
-      /* TODO: 
-      Add animation like fade in or fade out if successfully followed.
-      
-      */
-      await addDoc(
+      /*    await addDoc(
         collection(firestore, `following/${currentUser!.uid}/users`),
         {
           uid,
           displayName,
         }
-      );
-      toast.success("Followed!");
+      ); */
+
+      setTimeout(() => {
+        animate(
+          target, // target only the clicked element
+          {
+            display: "none",
+          },
+          {
+            ease: "easeInOut",
+          }
+        );
+
+        toast.success("Followed!");
+      }, 1300);
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong.");
+    } finally {
+      setTimeout(
+        () =>
+          setLoading((prevState) => ({
+            ...prevState,
+            [uid]: false, // set loading state for this user's button to false
+          })),
+        1000
+      );
     }
   };
 
   useEffect(() => {
     fetchUsers();
   }, []);
+
   return (
-    <div className={styles.root}>
-      {users.map(({ displayName, uid, fullName }) => (
-        <div className={styles.users} key={uid}>
+    <motion.div initial={false} ref={scope} className={styles.root}>
+      {users.map(({ displayName, uid }) => (
+        <div className={`${styles.users} ${uid}`} key={uid}>
           <div className={styles.avatarContainer}>
             <Avatar height={50} width={50} />
             <div className={styles.name}>
               <strong>{displayName}</strong>
-              <small>{fullName || ""}</small>
             </div>
           </div>
-          <div>
-            <button
-              className={styles.followBtn}
-              onClick={() => handleFollowUser({ displayName, uid })}
-            >
-              Follow
-            </button>
-          </div>
+          <button
+            className={`${
+              isLoading[uid] ? styles.disabledBtn : styles.followBtn
+            }`}
+            onClick={(event) => handleFollowUser({ event, displayName, uid })}
+            disabled={isLoading[uid]}
+          >
+            {isLoading[uid] ? <ClipLoader size={15} /> : <span>Follow</span>}
+          </button>
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 
-export default Recommendations;
+export default memo(Recommendations);
