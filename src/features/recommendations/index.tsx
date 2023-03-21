@@ -70,13 +70,13 @@ const Recommendations = () => {
     }));
     console.log(target);
     try {
-      /*    await addDoc(
+      await addDoc(
         collection(firestore, `following/${currentUser!.uid}/users`),
         {
           uid,
           displayName,
         }
-      ); */
+      );
 
       setTimeout(() => {
         animate(
