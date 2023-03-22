@@ -68,7 +68,6 @@ const Recommendations = () => {
       ...prevState,
       [uid]: true, // set loading state for this user's button to true
     }));
-    console.log(target);
     try {
       await addDoc(
         collection(firestore, `following/${currentUser!.uid}/users`),

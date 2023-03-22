@@ -19,6 +19,9 @@ const Feed: NextPageWithLayout = () => {
   const currentUser = useAppSelector((state) => state.user.user);
   const [posts, setPosts] = useState<DocumentData[]>([]);
 
+  /* TODO:
+  Concatenate current user uid to fetch his/her own posts
+  */
   const fetchFollowingPosts = async (uid: string) => {
     try {
       const querySnapshot = await getDocs(
@@ -31,22 +34,23 @@ const Feed: NextPageWithLayout = () => {
     }
   };
 
-  useEffect(() => {
-    (async function fetchFollowingUsers() {
-      try {
-        const queryCollection = query(
-          collection(firestore, `following/${currentUser!.uid}/users`)
-        );
+  const fetchFollowingUsers = async () => {
+    try {
+      const queryCollection = query(
+        collection(firestore, `following/${currentUser?.uid}/users`)
+      );
 
-        const querySnapshot = await getDocs(queryCollection);
-        querySnapshot.forEach((doc) => {
-          fetchFollowingPosts(doc.data().uid);
-        });
-      } catch (error) {
-        toast.error("Error fetching posts");
-      }
-    })();
+      const querySnapshot = await getDocs(queryCollection);
+      querySnapshot.docs.map((doc) => fetchFollowingPosts(doc.data().uid));
+    } catch (error) {
+      toast.error("Error fetching posts");
+    }
+  };
+
+  useEffect(() => {
+    fetchFollowingUsers();
   }, []);
+
   if (false) {
     return (
       <div className={styles.recommendationsRoot}>
