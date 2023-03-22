@@ -2,9 +2,11 @@ import { Avatar, Dialog } from "common";
 import { useMediaQuery } from "hooks";
 import { memo, useState } from "react";
 import { RiSettings3Line } from "react-icons/ri";
+import { useAppSelector } from "store/hooks";
 import Settings from "./components/settings";
 import styles from "./header.module.scss";
 const Header = () => {
+  const currentUser = useAppSelector((state) => state.user.user);
   const matchMedia = useMediaQuery("(min-width: 768px)");
   const [isSettingsOpen, setSettingsOpen] = useState(false);
 
@@ -17,13 +19,13 @@ const Header = () => {
         <Settings />
       </Dialog>
       <div className={styles.root}>
-        <Avatar height={matchMedia ? 150 : 60} width={matchMedia ? 150 : 60} />
+        <Avatar uid={currentUser!.uid} height={matchMedia ? 150 : 60} width={matchMedia ? 150 : 60} />
         <div className={styles.details}>
           <div className={styles.name}>
             <span
               style={{ display: "flex", alignItems: "center", gap: "1rem" }}
             >
-              <strong>vincent.tsx </strong>
+              <strong>{currentUser?.displayName}</strong>
               <RiSettings3Line
                 className={styles.settings}
                 onClick={toggleSettingsDialog}

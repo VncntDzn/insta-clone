@@ -12,7 +12,7 @@ const Sidebar = () => {
   const dispatch = useAppDispatch();
   const isModalOpen = useAppSelector((state) => state.modal.isOpen);
   const router = useRouter();
-
+  const currentUser = useAppSelector((state) => state.user.user);
   const handleCheckIfActive = (path: string) => {
     return router.pathname === path;
   };
@@ -38,9 +38,9 @@ const Sidebar = () => {
           className={styles.header}
           onClick={() => handleNavigation("profile")}
         >
-          <Avatar height={40} width={40} />
+          <Avatar height={40} width={40} uid={currentUser!.uid} />
           <div className={styles.headerDetails}>
-            <strong>vincent.tsx</strong>
+            <strong>{currentUser?.displayName}</strong>
             <span role="button" className={styles.viewProfile}>
               View Profile
             </span>
