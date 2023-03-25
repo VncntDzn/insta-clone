@@ -114,9 +114,7 @@ const Recommendations = () => {
         <div className={`${styles.users} ${uid}`} key={uid}>
           <div className={styles.avatarContainer}>
             <Avatar height={50} width={50} />
-            <div className={styles.name}>
-              <strong>{displayName}</strong>
-            </div>
+            <strong className={styles.name}>{displayName}</strong>
           </div>
           <button
             className={`${

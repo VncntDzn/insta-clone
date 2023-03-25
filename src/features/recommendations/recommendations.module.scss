@@ -28,8 +28,13 @@
   align-items: center;
 }
 .name {
-  display: flex;
-  flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 3rem;
+  @include lg() {
+    width: fit-content;
+  }
 }
 .followBtn {
   background-color: $BLUE;
