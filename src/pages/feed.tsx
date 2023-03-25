@@ -73,7 +73,7 @@ const Feed: NextPageWithLayout = () => {
           <div>
             {posts.map((post, i) => (
               <Fragment key={i}>
-                <PostsHeader />
+                <PostsHeader name={post.displayName} uid={post.uid} userPhoto={post.userPhoto} />
                 <div className={styles.post}>
                   <PostContent data={post.postURL} />
                   <div className={styles.interactions}>

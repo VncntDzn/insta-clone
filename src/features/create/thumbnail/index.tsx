@@ -146,6 +146,9 @@ const Thumbnail = () => {
         caption,
         postURL,
         timestamp: serverTimestamp(),
+        displayName: user?.displayName,
+        userPhoto: user?.photoURL || "",
+        uid: user?.uid,
       });
       toast.success("Uploaded...");
     } catch (error) {
