@@ -3,7 +3,7 @@ import { memo } from "react";
 import Avatar, { genConfig } from "react-nice-avatar";
 import { useAppSelector } from "store/hooks";
 import styles from "./avatar.module.scss";
-import { AvatarProps } from "./custom-avatar.types";
+import { CustomAvatarProps } from "./custom-avatar.types";
 
 // Default avatar config
 const config = genConfig({
@@ -28,7 +28,7 @@ const CustomAvatar = ({
   width = 30,
   picture,
   uid,
-}: Partial<AvatarProps>) => {
+}: Partial<CustomAvatarProps>) => {
   const currentUser = useAppSelector((state) => state.user.user);
   const customAvatarConfig = uid === currentUser!.uid ? config : genConfig();
 
