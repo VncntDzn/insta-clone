@@ -1,24 +1,11 @@
 import Image from "next/image";
-import styles from "./avatar.module.scss";
-import Pic from "../../layouts/private-layout/assets/pic.jpg";
-import { memo, useEffect, useRef, useState } from "react";
+import { memo } from "react";
 import Avatar, { genConfig } from "react-nice-avatar";
 import { useAppSelector } from "store/hooks";
-import { getAuth, onAuthStateChanged, User } from "firebase/auth";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
-import { firestore } from "db/client";
-interface AvatarProps {
-  height: number | undefined;
-  width: number | undefined;
-  uid: User["uid"];
-}
+import styles from "./avatar.module.scss";
+import { AvatarProps } from "./custom-avatar.types";
+
+// Default avatar config
 const config = genConfig({
   sex: "man",
   faceColor: "#F9C9B6",
@@ -36,27 +23,29 @@ const config = genConfig({
   shirtColor: "#6BD9E9",
   bgColor: "#e6ee81",
 });
-const CustomAvatar = ({ height, width, uid }: Partial<AvatarProps>) => {
+const CustomAvatar = ({
+  height = 30,
+  width = 30,
+  picture,
+  uid,
+}: Partial<AvatarProps>) => {
   const currentUser = useAppSelector((state) => state.user.user);
-  const randomConfig = genConfig();
+  const customAvatarConfig = uid === currentUser!.uid ? config : genConfig();
+
+  // Show generated avatar if no photoUrl is presented otherwise show the user's picture.
   if (!currentUser?.photoURL) {
     return (
-      <>
-        {uid === currentUser!.uid ? (
-          <Avatar style={{ width: 50, height: 50 }} {...config} />
-        ) : (
-          <Avatar style={{ width: 50, height: 50 }} {...randomConfig} />
-        )}
-      </>
+      <Avatar className={styles.generatedAvatar} {...customAvatarConfig} />
     );
   }
   return (
     <Image
       className={styles.root}
-      src={Pic}
-      width={width || 30}
-      height={height || 30}
-      alt={currentUser?.displayName || "avatar"}
+      src={picture}
+      width={width}
+      height={height}
+      // if no display name is provided then just display avatar
+      alt={currentUser?.displayName ?? "avatar"}
     />
   );
 };
