@@ -23,7 +23,8 @@ const Header = () => {
     try {
       const coll = collection(firestore, `following/${currentUser?.uid}/users`);
       const numOfFollowing = await getCountFromServer(coll);
-      return numOfFollowing.data().count;
+      // deducted 1 since current user is following himself, thus removing 1 following.
+      return numOfFollowing.data().count - 1;
     } catch (error) {
       console.error(error);
     }
@@ -52,7 +53,6 @@ const Header = () => {
           followers: 0,
           posts: res[1],
         });
-        console.log(res);
       } catch (error) {}
     })();
   }, []);
