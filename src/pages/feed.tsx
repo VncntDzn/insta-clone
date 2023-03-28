@@ -12,8 +12,10 @@ import {
   collection,
   DocumentData,
   getDocs,
+  limit,
   orderBy,
   query,
+  startAfter,
 } from "firebase/firestore";
 import PrivateLayout from "layouts/private-layout";
 import { Fragment, ReactElement, useEffect, useState } from "react";
@@ -23,6 +25,8 @@ import { useAppSelector } from "store/hooks";
 import moment from "moment";
 import ContentLoader from "react-content-loader";
 import { SkeletonLoader } from "common";
+import { FadeLoader } from "react-spinners";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Post {
   displayName: string;
@@ -37,7 +41,7 @@ const Feed = () => {
   const [isLoading, setLoading] = useState(false);
   const [hasFollowing, setHasFollowing] = useState(false);
 
-  const fetchFollowingPosts = async (uid: string) => {
+  const fetchPosts = async (uid: string) => {
     setLoading(true);
     try {
       const querySnapshot = await getDocs(
@@ -59,41 +63,42 @@ const Feed = () => {
       setLoading(false);
     }
   };
+  const fetchFollowingUsers = async () => {
+    try {
+      const queryCollection = query(
+        collection(firestore, `following/${currentUser?.uid}/users`)
+      );
+      const querySnapshot = await getDocs(queryCollection);
+      const docsArray = querySnapshot.docs.map((doc) =>
+        fetchPosts(doc.data().uid)
+      );
+      // Promise.all is waiting for all the docsArray to be returned before doing anything.
+      const posts = await Promise.all(docsArray);
+
+      // The flat() method creates a new array with all sub-array elements concatenated into it recursively up to the specified depth.
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat
+      const flattenedPosts = posts.flat(); // concatenate posts from all users
+      flattenedPosts.map(({ uid }) => {
+        if (uid !== currentUser?.uid) {
+          setHasFollowing(true);
+        }
+        setHasFollowing(false);
+      });
+      const sortedPosts = flattenedPosts.sort(
+        (a, b) => Number(b.timestamp) - Number(a.timestamp)
+      ); // sort by timestamp
+      setPosts(sortedPosts);
+    } catch (error) {
+      toast.error("Error fetching posts");
+    }
+  };
 
   useEffect(() => {
-    (async () => {
-      try {
-        const queryCollection = query(
-          collection(firestore, `following/${currentUser?.uid}/users`)
-        );
-        const querySnapshot = await getDocs(queryCollection);
-        const docsArray = querySnapshot.docs.map((doc) =>
-          fetchFollowingPosts(doc.data().uid)
-        );
-        // Promise.all is waiting for all the docsArray to be returned before doing anything.
-        const posts = await Promise.all(docsArray);
-
-        // The flat() method creates a new array with all sub-array elements concatenated into it recursively up to the specified depth.
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat
-        const flattenedPosts = posts.flat(); // concatenate posts from all users
-        flattenedPosts.map(({ uid }) => {
-          if (uid !== currentUser?.uid) {
-            setHasFollowing(true);
-          }
-          setHasFollowing(false);
-        });
-        const sortedPosts = flattenedPosts.sort(
-          (a, b) => Number(b.timestamp) - Number(a.timestamp)
-        ); // sort by timestamp
-        setPosts(sortedPosts);
-      } catch (error) {
-        toast.error("Error fetching posts");
-      }
-    })();
+    fetchFollowingUsers();
   }, []);
 
   // Display only if the 0 following and no posts yet.
-  if (!hasFollowing && posts.length === 0) {
+  if (!hasFollowing && posts.length === 0 && !isLoading) {
     return (
       <div className={styles.recommendationsRoot}>
         <FeedHeader />
@@ -106,12 +111,50 @@ const Feed = () => {
   }
 
   if (isLoading) {
-    return [1, 2, 3].map((i) => <SkeletonLoader key={i} />);
+    return (
+      <>
+        <div className={styles.root}>
+          <FeedHeader />
+          <div className={styles.container}>
+            <div className={styles.content}>
+              {[1, 2, 3].map((i) => (
+                <SkeletonLoader key={i} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </>
+    );
   }
+
+  const renderPosts = () => {
+    return (
+      <>
+        {posts.length}
+        {posts.map((post, i) => (
+          <Fragment key={i}>
+            <PostsHeader
+              name={post.displayName}
+              uid={post.uid}
+              userPhoto={post.userPhoto}
+            />
+            <div className={styles.post}>
+              <PostContent data={post.postURL} />
+              <div className={styles.interactions}>
+                <PostInteraction />
+                <PostComments />
+              </div>
+            </div>
+          </Fragment>
+        ))}
+      </>
+    );
+  };
 
   /*
     TODO:
     1. Create an infinite scroll here
+    2. Create a header
   */
   return (
     <div className={styles.root}>
@@ -121,24 +164,7 @@ const Feed = () => {
           <div className={styles.stories}>
             <Stories />
           </div>
-          <div>
-            {posts.map((post, i) => (
-              <Fragment key={i}>
-                <PostsHeader
-                  name={post.displayName}
-                  uid={post.uid}
-                  userPhoto={post.userPhoto}
-                />
-                <div className={styles.post}>
-                  <PostContent data={post.postURL} />
-                  <div className={styles.interactions}>
-                    <PostInteraction />
-                    <PostComments />
-                  </div>
-                </div>
-              </Fragment>
-            ))}
-          </div>
+          <div>{renderPosts()}</div>
         </div>
         <div className={styles.recommendation}>
           <strong className={styles.suggestionHeader}>
