@@ -30,6 +30,7 @@ const CustomAvatar = ({
   uid,
 }: Partial<CustomAvatarProps>) => {
   const currentUser = useAppSelector((state) => state.user.user);
+  // returns the default config if it's the current user otherwise generate a random config
   const customAvatarConfig = uid === currentUser!.uid ? config : genConfig();
 
   // Show generated avatar if no photoUrl is presented otherwise show the user's picture.
