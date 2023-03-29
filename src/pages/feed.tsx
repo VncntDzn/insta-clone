@@ -130,7 +130,6 @@ const Feed = () => {
   const renderPosts = () => {
     return (
       <>
-        {posts.length}
         {posts.map((post, i) => (
           <Fragment key={i}>
             <PostsHeader
