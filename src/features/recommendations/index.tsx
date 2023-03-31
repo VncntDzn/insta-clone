@@ -109,25 +109,28 @@ const Recommendations = () => {
   }, []);
 
   return (
-    <motion.div initial={false} ref={scope} className={styles.root}>
-      {users.map(({ displayName, uid }) => (
-        <div className={`${styles.users} ${uid}`} key={uid}>
-          <div className={styles.avatarContainer}>
-            <Avatar height={50} width={50} />
-            <strong className={styles.name}>{displayName}</strong>
+    <div className={styles.root}>
+      <strong>Suggestions for you</strong>
+      <motion.div initial={false} ref={scope}>
+        {users.map(({ displayName, uid }) => (
+          <div className={`${styles.users} ${uid}`} key={uid}>
+            <div className={styles.avatarContainer}>
+              <Avatar height={50} width={50} />
+              <strong className={styles.name}>{displayName}</strong>
+            </div>
+            <button
+              className={`${
+                isLoading[uid] ? styles.disabledBtn : styles.followBtn
+              }`}
+              onClick={(event) => handleFollowUser({ event, displayName, uid })}
+              disabled={isLoading[uid]}
+            >
+              {isLoading[uid] ? <ClipLoader size={15} /> : <span>Follow</span>}
+            </button>
           </div>
-          <button
-            className={`${
-              isLoading[uid] ? styles.disabledBtn : styles.followBtn
-            }`}
-            onClick={(event) => handleFollowUser({ event, displayName, uid })}
-            disabled={isLoading[uid]}
-          >
-            {isLoading[uid] ? <ClipLoader size={15} /> : <span>Follow</span>}
-          </button>
-        </div>
-      ))}
-    </motion.div>
+        ))}
+      </motion.div>
+    </div>
   );
 };
 

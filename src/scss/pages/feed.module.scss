@@ -38,23 +38,6 @@
     width: 17%;
   }
 }
-.recommendationsRoot {
-  width: 100%;
-}
-.recommendationsContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-.suggestionHeader {
-  align-self: flex-start;
-  font-weight: 600;
-  color: $GRAY;
-  @include lg() {
-    font-size: 20px;
-  }
-}
 
 .skeletonLoader {
   padding: 1rem;

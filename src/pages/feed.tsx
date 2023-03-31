@@ -92,16 +92,13 @@ const Feed = () => {
     fetchFollowingUsers();
   }, []);
 
-  // Display only if the 0 following and no posts yet.
+  // Display only if 0 following, not loading and no posts yet.
   if (!hasFollowing && posts.length === 0 && !isLoading) {
     return (
-      <div className={styles.recommendationsRoot}>
+      <>
         <FeedHeader />
-        <div className={styles.recommendationsContainer}>
-          <p className={styles.suggestionHeader}>Suggestions for you</p>{" "}
-          <Recommendations />
-        </div>
-      </div>
+        <Recommendations />
+      </>
     );
   }
 
@@ -154,9 +151,6 @@ const Feed = () => {
           <div>{renderPosts()}</div>
         </div>
         <div className={styles.recommendation}>
-          <strong className={styles.suggestionHeader}>
-            Suggestions for you
-          </strong>
           <Recommendations />
         </div>
       </div>
