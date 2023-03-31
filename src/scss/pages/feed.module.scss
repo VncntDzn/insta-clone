@@ -55,3 +55,12 @@
     font-size: 20px;
   }
 }
+
+.skeletonLoader {
+  padding: 1rem;
+  @include lg() {
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+  }
+}

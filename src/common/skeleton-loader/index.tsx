@@ -4,9 +4,9 @@ const SkeletonLoader = () => {
   return (
     <ContentLoader
       speed={2}
-      width={400}
-      height={860}
-      viewBox="0 0 400 860"
+      width="100%"
+      height="100%"
+      viewBox="0 0 500 660"
       backgroundColor="#e0e0e0"
       foregroundColor="#ecebeb"
     >

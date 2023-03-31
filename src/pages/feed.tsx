@@ -1,3 +1,4 @@
+import { SkeletonLoader } from "common";
 import { firestore } from "db/client";
 import { Stories } from "features";
 import { FeedHeader } from "features/feed";
@@ -12,21 +13,15 @@ import {
   collection,
   DocumentData,
   getDocs,
-  limit,
   orderBy,
   query,
-  startAfter,
 } from "firebase/firestore";
 import PrivateLayout from "layouts/private-layout";
+import moment from "moment";
 import { Fragment, ReactElement, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import styles from "scss/pages/feed.module.scss";
 import { useAppSelector } from "store/hooks";
-import moment from "moment";
-import ContentLoader from "react-content-loader";
-import { SkeletonLoader } from "common";
-import { FadeLoader } from "react-spinners";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Post {
   displayName: string;
@@ -112,18 +107,11 @@ const Feed = () => {
 
   if (isLoading) {
     return (
-      <>
-        <div className={styles.root}>
-          <FeedHeader />
-          <div className={styles.container}>
-            <div className={styles.content}>
-              {[1, 2, 3].map((i) => (
-                <SkeletonLoader key={i} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </>
+      <div className={styles.skeletonLoader}>
+        {[1, 2, 3].map((i) => (
+          <SkeletonLoader key={i} />
+        ))}
+      </div>
     );
   }
 
