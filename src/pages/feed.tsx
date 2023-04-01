@@ -38,6 +38,28 @@ const FeedHeader = () => {
   );
 };
 
+const FeedPosts = ({ posts }) => {
+  return (
+    <div className={styles.posts}>
+      {posts.map((post, i) => (
+        <div key={i}>
+          <PostsHeader
+            name={post.displayName}
+            uid={post.uid}
+            userPhoto={post.userPhoto}
+          />
+          <div className={styles.post}>
+            <PostContent data={post.postURL} />
+            <div className={styles.interactions}>
+              <PostInteraction />
+              {/*     <PostComments /> */}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
 const Feed = () => {
   const currentUser = useAppSelector((state) => state.user.user);
   const [posts, setPosts] = useState<DocumentData[]>([]);
@@ -120,29 +142,6 @@ const Feed = () => {
     );
   }
 
-  const renderPosts = () => {
-    return (
-      <div className={styles.posts}>
-        {posts.map((post, i) => (
-          <div key={i}>
-            <PostsHeader
-              name={post.displayName}
-              uid={post.uid}
-              userPhoto={post.userPhoto}
-            />
-            <div className={styles.post}>
-              <PostContent data={post.postURL} />
-              <div className={styles.interactions}>
-                <PostInteraction />
-                {/*     <PostComments /> */}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  };
-
   /*
     TODO:
     1. Create an infinite scroll here
@@ -156,7 +155,7 @@ const Feed = () => {
           <div className={styles.stories}>
             <Stories />
           </div>
-          {renderPosts()}
+          <FeedPosts posts={posts} />
         </div>
         <div className={styles.recommendation}>
           <Recommendations />
