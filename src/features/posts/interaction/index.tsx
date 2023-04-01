@@ -6,7 +6,7 @@ import {
   RiSendPlaneLine,
 } from "react-icons/ri";
 import styles from "./interaction.module.scss";
-const Interaction = () => {
+const Interaction = ({ caption, name }) => {
   const renderDetails = () => {
     if (false) {
       return (
@@ -25,9 +25,9 @@ const Interaction = () => {
         <div className={styles.details}>
           <b className={styles.numOfLikes}>3,802 likes</b>
           <span>
-            <small className={styles.username}>username</small>
+            <small className={styles.username}>{name}</small>
             &nbsp;
-            <small>Caption here...</small>
+            <small>{caption ?? ""}</small>
           </span>
         </div>
       );

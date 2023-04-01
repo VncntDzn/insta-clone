@@ -47,11 +47,12 @@ const FeedPosts = ({ posts }) => {
             name={post.displayName}
             uid={post.uid}
             userPhoto={post.userPhoto}
+            location={post.location}
           />
           <div className={styles.post}>
             <PostContent data={post.postURL} />
             <div className={styles.interactions}>
-              <PostInteraction />
+              <PostInteraction name={post.displayName} caption={post.caption} />
               {/*     <PostComments /> */}
             </div>
           </div>
