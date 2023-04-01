@@ -7,8 +7,34 @@ import {
 } from "react-icons/ri";
 import styles from "./interaction.module.scss";
 const Interaction = () => {
+  const renderDetails = () => {
+    if (false) {
+      return (
+        <div className={styles.likedBy}>
+          <div className={styles.avatar}>
+            <Avatar />
+            <Avatar />
+            <Avatar />
+          </div>
+          <small>Liked by ...</small>
+          <small>FEBRUARY 22</small>
+        </div>
+      );
+    } else {
+      return (
+        <div className={styles.details}>
+          <b className={styles.numOfLikes}>3,802 likes</b>
+          <span>
+            <small className={styles.username}>username</small>
+            &nbsp;
+            <small>Caption here...</small>
+          </span>
+        </div>
+      );
+    }
+  };
   return (
-    <section>
+    <section className={styles.root}>
       <div className={styles.icons}>
         <div className={styles.interactions}>
           <RiHeartLine size={30} />
@@ -17,15 +43,7 @@ const Interaction = () => {
         </div>
         <RiBookmarkLine size={30} />
       </div>
-      <div className={styles.likedBy}>
-        <div className={styles.avatar}>
-          <Avatar />
-          <Avatar />
-          <Avatar />
-        </div>
-        <small>Liked by ...</small>
-      </div>
-      <small>FEBRUARY 22</small>
+      {renderDetails()}
     </section>
   );
 };

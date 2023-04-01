@@ -5,7 +5,7 @@
   position: relative;
 
   @include sm() {
-    width: 45vw;
+    width: 50vw;
     height: 40vh;
   }
   @include lg() {
@@ -15,9 +15,23 @@
 }
 .image {
   height: 70vh;
+  @include sm() {
+    width: 50vw;
+    height: 40vh;
+  }
+  @include lg() {
+    width: 30vw;
+    height: 70vh;
+  }
 }
 
 .video {
   height: 70vh;
   width: 100%;
+  @include sm() {
+    height: 40vh;
+  }
+  @include lg() {
+    height: 70vh;
+  }
 }

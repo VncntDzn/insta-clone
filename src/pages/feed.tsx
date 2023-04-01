@@ -1,24 +1,19 @@
 import { SkeletonLoader } from "common";
 import { firestore } from "db/client";
 import { Stories } from "features";
-import { FeedHeader } from "features/feed";
-import {
-  PostComments,
-  PostContent,
-  PostInteraction,
-  PostsHeader,
-} from "features/posts";
+import { PostContent, PostInteraction, PostsHeader } from "features/posts";
 import Recommendations from "features/recommendations";
 import {
-  collection,
   DocumentData,
+  collection,
   getDocs,
   orderBy,
   query,
 } from "firebase/firestore";
 import PrivateLayout from "layouts/private-layout";
 import moment from "moment";
-import { Fragment, ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
+import { RiHeartLine, RiInstagramLine } from "react-icons/ri";
 import { toast } from "react-toastify";
 import styles from "scss/pages/feed.module.scss";
 import { useAppSelector } from "store/hooks";
@@ -30,6 +25,19 @@ interface Post {
   postURL: string;
   timestamp: moment.Moment;
 }
+
+const FeedHeader = () => {
+  return (
+    <div className={styles.header}>
+      <RiInstagramLine className={styles.logo} size={30} />
+      <input placeholder="Search" className={styles.search} />
+      <div className={styles.notifications}>
+        <RiHeartLine size={30} />
+      </div>
+    </div>
+  );
+};
+
 const Feed = () => {
   const currentUser = useAppSelector((state) => state.user.user);
   const [posts, setPosts] = useState<DocumentData[]>([]);
@@ -73,7 +81,7 @@ const Feed = () => {
       // The flat() method creates a new array with all sub-array elements concatenated into it recursively up to the specified depth.
       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat
       const flattenedPosts = posts.flat(); // concatenate posts from all users
-      flattenedPosts.map(({ uid }) => {
+      flattenedPosts.map((uid) => {
         if (uid !== currentUser?.uid) {
           setHasFollowing(true);
         }
@@ -114,9 +122,9 @@ const Feed = () => {
 
   const renderPosts = () => {
     return (
-      <>
+      <div className={styles.posts}>
         {posts.map((post, i) => (
-          <Fragment key={i}>
+          <div key={i}>
             <PostsHeader
               name={post.displayName}
               uid={post.uid}
@@ -126,12 +134,12 @@ const Feed = () => {
               <PostContent data={post.postURL} />
               <div className={styles.interactions}>
                 <PostInteraction />
-                <PostComments />
+                {/*     <PostComments /> */}
               </div>
             </div>
-          </Fragment>
+          </div>
         ))}
-      </>
+      </div>
     );
   };
 
@@ -143,12 +151,12 @@ const Feed = () => {
   return (
     <div className={styles.root}>
       <FeedHeader />
-      <div className={styles.container}>
+      <div className={styles.feed}>
         <div className={styles.content}>
           <div className={styles.stories}>
             <Stories />
           </div>
-          <div>{renderPosts()}</div>
+          {renderPosts()}
         </div>
         <div className={styles.recommendation}>
           <Recommendations />
