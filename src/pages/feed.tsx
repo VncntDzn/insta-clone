@@ -1,7 +1,7 @@
 import { SkeletonLoader } from "common";
 import { firestore } from "db/client";
 import { Stories } from "features";
-import { PostContent, PostInteraction, PostsHeader } from "features/posts";
+import { PostContent, PostInteractions, PostsHeader } from "features/posts";
 import Recommendations from "features/recommendations";
 import {
   DocumentData,
@@ -52,7 +52,7 @@ const FeedPosts = ({ posts }) => {
           <div className={styles.post}>
             <PostContent data={post.postURL} />
             <div className={styles.interactions}>
-              <PostInteraction name={post.displayName} caption={post.caption} />
+              <PostInteractions name={post.displayName} caption={post.caption} />
               {/*     <PostComments /> */}
             </div>
           </div>
