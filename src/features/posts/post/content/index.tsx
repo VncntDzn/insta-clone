@@ -2,14 +2,8 @@ import Image from "next/image";
 import { Fragment } from "react";
 import { Carousel } from "react-responsive-carousel";
 import styles from "./post.module.scss";
+import { PostContentType } from "./post.types";
 
-interface PostURL {
-  url: string;
-  metadata: string;
-}
-interface PostContentType {
-  data: PostURL[];
-}
 
 const PostContent = ({ data }: PostContentType) => {
   return (

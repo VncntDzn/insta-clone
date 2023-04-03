@@ -1,4 +1,4 @@
-import { PostComments, PostInteraction } from "features/posts";
+import { PostComments, PostInteractions } from "features/posts";
 import PostsHeader from "features/posts/header";
 import { memo } from "react";
 import { RiEmotionHappyLine } from "react-icons/ri";
@@ -13,7 +13,7 @@ const DialogPost = ({ postURL }) => {
         <PostContent data={postURL} />
         <div className={styles.interactions}>
           <div>
-            <PostInteraction />
+            <PostInteractions />
             <div className={styles.commentArea}>
               <RiEmotionHappyLine size={30} />
               <textarea
