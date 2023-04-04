@@ -112,3 +112,27 @@
     }
   }
 }
+.comment {
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+  position: relative;
+  .commentBox {
+    border: none;
+    font-size: small;
+    outline: none;
+    width: 90%;
+  }
+  .commentBtn {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    bottom:55%;
+    font-size: small;
+    color: $BLUE;
+    text-transform: lowercase;
+    font-weight: 600;
+  }
+}

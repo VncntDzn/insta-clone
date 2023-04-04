@@ -1,7 +1,12 @@
 import { SkeletonLoader } from "common";
 import { firestore } from "db/client";
 import { Stories } from "features";
-import { PostContent, PostInteractions, PostsHeader } from "features/posts";
+import {
+  PostComments,
+  PostContent,
+  PostInteractions,
+  PostsHeader,
+} from "features/posts";
 import Recommendations from "features/recommendations";
 import {
   DocumentData,
@@ -38,6 +43,16 @@ const FeedHeader = () => {
   );
 };
 
+const FeedComments = () => {
+  return (
+    <div className={styles.comment}>
+      <small>View all 70 comments</small>
+      <textarea className={styles.commentBox} placeholder="add a comment..." />
+      <button className={styles.commentBtn}>Post</button>
+    </div>
+  );
+};
+
 const FeedPosts = ({ posts }) => {
   return (
     <div className={styles.posts}>
@@ -52,8 +67,12 @@ const FeedPosts = ({ posts }) => {
           <div className={styles.post}>
             <PostContent data={post.postURL} />
             <div className={styles.interactions}>
-              <PostInteractions name={post.displayName} caption={post.caption} />
-              {/*     <PostComments /> */}
+              <PostInteractions
+                name={post.displayName}
+                caption={post.caption}
+              />
+              <FeedComments />
+              {/* <PostComments /> */}
             </div>
           </div>
         </div>
