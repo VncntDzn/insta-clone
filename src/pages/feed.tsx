@@ -44,13 +44,25 @@ const FeedHeader = () => {
 };
 
 const FeedComments = () => {
+  const [isViewPost, setViewPost] = useState(false);
+
+  const handleViewPost = () => {
+    setViewPost(!isViewPost);
+  };
+
+  if (isViewPost) {
+    return <PostDialog />;
+  }
   return (
     <div className={styles.comment}>
-      <small>View all 70 comments</small>
+      <small onClick={handleViewPost}>View all 70 comments</small>
       <textarea className={styles.commentBox} placeholder="add a comment..." />
       <button className={styles.commentBtn}>Post</button>
     </div>
   );
+};
+const PostDialog = () => {
+  return <div>dialog dapat to</div>;
 };
 
 const FeedPosts = ({ posts }) => {

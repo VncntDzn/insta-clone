@@ -1,37 +1,36 @@
 @import "scss/utils/mixins";
 @import "scss/utils/colors";
 .root {
-  height: 70vh;
+  height: 50vh;
   position: relative;
 
   @include sm() {
-    width: 50vw;
-    height: 40vh;
+    width: 40vw;
+    height: 30vh;
   }
   @include lg() {
-    width: 30vw;
-    height: 70vh;
+    width: 25vw;
+    height: 50vh;
   }
 }
 .image {
-  height: 70vh;
+  height: 50vh;
   @include sm() {
-    width: 50vw;
-    height: 40vh;
+    width: 20vw;
+    height: 30vh;
   }
   @include lg() {
-    width: 30vw;
-    height: 70vh;
+    height: 50vh;
   }
 }
 
 .video {
-  height: 70vh;
+  height: 50vh;
   width: 100%;
   @include sm() {
     height: 40vh;
   }
   @include lg() {
-    height: 70vh;
+    height: 50vh;
   }
 }
