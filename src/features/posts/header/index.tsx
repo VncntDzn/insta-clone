@@ -7,7 +7,7 @@ const PostsHeader = ({ name, userPhoto, uid, location }: PostHeaderProps) => {
   return (
     <section className={styles.root}>
       <div className={styles.avatar}>
-        <Avatar height={40} width={40} uid={uid} />
+        <Avatar height={30} width={30} uid={uid} />
       </div>
       <div className={styles.name}>
         <strong>{name}</strong>
