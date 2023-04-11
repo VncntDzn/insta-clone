@@ -1,12 +1,7 @@
 import { SkeletonLoader } from "common";
 import { firestore } from "db/client";
 import { Stories } from "features";
-import {
-  PostComments,
-  PostContent,
-  PostInteractions,
-  PostsHeader,
-} from "features/posts";
+import { FeedPosts } from "features/feed";
 import Recommendations from "features/recommendations";
 import {
   DocumentData,
@@ -63,35 +58,7 @@ const FeedComments = () => {
 };
 const PostDialog = () => {
   return <div>dialog dapat to</div>;
-};
-
-const FeedPosts = ({ posts }) => {
-  return (
-    <div className={styles.posts}>
-      {posts.map((post, i) => (
-        <div key={i}>
-          <PostsHeader
-            name={post.displayName}
-            uid={post.uid}
-            userPhoto={post.userPhoto}
-            location={post.location}
-          />
-          <div className={styles.post}>
-            <PostContent data={post.postURL} />
-            <div className={styles.interactions}>
-              <PostInteractions
-                name={post.displayName}
-                caption={post.caption}
-              />
-              <FeedComments />
-              {/* <PostComments /> */}
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
+}; 
 const Feed = () => {
   const currentUser = useAppSelector((state) => state.user.user);
   const [posts, setPosts] = useState<DocumentData[]>([]);

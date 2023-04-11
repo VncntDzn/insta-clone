@@ -47,26 +47,6 @@
     width: 30vw;
   }
 }
-.posts {
-  padding: 0 0.3rem;
-  display: flex;
-  flex-direction: column;
-  width: 97vw;
-
-  @include sm() {
-    align-items: center;
-    width: 85vw;
-  }
-
-  @include lg() {
-    width: fit-content;
-  }
-
-  .post {
-    border-bottom: 1px solid $LIGHT_GRAY;
-    padding-bottom: 1.5rem;
-  }
-}
 .header {
   display: flex;
   justify-content: space-between;
@@ -129,7 +109,7 @@
     cursor: pointer;
     position: absolute;
     right: 0;
-    bottom:55%;
+    bottom: 55%;
     font-size: small;
     color: $BLUE;
     text-transform: lowercase;

@@ -1,0 +1,22 @@
+@import "scss/utils/mixins";
+@import "scss/utils/colors";
+
+.root {
+ display: flex;
+  flex-direction: column;
+  width: 100vw;
+
+  @include sm() {
+    align-items: center;
+    width: 85vw;
+  }
+
+  @include lg() {
+    width: fit-content;
+  }
+
+  .post {
+    border-bottom: 1px solid $LIGHT_GRAY;
+    padding-bottom: 1.5rem;
+  }
+}
